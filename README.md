@@ -18,8 +18,8 @@
 * Server : AWS EC2 Windows 2012 Server
 
 # People
-Project Director : Kim BoWoon
-Developer : Kim BoWoon, Cho KiSang
+* Project Director : Kim BoWoon
+* Developer : Kim BoWoon, Cho KiSang
 
 # License
 MIT License
