@@ -12,6 +12,18 @@
 >> 라즈베리파이와 NFC System을 사용해 출입방법 개선
 ```
 
+[Dormitory management system] 
+The program we develop is the application of dormitory management system of Kookmin University. Currently, Kookmin University only runs a website to manage dormitory system. For this reasosn, many students have several complaints. That is why we are going to make management system is more convenient. The complaints that we are try to solve as follows.
+
+1. Checking notices only on website 
+>> Checking all notice through Application everywhere 
+2. Only Q/A process is on website and with a call 
+>>  Q/A service with application at anytime and anywhere.  
+3. Passive system of dormitory managers
+>> Developed office automation system(roll call or other services)
+4. Dormitory enter system 
+>> Improving the system with raspberry pie and  NFC System
+
 # Development Stack
 * Language : JAVA
 * Framework : Android
