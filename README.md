@@ -1,4 +1,4 @@
-# 기숙사 관리 시스템
+# 기숙사 관리 시스템 [![Build Status](https://travis-ci.org/Dormitory-System/Dormitory-System-Android.svg?branch=develop)](https://travis-ci.org/Dormitory-System/Dormitory-System-Android)
 저희가 개발하고자 하는 프로그램은 국민대학교 기숙사 관리 어플리케이션입니다. 현재 국민대학교 기숙사 시스템은 홈페이지를 통해서만 운용되고 있습니다. 그로인해 학생들은 여러가지 불편사항들을 느끼고 있습니다. 저희의 목표는 이러한 불편한 점들을 해결해 더욱 편리한 기숙사 시스템을 구축할 예정입니다. 저희가 해결하고자 하는 불편사항과 해결방안은 다음과 같습니다. 
  
 ```
