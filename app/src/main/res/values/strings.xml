@@ -3,4 +3,8 @@
 
     <string name="open_drawer">Open drawer</string>
     <string name="close_drawer">Close drawer</string>
+
+    <string name="first">notice</string>
+    <string name="second">point</string>
+    <string name="third">board</string>
 </resources>
