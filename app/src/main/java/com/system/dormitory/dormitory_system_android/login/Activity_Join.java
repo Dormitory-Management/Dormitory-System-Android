@@ -1,4 +1,4 @@
-package com.system.dormitory.dormitory_system_android;
+package com.system.dormitory.dormitory_system_android.login;
 
 /**
  * Created by Administrator on 2016-05-09.
@@ -10,17 +10,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.system.dormitory.dormitory_system_android.R;
 import com.system.dormitory.dormitory_system_android.helper.Helper_checker;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
 
@@ -38,7 +36,7 @@ import cz.msebera.android.httpclient.Header;
 
 
 //TODO 입력이 제대로 됐는지 체크
-public class Activity_join extends Activity {
+public class Activity_Join extends Activity {
 
     boolean id_check_ok = false;
 
@@ -79,7 +77,7 @@ public class Activity_join extends Activity {
                     RequestParams idParams = new RequestParams();
                     String id = form_basic.et_id.getText().toString();
                     idParams.put("id", id);
-                    if (!Helper_checker.validId_context(Activity_join.this, id)) {
+                    if (!Helper_checker.validId_context(Activity_Join.this, id)) {
                         id_check_ok = false;
                         form_basic.tv_idCheck.setText("사용불가");
                         return;
@@ -133,7 +131,7 @@ public class Activity_join extends Activity {
                 String id = form_basic.et_id.getText().toString();
                 String password = form_basic.et_password.getText().toString();
                 String name = form_basic.et_name.getText().toString();
-                if (!Helper_checker.validJoin(Activity_join.this, name, id, password)) {
+                if (!Helper_checker.validJoin(Activity_Join.this, name, id, password)) {
                     return;
                 }
                 if(id_check_ok==false) {
@@ -158,7 +156,7 @@ public class Activity_join extends Activity {
                             } else {
                                 form_basic.tv_idCheck.setText("이미있는아이디");
                                 id_check_ok = false;
-                                Helper_checker.id_check_ok(Activity_join.this, id_check_ok);
+                                Helper_checker.id_check_ok(Activity_Join.this, id_check_ok);
                                 return;
                             }
                         }
@@ -207,7 +205,7 @@ public class Activity_join extends Activity {
 //                                                             String phoneNumber = form_basic.et_phoneNumber.getText().toString();
 //                                                             String email = form_basic.et_email.getText().toString();
 //
-//                                                             if (!Helper_checker.validJoin(Activity_join.this, name, id, password)) {
+//                                                             if (!Helper_checker.validJoin(Activity_Join.this, name, id, password)) {
 //                                                                 return false;
 //                                                             }
 //
@@ -240,12 +238,12 @@ public class Activity_join extends Activity {
 //
 
     public void joinAlert() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(Activity_join.this);
+        AlertDialog.Builder alert = new AlertDialog.Builder(Activity_Join.this);
         alert.setTitle("성공");
         alert.setMessage("가입이 완료되셨습니다.");
         alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(Activity_join.this, Activity_login.class);
+                Intent intent = new Intent(Activity_Join.this, Activity_Login.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 finish();
@@ -263,7 +261,7 @@ public class Activity_join extends Activity {
     }
 
     public void onBackPressed(){
-        Intent intent = new Intent(Activity_join.this, Activity_login.class);
+        Intent intent = new Intent(Activity_Join.this, Activity_Login.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
         finish();
