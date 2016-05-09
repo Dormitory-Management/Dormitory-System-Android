@@ -4,7 +4,7 @@
     android:id="@+id/dl_activity_main_drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Activity_main">
 
     <LinearLayout
         android:layout_width="match_parent"
