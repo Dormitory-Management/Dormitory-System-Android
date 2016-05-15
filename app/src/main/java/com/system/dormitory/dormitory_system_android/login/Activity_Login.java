@@ -1,4 +1,4 @@
-package com.system.dormitory.dormitory_system_android;
+package com.system.dormitory.dormitory_system_android.login;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -16,12 +16,12 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
 import com.loopj.android.http.RequestParams;
+import com.system.dormitory.dormitory_system_android.R;
+import com.system.dormitory.dormitory_system_android.activiti_main.Activity_Main;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Arrays;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.impl.cookie.BasicClientCookie;
@@ -29,7 +29,7 @@ import cz.msebera.android.httpclient.impl.cookie.BasicClientCookie;
 /**
  * Created by Administrator on 2016-05-09.
  */
-public class Activity_login extends Activity {
+public class Activity_Login extends Activity {
     private String login_id = "";
 
     EditText et_id;
@@ -54,7 +54,7 @@ public class Activity_login extends Activity {
 //        if (Helper_server.login(myCookieStore)) {
 //
 //            Log.i("abde", "what the!! ");
-//            Intent intent = new Intent(Activity_login.this, Activity_main.class);
+//            Intent intent = new Intent(Activity_Login.this, Activity_Main.class);
 //
 //            Helper_userData user = Helper_userData.getInstance();
 //            user.getInstance("aaaaa");
@@ -113,7 +113,7 @@ public class Activity_login extends Activity {
                                                          newCookie.setPath("/");
                                                          myCookieStore.addCookie(newCookie);
 
-                                                         Intent intent = new Intent(Activity_login.this, Activity_main.class);
+                                                         Intent intent = new Intent(Activity_Login.this, Activity_Main.class);
 
                                                          startActivity(intent);
                                                          finish();
@@ -140,7 +140,7 @@ public class Activity_login extends Activity {
         btn_join.setOnClickListener(new Button.OnClickListener(){
                                         public void onClick(View v) {
 
-                                            Intent intent = new Intent(Activity_login.this, Activity_join.class);
+                                            Intent intent = new Intent(Activity_Login.this, Activity_Join.class);
                                             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                                             startActivity(intent);
 
@@ -151,7 +151,7 @@ public class Activity_login extends Activity {
     }//onCreateEnd
 
     public void loginAlert() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(Activity_login.this);
+        AlertDialog.Builder alert = new AlertDialog.Builder(Activity_Login.this);
         alert.setTitle("로그인 실패");
         alert.setMessage("아이디 혹은 비밀번호가 확인해주세요 ");
         alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
