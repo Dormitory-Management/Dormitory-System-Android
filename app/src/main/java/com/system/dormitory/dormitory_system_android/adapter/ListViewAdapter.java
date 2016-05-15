@@ -48,8 +48,7 @@ public class ListViewAdapter extends BaseAdapter {
 
         aq = new AQuery(view);
 
-        aq.id(R.id.title).text(board.get(i).getTitle());
-        aq.id(R.id.content).text(board.get(i).getContent());
+        aq.id(R.id.item_title).text(board.get(i).getTitle());
 
         return view;
     }

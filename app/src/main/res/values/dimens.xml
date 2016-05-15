@@ -1,6 +1,7 @@
 <resources>
-    <dimen name="title_size">20sp</dimen>
-    <dimen name="content_size">10sp</dimen>
+    <dimen name="title_size">30sp</dimen>
+    <dimen name="content_size">30sp</dimen>
+
     <!-- activity_layout -->
     <dimen name="activity_layout_header_margin">0dp</dimen>
     <dimen name="activity_layout_header_height">30dp</dimen>

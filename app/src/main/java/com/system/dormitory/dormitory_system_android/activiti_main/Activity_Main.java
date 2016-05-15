@@ -44,17 +44,10 @@ public class Activity_Main extends AppCompatActivity {
         dataManager = DataManager.getInstance();
         dataManager.DataClear();
 
-        dataManager.getBoardItems().add(new BoardItem("게시글 #1", "게시글 내용 #1"));
-        dataManager.getBoardItems().add(new BoardItem("게시글 #2", "게시글 내용 #2"));
-        dataManager.getBoardItems().add(new BoardItem("게시글 #3", "게시글 내용 #3"));
-        dataManager.getBoardItems().add(new BoardItem("게시글 #4", "게시글 내용 #4"));
-        dataManager.getBoardItems().add(new BoardItem("게시글 #5", "게시글 내용 #5"));
-
-        dataManager.getNoticeItems().add(new NoticeItem("공지사항 #1", "공지사항 내용 #1"));
-        dataManager.getNoticeItems().add(new NoticeItem("공지사항 #2", "공지사항 내용 #2"));
-        dataManager.getNoticeItems().add(new NoticeItem("공지사항 #3", "공지사항 내용 #3"));
-        dataManager.getNoticeItems().add(new NoticeItem("공지사항 #4", "공지사항 내용 #4"));
-        dataManager.getNoticeItems().add(new NoticeItem("공지사항 #5", "공지사항 내용 #5"));
+        for (int i = 0; i < 20; i++) {
+            dataManager.getBoardItems().add(new BoardItem("게시글 #" + (i + 1), "게시글 내용 #" + (i + 1)));
+            dataManager.getNoticeItems().add(new NoticeItem("공지사항 #" + (i + 1), "공지사항 내용 #" + (i + 1)));
+        }
 
         Log.i("size", String.valueOf(dataManager.getBoardItems().size()));
 
