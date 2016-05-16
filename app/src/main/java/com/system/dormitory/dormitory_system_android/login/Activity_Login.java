@@ -17,7 +17,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
 import com.loopj.android.http.RequestParams;
 import com.system.dormitory.dormitory_system_android.R;
-import com.system.dormitory.dormitory_system_android.activiti_main.Activity_Main;
+import com.system.dormitory.dormitory_system_android.activity_main.Activity_Main;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
 
 import org.json.JSONException;

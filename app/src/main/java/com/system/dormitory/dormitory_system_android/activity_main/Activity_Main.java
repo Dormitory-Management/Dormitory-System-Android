@@ -1,4 +1,4 @@
-package com.system.dormitory.dormitory_system_android.activiti_main;
+package com.system.dormitory.dormitory_system_android.activity_main;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
