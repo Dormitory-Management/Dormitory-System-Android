@@ -20,5 +20,9 @@
     <string name="join_name">NickName</string>
     <string name="join_list">Prefered Tour Places</string>
     <string name="join_join">Submit</string>
+    <string name="cancel_text">Cancel</string>
 
+    <string name="write_title">Title</string>
+    <string name="write_content">Content</string>
+    <string name="write_title_text">글쓰기</string>
 </resources>
