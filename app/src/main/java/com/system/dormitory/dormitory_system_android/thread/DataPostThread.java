@@ -34,7 +34,7 @@ public class DataPostThread extends AsyncTask<ArrayList<BasicNameValuePair>, Int
 
             ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 
-            for (int i = 1; i < params[0].size(); i++) {
+            for (int i = 0; i < params[0].size(); i++) {
                 Log.i("DataPostThread getName", params[0].get(i).getName());
                 Log.i("DataPostThread getValue", params[0].get(i).getValue());
                 nameValuePairs.add(new BasicNameValuePair(params[0].get(i).getName(), params[0].get(i).getValue()));
