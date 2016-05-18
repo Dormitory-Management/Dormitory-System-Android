@@ -2,6 +2,7 @@ package com.system.dormitory.dormitory_system_android.login;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,8 +18,8 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
 import com.loopj.android.http.RequestParams;
 import com.system.dormitory.dormitory_system_android.R;
-import com.system.dormitory.dormitory_system_android.activity_main.Activity_Main;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
+import com.system.dormitory.dormitory_system_android.helper.Helper_userData;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,6 +36,9 @@ public class Activity_Login extends Activity {
     EditText et_id;
     EditText et_password;
 
+    public void open_UserView_Activity(String id, Context mContext){
+        Helper_userData.login_GetData(id, mContext);
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,18 +54,11 @@ public class Activity_Login extends Activity {
         final PersistentCookieStore myCookieStore = new PersistentCookieStore(this);
         client.setCookieStore(myCookieStore);
 
-        //자동 로그인 파트.
-//        if (Helper_server.login(myCookieStore)) {
-//
-//            Log.i("abde", "what the!! ");
-//            Intent intent = new Intent(Activity_Login.this, Activity_Main.class);
-//
-//            Helper_userData user = Helper_userData.getInstance();
-//            user.getInstance("aaaaa");
-//
-//            startActivity(intent);
-//            finish();
-//        }
+        if (Helper_server.login(myCookieStore)) {
+            Log.i("abde", "what the!! ");
+            String id = Helper_server.getCookieValue(myCookieStore,"id");
+            open_UserView_Activity(id, getApplicationContext());
+        }
 
         et_password.setOnKeyListener(new View.OnKeyListener() {
 
@@ -93,32 +90,37 @@ public class Activity_Login extends Activity {
                                              params.put("id", id);
                                              params.put("password", password);
                                              //server connect
-                                             Helper_server.post("login.php", params,  new JsonHttpResponseHandler() {
+                                             Helper_server.post("login.php", params, new JsonHttpResponseHandler() {
                                                  @Override
 
                                                  public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                                                      Log.i("abde", "success");
-                                                     String data="";
-                                                     try{
-                                                         data = response.get("ok").toString();
-                                                     } catch(JSONException e){
+                                                     String data = "";
+                                                     try {
+                                                         data = response.get("phpsession").toString();
+                                                     } catch (JSONException e) {
                                                          e.printStackTrace();
                                                      }
-                                                     Log.d("ok", "" + data);
-                                                     if(data.equals("true")){
+                                                     Log.d("phpsession", "" + data);
+                                                     if (!data.equals("no")) {
 
-                                                         BasicClientCookie newCookie = new BasicClientCookie("login_cookie", id);
+                                                         BasicClientCookie newCookie = new BasicClientCookie("login_session", data);
                                                          newCookie.setVersion(1);
-                                                         newCookie.setDomain("4.199.191.229");
+                                                         newCookie.setDomain("54.199.191.229");
                                                          newCookie.setPath("/");
                                                          myCookieStore.addCookie(newCookie);
-
-                                                         Intent intent = new Intent(Activity_Login.this, Activity_Main.class);
-
-                                                         startActivity(intent);
-                                                         finish();
-                                                     }
-                                                     else{
+                                                         newCookie = new BasicClientCookie("isLogin", "true");
+                                                         newCookie.setVersion(1);
+                                                         newCookie.setDomain("54.199.191.229");
+                                                         newCookie.setPath("/");
+                                                         myCookieStore.addCookie(newCookie);
+                                                         newCookie = new BasicClientCookie("id", id);
+                                                         newCookie.setVersion(1);
+                                                         newCookie.setDomain("54.199.191.229");
+                                                         newCookie.setPath("/");
+                                                         myCookieStore.addCookie(newCookie);
+                                                         open_UserView_Activity(id, getApplicationContext());
+                                                     } else {
                                                          loginAlert();
                                                      }
                                                  }
@@ -126,7 +128,7 @@ public class Activity_Login extends Activity {
                                                  @Override
                                                  public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                                                      super.onFailure(statusCode, headers, responseString, throwable);
-                                                     Log.d("Failed: ", ""+statusCode);
+                                                     Log.d("Failed: ", "" + statusCode);
                                                      Log.d("Error : ", "" + throwable);
                                                  }
                                              });

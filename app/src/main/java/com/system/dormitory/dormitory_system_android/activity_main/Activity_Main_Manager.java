@@ -22,7 +22,7 @@ import com.system.dormitory.dormitory_system_android.data.BoardItem;
 import com.system.dormitory.dormitory_system_android.data.DataManager;
 import com.system.dormitory.dormitory_system_android.data.NoticeItem;
 
-public class Activity_Main extends AppCompatActivity {
+public class Activity_Main_Manager extends AppCompatActivity {
     private ListView lvNavList;
     private DrawerLayout dlDrawer;
     private ActionBarDrawerToggle dtToggle;
@@ -121,19 +121,19 @@ public class Activity_Main extends AppCompatActivity {
         public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
             switch (position) {
                 case 0:
-                    Toast.makeText(Activity_Main.this, "점호", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Main_Manager.this, "매니저점호", Toast.LENGTH_SHORT).show();
                     break;
                 case 1:
-                    Toast.makeText(Activity_Main.this, "대여", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Main_Manager.this, "매니저대여", Toast.LENGTH_SHORT).show();
                     break;
                 case 2:
-                    Toast.makeText(Activity_Main.this, "외박", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Main_Manager.this, "매니저외박", Toast.LENGTH_SHORT).show();
                     break;
                 case 3:
-                    Toast.makeText(Activity_Main.this, "공지사항", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Main_Manager.this, "매니저공지사항", Toast.LENGTH_SHORT).show();
                     break;
                 case 4:
-                    Toast.makeText(Activity_Main.this, "게시판", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Main_Manager.this, "매니저게시판", Toast.LENGTH_SHORT).show();
                     break;
             }
             dlDrawer.closeDrawer(lvNavList);

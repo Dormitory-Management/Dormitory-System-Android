@@ -11,12 +11,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity_main.Activity_Main">
-
+        <activity android:name=".activity_main.Activity_Main_Student">
+        </activity>
+        <activity android:name=".activity_main.Activity_Main_Manager">
         </activity>
 
         <activity android:name=".login.Activity_Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".login.Activity_Join" />
@@ -24,11 +29,7 @@
         <activity android:name=".content.NoticeActivity" />
         <activity android:name=".content.WritingActivity" />
         <activity android:name=".activity_main.Activity_penaltyPoint">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
     </application>

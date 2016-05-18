@@ -188,51 +188,7 @@ public class Activity_Join extends Activity {
         };
 
         form_basic.btn_submit.setOnClickListener(requestJoin);
-//        form_basic.et_email.setOnKeyListener(new View.OnKeyListener() {
-//                                                 @Override
-//                                                 public boolean onKey(View v, int keyCode, KeyEvent event) {
-//                                                     //Enter key Action
-//                                                     if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-//                                                         InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-//                                                         imm.hideSoftInputFromWindow(form_basic.et_email.getWindowToken(), 0);    //hide keyboard
-//
-//
-//                                                             RequestParams params = new RequestParams();
-//                                                             Log.d("idcheck", "" + id_check_ok);
-//                                                             String id = form_basic.et_id.getText().toString();
-//                                                             String password = form_basic.et_password.getText().toString();
-//                                                             String name = form_basic.et_name.getText().toString();
-//                                                             String phoneNumber = form_basic.et_phoneNumber.getText().toString();
-//                                                             String email = form_basic.et_email.getText().toString();
-//
-//                                                             if (!Helper_checker.validJoin(Activity_Join.this, name, id, password)) {
-//                                                                 return false;
-//                                                             }
-//
-//                                                             Log.i("Msg", "id : " + id + "pwd : " + password + "name : " + name);
-//
-//                                                             params.put("id", id);
-//                                                             params.put("password", password);
-//                                                             params.put("name", name);
-//
-//                                                             Helper_server.post("member_Insert.php", params, new AsyncHttpResponseHandler() {
-//                                                                 @Override
-//                                                                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-//                                                                     Log.i("Msg", "success");
-//                                                                     joinAlert();
-//                                                                 }
-//
-//                                                                 @Override
-//                                                                 public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-//                                                                     Log.i("Msg", "fail");
-//                                                                 }
-//                                                             });
-//                                                         }
-//                                                         return true;
-//                                                     }
-//                                                 }
-//
-//        );
+
     } //onCreate 종료
     //email 입력후 엔터눌렀을때 회원가입 처리
 //
