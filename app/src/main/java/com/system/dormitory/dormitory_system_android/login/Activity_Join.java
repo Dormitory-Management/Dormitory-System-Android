@@ -163,11 +163,11 @@ public class Activity_Join extends Activity {
                     });
                 }
 
-                params.put("sno", sno);
-                params.put("password", password);
-                params.put("name", name);
+                    params.put("sno", sno);
+                    params.put("password", password);
+                    params.put("name", name); //한글 완료.
 
-                Log.d("joinMessage", sno + password + name);
+               // Log.d("joinMessage", sno + password + name);
                 Helper_server.post("member_Insert.php", params, new AsyncHttpResponseHandler() {
                     @Override
 
@@ -204,14 +204,6 @@ public class Activity_Join extends Activity {
             }
         });
         alert.show();
-    }
-
-    public static String urlEncodeUTF8(String url) {
-        try {
-            return URLEncoder.encode(url, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new UnsupportedOperationException(e);
-        }
     }
 
     public void onBackPressed(){
