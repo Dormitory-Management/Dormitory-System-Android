@@ -10,12 +10,12 @@
 
     <string name="login">Login Page</string>
     <string name="login_login">Login</string>
-    <string name="login_id">ID</string>
+    <string name="login_sno">학번</string>
     <string name="login_password">Password</string>
     <string name="login_join">Join</string>
 
     <string name="join_main">Join</string>
-    <string name="join_id">ID</string>
+    <string name="join_sno">학번</string>
     <string name="join_password">Password</string>
     <string name="join_name">NickName</string>
     <string name="join_list">Prefered Tour Places</string>
@@ -25,4 +25,9 @@
     <string name="write_title">Title</string>
     <string name="write_content">Content</string>
     <string name="write_title_text">글쓰기</string>
+
+    <string name="outSleep">외박 신청</string>
+    <string name="outSleep_SNO">학번</string>
+    <string name="outSleep_date">날짜</string>
+    <string name="outSleep_resister">외박신청</string>
 </resources>

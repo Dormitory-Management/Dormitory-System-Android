@@ -42,13 +42,13 @@ public class Activity_Join extends Activity {
 
     private form_basic form_basic;
     class form_basic {
-        EditText et_id;
+        EditText et_sno;
         EditText et_password;
         EditText et_name;
 
         Button btn_submit;
 
-        TextView tv_idCheck;
+        TextView tv_snoCheck;
 
     }
 
@@ -61,25 +61,25 @@ public class Activity_Join extends Activity {
         // 만듦
         final form_basic form_basic = new form_basic();
 
-        form_basic.et_id = (EditText) findViewById(R.id.et_join_id);
+        form_basic.et_sno = (EditText) findViewById(R.id.et_join_sno);
         form_basic.et_password = (EditText) findViewById(R.id.et_join_password);
         form_basic.et_name = (EditText) findViewById(R.id.et_join_name);
 
         form_basic.btn_submit = (Button) findViewById(R.id.btn_join_submit);
         //this.overridePendingTransition( R.anim.anim_slide_in_left, R.anim.anim_slide_in_right);
 
-        form_basic.tv_idCheck = (TextView) findViewById(R.id.tv_join_idcheck);
+        form_basic.tv_snoCheck = (TextView) findViewById(R.id.tv_join_snocheck);
 
-        form_basic.et_id.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        form_basic.et_sno.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus == false) {
                     RequestParams idParams = new RequestParams();
-                    String id = form_basic.et_id.getText().toString();
-                    idParams.put("id", id);
-                    if (!Helper_checker.validId_context(Activity_Join.this, id)) {
+                    String sno = form_basic.et_sno.getText().toString();
+                    idParams.put("sno", sno);
+                    if (!Helper_checker.validId_context(Activity_Join.this, sno)) {
                         id_check_ok = false;
-                        form_basic.tv_idCheck.setText("사용불가");
+                        form_basic.tv_snoCheck.setText("사용불가");
                         return;
                     } else {
                         Helper_server.post("idCheck.php", idParams, new JsonHttpResponseHandler() {
@@ -95,11 +95,11 @@ public class Activity_Join extends Activity {
                                 }
                                 Log.d("ok", "" + data);
                                 if (data.equals("true")) {
-                                    form_basic.tv_idCheck.setText("사용가능");
+                                    form_basic.tv_snoCheck.setText("사용가능");
                                     id_check_ok = true;
                                     return;
                                 } else {
-                                    form_basic.tv_idCheck.setText("이미있는아이디");
+                                    form_basic.tv_snoCheck.setText("이미있는학번");
                                     id_check_ok = false;
                                     return;
                                 }
@@ -114,7 +114,7 @@ public class Activity_Join extends Activity {
                         });
                     }
                 } else {
-                    form_basic.tv_idCheck.setText("");
+                    form_basic.tv_snoCheck.setText("");
                     id_check_ok = false;
 
                 }
@@ -125,18 +125,18 @@ public class Activity_Join extends Activity {
         View.OnClickListener requestJoin = new View.OnClickListener() {
             public void onClick(View v) {
 
-
                 RequestParams params = new RequestParams();
                 Log.d("idcheck", "" + id_check_ok);
-                String id = form_basic.et_id.getText().toString();
+                String id = form_basic.et_sno.getText().toString();
                 String password = form_basic.et_password.getText().toString();
                 String name = form_basic.et_name.getText().toString();
+                int sno = Integer.parseInt(id);
                 if (!Helper_checker.validJoin(Activity_Join.this, name, id, password)) {
                     return;
                 }
                 if(id_check_ok==false) {
                     RequestParams idParams = new RequestParams();
-                    idParams.put("id", id);
+                    idParams.put("sno", sno);
 
                     Helper_server.post("idCheck.php", idParams, new JsonHttpResponseHandler() {
                         @Override
@@ -151,10 +151,10 @@ public class Activity_Join extends Activity {
                             }
                             Log.d("ok", "" + data);
                             if (data.equals("true")) {
-                                form_basic.tv_idCheck.setText("사용가능");
+                                form_basic.tv_snoCheck.setText("사용가능");
                                 id_check_ok = true;
                             } else {
-                                form_basic.tv_idCheck.setText("이미있는아이디");
+                                form_basic.tv_snoCheck.setText("이미있는아이디");
                                 id_check_ok = false;
                                 Helper_checker.id_check_ok(Activity_Join.this, id_check_ok);
                                 return;
@@ -163,13 +163,11 @@ public class Activity_Join extends Activity {
                     });
                 }
 
-
-                Log.i("Msg", "id : " + id + "pwd : " + password + "name : " + name);
-
-                params.put("id", id);
+                params.put("sno", sno);
                 params.put("password", password);
                 params.put("name", name);
 
+                Log.d("joinMessage", sno + password + name);
                 Helper_server.post("member_Insert.php", params, new AsyncHttpResponseHandler() {
                     @Override
 

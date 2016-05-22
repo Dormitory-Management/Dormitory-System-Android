@@ -67,20 +67,20 @@
                     android:layout_height = "50dp"
                     android:orientation="horizontal">
                     <TextView
-                        android:id="@+id/tv_join_id"
+                        android:id="@+id/tv_join_sno"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight = "1"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
-                        android:text="@string/join_id"
+                        android:text="@string/join_sno"
                         android:textColor="@color/black"
                         android:textSize="25sp"
                         android:textStyle="bold" >
                     </TextView>
 
                     <EditText
-                        android:id="@+id/et_join_id"
+                        android:id="@+id/et_join_sno"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight ="1"
@@ -95,7 +95,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/tv_join_idcheck"
+                        android:id="@+id/tv_join_snocheck"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight = "1"

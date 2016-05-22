@@ -34,11 +34,11 @@ public class Activity_Login extends Activity {
     private String login_id = "";
     public static Activity login_Activity; //Aacitivity_login class선언.
 
-    EditText et_id;
+    EditText et_sno;
     EditText et_password;
 
-    public void open_UserView_Activity(String id, Context mContext){
-        Helper_userData.login_GetData(id, mContext);
+    public void open_UserView_Activity(int sno, Context mContext){
+        Helper_userData.login_GetData(sno, mContext);
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class Activity_Login extends Activity {
         login_Activity = Activity_Login.this;
 
         // 만듦
-        et_id = (EditText)findViewById(R.id.et_login_id);
+        et_sno = (EditText)findViewById(R.id.et_login_sno);
         et_password = (EditText)findViewById(R.id.et_login_password);
 
         AsyncHttpClient client = Helper_server.getInstance();
@@ -58,8 +58,8 @@ public class Activity_Login extends Activity {
 
         if (Helper_server.login(myCookieStore)) {
             Log.i("abde", "what the!! ");
-            String id = Helper_server.getCookieValue(myCookieStore,"id");
-            open_UserView_Activity(id, getApplicationContext());
+            int sno = Integer.parseInt(Helper_server.getCookieValue(myCookieStore,"sno"));
+            open_UserView_Activity(sno, getApplicationContext());
         }
 
         et_password.setOnKeyListener(new View.OnKeyListener() {
@@ -85,11 +85,11 @@ public class Activity_Login extends Activity {
                                      {
                                          public void onClick(View v) {
                                              RequestParams params = new RequestParams();
-                                             final String id = et_id.getText().toString();
+                                             final int sno = Integer.parseInt(et_sno.getText().toString());
                                              String password = et_password.getText().toString();
 
                                              //put params
-                                             params.put("id", id);
+                                             params.put("sno", sno);
                                              params.put("password", password);
                                              //server connect
                                              Helper_server.post("login.php", params, new JsonHttpResponseHandler() {
@@ -116,12 +116,12 @@ public class Activity_Login extends Activity {
                                                          newCookie.setDomain("54.199.191.229");
                                                          newCookie.setPath("/");
                                                          myCookieStore.addCookie(newCookie);
-                                                         newCookie = new BasicClientCookie("id", id);
+                                                         newCookie = new BasicClientCookie("sno", ""+sno);
                                                          newCookie.setVersion(1);
                                                          newCookie.setDomain("54.199.191.229");
                                                          newCookie.setPath("/");
                                                          myCookieStore.addCookie(newCookie);
-                                                         open_UserView_Activity(id, getApplicationContext());
+                                                         open_UserView_Activity(sno, getApplicationContext());
                                                      } else {
                                                          loginAlert();
                                                      }
@@ -160,7 +160,7 @@ public class Activity_Login extends Activity {
         alert.setMessage("아이디 혹은 비밀번호가 확인해주세요 ");
         alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                et_id.setText(null);
+                et_sno.setText(null);
                 et_password.setText(null);
             }
         });

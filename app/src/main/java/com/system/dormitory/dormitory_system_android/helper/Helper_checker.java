@@ -37,7 +37,7 @@ public class Helper_checker {
 
     public static boolean validId_context(Context context, String id){
         if(!validId(id)){
-            Toast.makeText(context, "아이디에 숫자로만된 학번을 입력하세요. ", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "학번은 숫자로만된 학번을 입력하세요. ", Toast.LENGTH_LONG).show();
             return false;
         }
         return true;
@@ -54,7 +54,7 @@ public class Helper_checker {
 
     public static boolean validJoin(Context context, String name, String id, String pw){
         if( !validId(id) ){
-            Toast.makeText(context, "아이디에 숫자로만된 학번을 입력하세요. ", Toast.LENGTH_LONG).show(); return false;
+            Toast.makeText(context, "학번은 숫자로만된 학번을 입력하세요. ", Toast.LENGTH_LONG).show(); return false;
         }
         if( !validPassword(pw) ){
             Toast.makeText(context, "비밀번호는 5글자 이상이어야합니다. ", Toast.LENGTH_LONG).show();

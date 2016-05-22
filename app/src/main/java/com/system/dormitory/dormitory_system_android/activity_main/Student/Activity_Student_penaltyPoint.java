@@ -1,4 +1,4 @@
-package com.system.dormitory.dormitory_system_android.activity_main;
+package com.system.dormitory.dormitory_system_android.activity_main.Student;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import com.system.dormitory.dormitory_system_android.R;
 /**
  * Created by Administrator on 2016-05-16.
  */
-public class Activity_penaltyPoint extends Activity {
+public class Activity_Student_penaltyPoint extends Activity {
 
     private TextView tv_penaltyPoint;
     private int penalty = 5;
@@ -27,7 +27,7 @@ public class Activity_penaltyPoint extends Activity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch(keyCode) {
             case KeyEvent.KEYCODE_BACK:
-                Intent intent = new Intent(Activity_penaltyPoint.this, Activity_Main_Student.class);
+                Intent intent = new Intent(Activity_Student_penaltyPoint.this, Activity_Student_Main.class);
                 startActivity(intent);
                 finish();
                 return false;

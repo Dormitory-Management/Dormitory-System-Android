@@ -1,4 +1,4 @@
-package com.system.dormitory.dormitory_system_android.activity_main;
+package com.system.dormitory.dormitory_system_android.activity_main.Student;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -27,20 +27,20 @@ import com.system.dormitory.dormitory_system_android.data.DataManager;
 import com.system.dormitory.dormitory_system_android.data.NoticeItem;
 import com.system.dormitory.dormitory_system_android.login.Activity_Login;
 
-public class Activity_Main_Manager extends AppCompatActivity {
+public class Activity_Student_Main extends AppCompatActivity {
     private ListView lvNavList;
     private DrawerLayout dlDrawer;
     private ActionBarDrawerToggle dtToggle;
     private ViewPager viewPager;
     private AQuery aq;
     private DataManager dataManager;
-    private String[] navItems={"대여승인", "외박승인", "점호확인"};
+    private String[] navItems = {"대여", "외박", "벌점확인"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+
         Activity_Login login = (Activity_Login) Activity_Login.login_Activity; //login_Activity_finish
         login.finish();
 
@@ -128,15 +128,22 @@ public class Activity_Main_Manager extends AppCompatActivity {
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
+            Intent intent;
             switch (position) {
                 case 0:
-                    Toast.makeText(Activity_Main_Manager.this, "대여승인", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Student_Main.this, "학생대여", Toast.LENGTH_SHORT).show();
                     break;
                 case 1:
-                    Toast.makeText(Activity_Main_Manager.this, "외박승인", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Student_Main.this, "학생외박", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(Activity_Student_Main.this, Activity_Student_outSleep.class);
+                    startActivity(intent);
+                    finish();
                     break;
                 case 2:
-                    Toast.makeText(Activity_Main_Manager.this, "점호확인", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Student_Main.this, "벌점확인", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(Activity_Student_Main.this, Activity_Student_penaltyPoint.class);
+                    startActivity(intent);
+                    finish();
                     break;
             }
             dlDrawer.closeDrawer(lvNavList);
