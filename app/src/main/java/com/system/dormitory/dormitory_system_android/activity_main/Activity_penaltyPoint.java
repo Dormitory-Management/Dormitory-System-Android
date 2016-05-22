@@ -1,7 +1,9 @@
 package com.system.dormitory.dormitory_system_android.activity_main;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.TextView;
 
 import com.system.dormitory.dormitory_system_android.R;
@@ -22,4 +24,15 @@ public class Activity_penaltyPoint extends Activity {
         tv_penaltyPoint.setText("이제 까지 받은 벌점은 \n"+ penalty + "점 입니다.");
     }
 
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch(keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                Intent intent = new Intent(Activity_penaltyPoint.this, Activity_Main_Student.class);
+                startActivity(intent);
+                finish();
+                return false;
+            default:
+                return false;
+        }
+    }
 }

@@ -44,9 +44,6 @@ public class ViewPagerAdapter extends PagerAdapter {
                 listView.setOnItemClickListener(noticeClick);
                 break;
             case 1:
-                v = inflater.inflate(R.layout.activity_point, null);
-                break;
-            case 2:
                 v = inflater.inflate(R.layout.activity_board, null);
                 listView = (ListView) v.findViewById(R.id.board_list);
                 listView.setAdapter(new ListViewAdapter(context, DataManager.getInstance().getBoardItems()));
@@ -54,6 +51,9 @@ public class ViewPagerAdapter extends PagerAdapter {
                 FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
                 fab.attachToListView(listView);
                 fab.setOnClickListener(floatingButtonClicked);
+                break;
+            case 2:
+                v = inflater.inflate(R.layout.activity_point, null);
                 break;
         }
 

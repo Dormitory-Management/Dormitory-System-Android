@@ -32,6 +32,7 @@ import cz.msebera.android.httpclient.impl.cookie.BasicClientCookie;
  */
 public class Activity_Login extends Activity {
     private String login_id = "";
+    public static Activity login_Activity; //Aacitivity_login class선언.
 
     EditText et_id;
     EditText et_password;
@@ -45,6 +46,7 @@ public class Activity_Login extends Activity {
 
         setContentView(R.layout.activity_login);
         // activity_layout.xml을
+        login_Activity = Activity_Login.this;
 
         // 만듦
         et_id = (EditText)findViewById(R.id.et_login_id);
