@@ -99,7 +99,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@+id/tvV_outSleep_SNO_value"
+                        android:id="@+id/tv_outSleep_SNO_value"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_weight ="1"
