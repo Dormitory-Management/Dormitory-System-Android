@@ -33,5 +33,6 @@
 
     <string name="outSleep_confirm">외박신청확인</string>
 
+    <string name="outSleep_specific_back">뒤로가기</string>
 
 </resources>
