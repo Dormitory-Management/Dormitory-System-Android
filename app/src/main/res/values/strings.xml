@@ -30,4 +30,8 @@
     <string name="outSleep_SNO">학번</string>
     <string name="outSleep_date">날짜</string>
     <string name="outSleep_resister">외박신청</string>
+
+    <string name="outSleep_confirm">외박신청확인</string>
+
+
 </resources>

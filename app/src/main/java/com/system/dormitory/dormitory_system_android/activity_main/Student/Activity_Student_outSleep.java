@@ -43,7 +43,7 @@ public class Activity_Student_outSleep extends Activity {
         setContentView(R.layout.activity_request_outsleep);
 
         sno = Helper_userData.getInstance().getSno();
-        tv_sno = (TextView) findViewById(R.id.tvV_outSleep_SNO_value);
+        tv_sno = (TextView) findViewById(R.id.tv_outSleep_SNO_value);
         System.out.println("snosno" + sno);
         tv_sno.setText("" + sno);
 
@@ -82,7 +82,7 @@ public class Activity_Student_outSleep extends Activity {
                 });
             }});
     }
-    
+
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch(keyCode) {
             case KeyEvent.KEYCODE_BACK:
