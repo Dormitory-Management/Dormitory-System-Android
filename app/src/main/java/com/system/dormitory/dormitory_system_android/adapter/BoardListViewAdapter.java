@@ -16,12 +16,12 @@ import java.util.ArrayList;
 /**
  * Created by 보운 on 2016-05-10.
  */
-public class ListViewAdapter extends BaseAdapter {
+public class BoardListViewAdapter extends BaseAdapter {
     private ArrayList<? extends Item> board;
     private AQuery aq;
     private Context context;
 
-    public ListViewAdapter(Context context, ArrayList<? extends Item> board) {
+    public BoardListViewAdapter(Context context, ArrayList<? extends Item> board) {
         this.context = context;
         this.board = board;
     }
