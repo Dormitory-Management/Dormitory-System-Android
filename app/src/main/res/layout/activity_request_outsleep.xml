@@ -127,17 +127,14 @@
                         android:textStyle="bold" >
                     </TextView>
 
-                    <EditText
+                    <Button
                         android:id="@+id/et_outSleep_date"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_weight ="1"
                         android:layout_gravity="center"
                         android:textColor="@color/black"
-                        android:hint="날짜를 입력하세요"
-                        android:imeOptions="actionNext"
-                        android:singleLine = "true"
-                        android:lines = "1"
+                        android:hint="날짜 선택"
                         />
                 </LinearLayout>
 
