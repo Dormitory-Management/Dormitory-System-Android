@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 
 import com.androidquery.AQuery;
 import com.system.dormitory.dormitory_system_android.R;
+import com.system.dormitory.dormitory_system_android.data.DormitoryRoom;
 import com.system.dormitory.dormitory_system_android.data.Item;
 
 import java.util.ArrayList;
@@ -16,11 +17,11 @@ import java.util.ArrayList;
  * Created by 보운 on 2016-06-03.
  */
 public class RoomListViewAdapter extends BaseAdapter {
-    private ArrayList<? extends Item> room;
+    private ArrayList<DormitoryRoom> room;
     private AQuery aq;
     private Context context;
 
-    public RoomListViewAdapter(Context context, ArrayList<? extends Item> room) {
+    public RoomListViewAdapter(Context context, ArrayList<DormitoryRoom> room) {
         this.context = context;
         this.room = room;
     }
@@ -43,11 +44,11 @@ public class RoomListViewAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         if (view == null)
-            view = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_item, null);
+            view = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.room_check_item, null);
 
         aq = new AQuery(view);
 
-        aq.id(R.id.item_title).text(room.get(i).getTitle());
+        aq.id(R.id.room_number).text(String.valueOf(room.get(i).getRoom()) + "호");
 
         return view;
     }

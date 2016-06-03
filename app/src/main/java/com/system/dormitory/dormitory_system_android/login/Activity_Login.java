@@ -37,7 +37,7 @@ public class Activity_Login extends Activity {
     EditText et_sno;
     EditText et_password;
 
-    public void open_UserView_Activity(int sno, Context mContext){
+    public void open_UserView_Activity(int sno, Context mContext) {
         Helper_userData.login_GetData(sno, mContext);
     }
 
@@ -49,8 +49,8 @@ public class Activity_Login extends Activity {
         login_Activity = Activity_Login.this;
 
         // 만듦
-        et_sno = (EditText)findViewById(R.id.et_login_sno);
-        et_password = (EditText)findViewById(R.id.et_login_password);
+        et_sno = (EditText) findViewById(R.id.et_login_sno);
+        et_password = (EditText) findViewById(R.id.et_login_password);
 
         AsyncHttpClient client = Helper_server.getInstance();
         final PersistentCookieStore myCookieStore = new PersistentCookieStore(this);
@@ -58,7 +58,7 @@ public class Activity_Login extends Activity {
 
         if (Helper_server.login(myCookieStore)) {
             Log.i("abde", "what the!! ");
-            int sno = Integer.parseInt(Helper_server.getCookieValue(myCookieStore,"sno"));
+            int sno = Integer.parseInt(Helper_server.getCookieValue(myCookieStore, "sno"));
             open_UserView_Activity(sno, getApplicationContext());
         }
 
@@ -116,7 +116,7 @@ public class Activity_Login extends Activity {
                                                          newCookie.setDomain("54.199.191.229");
                                                          newCookie.setPath("/");
                                                          myCookieStore.addCookie(newCookie);
-                                                         newCookie = new BasicClientCookie("sno", ""+sno);
+                                                         newCookie = new BasicClientCookie("sno", "" + sno);
                                                          newCookie.setVersion(1);
                                                          newCookie.setDomain("54.199.191.229");
                                                          newCookie.setPath("/");
@@ -141,7 +141,7 @@ public class Activity_Login extends Activity {
         );
 
         Button btn_join = (Button) findViewById(R.id.btn_login_join);
-        btn_join.setOnClickListener(new Button.OnClickListener(){
+        btn_join.setOnClickListener(new Button.OnClickListener() {
                                         public void onClick(View v) {
 
                                             Intent intent = new Intent(Activity_Login.this, Activity_Join.class);
@@ -167,7 +167,7 @@ public class Activity_Login extends Activity {
         alert.show();
     }
 
-    public void onBackPressed(){
+    public void onBackPressed() {
         finish();
     }
 
