@@ -30,6 +30,7 @@
         <activity android:name=".content.WritingActivity" />
         <activity android:name=".activity_main.Student.Activity_Student_penaltyPoint"/>
         <activity android:name=".activity_main.Student.Activity_Student_outSleep"/>
+        <activity android:name=".activity_main.Manager.Activity_Manager_outSleep"/>
 
     </application>
 

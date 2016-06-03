@@ -98,7 +98,7 @@ public class Activity_Student_outSleep extends Activity {
     public void insertAlert() {
         AlertDialog.Builder alert = new AlertDialog.Builder(Activity_Student_outSleep.this);
         alert.setTitle("성공");
-        alert.setMessage("가입이 완료되셨습니다.");
+        alert.setMessage("외박등록이 완료되었습니다.");
         alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(Activity_Student_outSleep.this, Activity_Student_Main.class);
