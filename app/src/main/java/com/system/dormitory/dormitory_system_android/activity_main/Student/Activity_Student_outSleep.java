@@ -72,7 +72,6 @@ public class Activity_Student_outSleep extends Activity {
             public void onClick(View v) {
                 System.out.println("aaaaa" + " " + date);
                 RequestParams params = new RequestParams();
-                //String date = et_date.getText().toString();
                 String content = et_content.getText().toString();
                 int s_sno = sno;
                 //put params
@@ -81,12 +80,19 @@ public class Activity_Student_outSleep extends Activity {
                 params.put("sno", s_sno);
 
                 //server connect
-                Helper_server.post("insertOutSleep.php", params, new JsonHttpResponseHandler() {
+                Helper_server.post("data/insertOutSleep.php", params, new JsonHttpResponseHandler() {
                     @Override
 
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                        Log.i("abde", "success");
-                        insertAlert();
+                        String ok="";
+                        try{
+                            ok = response.get("ok").toString();
+                        } catch(JSONException e){
+                            e.printStackTrace();
+                        }
+                        if(ok.equals("yes"))
+                            insertAlert();
+
 
                     }
 
