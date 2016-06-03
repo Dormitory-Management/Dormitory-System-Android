@@ -38,8 +38,6 @@ public class Activity_Manager_outSleep extends Activity {
         outSleep_list = (ListView) findViewById(R.id.outsleep_confirm_listview);
 
 
-
-
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
