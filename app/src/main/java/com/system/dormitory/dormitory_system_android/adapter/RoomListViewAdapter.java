@@ -9,7 +9,6 @@ import android.widget.BaseAdapter;
 import com.androidquery.AQuery;
 import com.system.dormitory.dormitory_system_android.R;
 import com.system.dormitory.dormitory_system_android.data.DormitoryRoom;
-import com.system.dormitory.dormitory_system_android.data.Item;
 
 import java.util.ArrayList;
 
@@ -48,7 +47,7 @@ public class RoomListViewAdapter extends BaseAdapter {
 
         aq = new AQuery(view);
 
-        aq.id(R.id.room_number).text(String.valueOf(room.get(i).getRoom()) + "호");
+        aq.id(R.id.room_check_number).text(String.valueOf(room.get(i).getRoom()) + "호");
 
         return view;
     }

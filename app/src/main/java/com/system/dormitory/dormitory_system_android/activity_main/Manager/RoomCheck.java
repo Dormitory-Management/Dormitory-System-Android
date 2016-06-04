@@ -5,12 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.system.dormitory.dormitory_system_android.R;
 import com.system.dormitory.dormitory_system_android.adapter.RoomListViewAdapter;
 import com.system.dormitory.dormitory_system_android.data.DataManager;
 import com.system.dormitory.dormitory_system_android.data.DormitoryRoom;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnItemClick;
 
 /**
  * Created by secret on 6/3/16.
@@ -23,6 +28,7 @@ public class RoomCheck extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.room_check_activity);
+        ButterKnife.bind(this);
 
         data = DataManager.getInstance();
 
@@ -32,14 +38,12 @@ public class RoomCheck extends Activity {
             data.getDormitoryRooms().add(new DormitoryRoom(i + 100));
 
         roomList.setAdapter(new RoomListViewAdapter(getApplicationContext(), data.getDormitoryRooms()));
-        roomList.setOnItemClickListener(roomClicked);
     }
 
-    AdapterView.OnItemClickListener roomClicked = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Intent room = new Intent(getApplicationContext(), Room.class);
-            startActivity(room);
-        }
-    };
+    @OnItemClick(R.id.room_check_list)
+    void onItemClick(int position) {
+        Intent room = new Intent(getApplicationContext(), Room.class);
+        room.putExtra("room", data.getDormitoryRooms().get(position));
+        startActivity(room);
+    }
 }
