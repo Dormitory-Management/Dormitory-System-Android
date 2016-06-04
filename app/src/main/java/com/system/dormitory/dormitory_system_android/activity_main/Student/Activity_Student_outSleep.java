@@ -2,6 +2,8 @@ package com.system.dormitory.dormitory_system_android.activity_main.Student;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +11,10 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -23,6 +27,8 @@ import com.system.dormitory.dormitory_system_android.login.Activity_Login;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
+
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.impl.cookie.BasicClientCookie;
 
@@ -32,9 +38,10 @@ import cz.msebera.android.httpclient.impl.cookie.BasicClientCookie;
 public class Activity_Student_outSleep extends Activity {
 
     private TextView tv_sno;
-    private EditText et_date;
+    private Button btn_date;
     private EditText et_content;
     private Button btn_resister;
+    String date = "";
 
     public int sno;
 
@@ -47,15 +54,24 @@ public class Activity_Student_outSleep extends Activity {
         System.out.println("snosno" + sno);
         tv_sno.setText("" + sno);
 
-        et_date = (EditText) findViewById(R.id.et_outSleep_date);
+        btn_date = (Button) findViewById(R.id.et_outSleep_date);
         et_content = (EditText) findViewById(R.id.et_outSleep_content);
 
         btn_resister =  (Button) findViewById(R.id.btn_outSleep_resister);
 
+
+
+        btn_date.setOnClickListener(new Button.OnClickListener() {
+                                    public void onClick(View v) {
+                                        showDialog(1);
+                                    }
+        });
+
+
         btn_resister.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
+                System.out.println("aaaaa" + " " + date);
                 RequestParams params = new RequestParams();
-                String date = et_date.getText().toString();
                 String content = et_content.getText().toString();
                 int s_sno = sno;
                 //put params
@@ -64,12 +80,19 @@ public class Activity_Student_outSleep extends Activity {
                 params.put("sno", s_sno);
 
                 //server connect
-                Helper_server.post("insertOutSleep.php", params, new JsonHttpResponseHandler() {
+                Helper_server.post("data/insertOutSleep.php", params, new JsonHttpResponseHandler() {
                     @Override
 
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                        Log.i("abde", "success");
-                        insertAlert();
+                        String ok="";
+                        try{
+                            ok = response.get("ok").toString();
+                        } catch(JSONException e){
+                            e.printStackTrace();
+                        }
+                        if(ok.equals("yes"))
+                            insertAlert();
+
 
                     }
 
@@ -81,6 +104,27 @@ public class Activity_Student_outSleep extends Activity {
                     }
                 });
             }});
+    }
+
+    @Deprecated
+    protected Dialog onCreateDialog(int a) {
+                DatePickerDialog dpd = new DatePickerDialog
+                        (Activity_Student_outSleep.this, // 현재화면의 제어권자
+                                new DatePickerDialog.OnDateSetListener() {
+                                    public void onDateSet(DatePicker view,
+                                                          int year, int monthOfYear,int dayOfMonth) {
+                                        Toast.makeText(getApplicationContext(),
+                                                year+"년 "+(monthOfYear+1)+"월 "+dayOfMonth+"일 을 선택했습니다",
+                                                Toast.LENGTH_SHORT).show();
+                                                date=year+"/"+(monthOfYear+1)+"/"+dayOfMonth;
+                                        btn_date.setText(date);
+
+                                    }
+                                }
+                                , // 사용자가 날짜설정 후 다이얼로그 빠져나올때
+                                //    호출할 리스너 등록
+                                Calendar.getInstance().get(Calendar.YEAR),(Calendar.getInstance().get(Calendar.MONTH)), Calendar.getInstance().get(Calendar.DAY_OF_MONTH)); // 기본값 연월일
+                return dpd;
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -98,7 +142,7 @@ public class Activity_Student_outSleep extends Activity {
     public void insertAlert() {
         AlertDialog.Builder alert = new AlertDialog.Builder(Activity_Student_outSleep.this);
         alert.setTitle("성공");
-        alert.setMessage("가입이 완료되셨습니다.");
+        alert.setMessage("외박등록이 완료되었습니다.");
         alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(Activity_Student_outSleep.this, Activity_Student_Main.class);

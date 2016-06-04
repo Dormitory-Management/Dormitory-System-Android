@@ -26,10 +26,16 @@
         <activity android:name=".content.BoardActivity" />
         <activity android:name=".content.NoticeActivity" />
         <activity android:name=".content.WritingActivity" />
+<<<<<<< HEAD
         <activity android:name=".activity_main.Student.Activity_Student_penaltyPoint" />
         <activity android:name=".activity_main.Student.Activity_Student_outSleep" />
         <activity android:name=".activity_main.Manager.RoomCheck" />
         <activity android:name=".activity_main.Manager.Room" />
+=======
+        <activity android:name=".activity_main.Student.Activity_Student_penaltyPoint"/>
+        <activity android:name=".activity_main.Student.Activity_Student_outSleep"/>
+        <activity android:name=".activity_main.Manager.Activity_Manager_outSleep"/>
+>>>>>>> 92b8d817dbe14ca8e552ec5cea893f208223117c
 
     </application>
 
