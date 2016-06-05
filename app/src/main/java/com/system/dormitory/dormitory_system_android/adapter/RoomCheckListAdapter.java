@@ -15,12 +15,12 @@ import java.util.ArrayList;
 /**
  * Created by 보운 on 2016-06-03.
  */
-public class RoomListViewAdapter extends BaseAdapter {
+public class RoomCheckListAdapter extends BaseAdapter {
     private ArrayList<DormitoryRoom> room;
     private AQuery aq;
     private Context context;
 
-    public RoomListViewAdapter(Context context, ArrayList<DormitoryRoom> room) {
+    public RoomCheckListAdapter(Context context, ArrayList<DormitoryRoom> room) {
         this.context = context;
         this.room = room;
     }

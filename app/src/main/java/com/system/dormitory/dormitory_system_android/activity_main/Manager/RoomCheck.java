@@ -3,17 +3,13 @@ package com.system.dormitory.dormitory_system_android.activity_main.Manager;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.system.dormitory.dormitory_system_android.R;
-import com.system.dormitory.dormitory_system_android.adapter.RoomListViewAdapter;
+import com.system.dormitory.dormitory_system_android.adapter.RoomCheckListAdapter;
 import com.system.dormitory.dormitory_system_android.data.DataManager;
 import com.system.dormitory.dormitory_system_android.data.DormitoryRoom;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 
@@ -37,7 +33,7 @@ public class RoomCheck extends Activity {
         for (int i = 0; i < 20; i++)
             data.getDormitoryRooms().add(new DormitoryRoom(i + 100));
 
-        roomList.setAdapter(new RoomListViewAdapter(getApplicationContext(), data.getDormitoryRooms()));
+        roomList.setAdapter(new RoomCheckListAdapter(getApplicationContext(), data.getDormitoryRooms()));
     }
 
     @OnItemClick(R.id.room_check_list)

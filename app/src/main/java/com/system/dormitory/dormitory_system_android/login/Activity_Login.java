@@ -13,6 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.beardedhen.androidbootstrap.TypefaceProvider;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
@@ -43,8 +44,8 @@ public class Activity_Login extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
+        TypefaceProvider.registerDefaultIconSets();
         // activity_layout.xml을
         login_Activity = Activity_Login.this;
 

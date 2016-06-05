@@ -8,32 +8,31 @@ import android.widget.BaseAdapter;
 
 import com.androidquery.AQuery;
 import com.system.dormitory.dormitory_system_android.R;
-import com.system.dormitory.dormitory_system_android.data.BoardItem;
-import com.system.dormitory.dormitory_system_android.data.Item;
+import com.system.dormitory.dormitory_system_android.activity_main.Manager.Room;
 
 import java.util.ArrayList;
 
 /**
- * Created by 보운 on 2016-05-10.
+ * Created by 보운 on 2016-06-05.
  */
-public class BoardListViewAdapter extends BaseAdapter {
-    private ArrayList<? extends Item> board;
+public class RoomListAdapter extends BaseAdapter {
+    private ArrayList<String> student;
     private AQuery aq;
     private Context context;
 
-    public BoardListViewAdapter(Context context, ArrayList<? extends Item> board) {
+    public RoomListAdapter(Context context, ArrayList<String> student) {
         this.context = context;
-        this.board = board;
+        this.student = student;
     }
 
     @Override
     public int getCount() {
-        return board.size();
+        return student.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return board.get(i);
+        return student.get(i);
     }
 
     @Override
@@ -44,11 +43,12 @@ public class BoardListViewAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         if (view == null)
-            view = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_item, null);
+            view = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.room_item, null);
 
         aq = new AQuery(view);
 
-        aq.id(R.id.item_title).text(board.get(i).getTitle());
+        aq.id(R.id.student_name).text(student.get(i));
+        aq.id(R.id.room_checkbox).checked(!Room.getCheckbox().get(i));
 
         return view;
     }
