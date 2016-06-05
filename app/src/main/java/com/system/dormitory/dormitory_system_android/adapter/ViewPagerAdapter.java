@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
@@ -40,13 +39,13 @@ public class ViewPagerAdapter extends PagerAdapter {
             case 0:
                 v = inflater.inflate(R.layout.activity_notice, null);
                 listView = (ListView) v.findViewById(R.id.notice_list);
-                listView.setAdapter(new ListViewAdapter(context, DataManager.getInstance().getNoticeItems()));
+                listView.setAdapter(new BoardListAdapter(context, DataManager.getInstance().getNoticeItems()));
                 listView.setOnItemClickListener(noticeClick);
                 break;
             case 1:
                 v = inflater.inflate(R.layout.activity_board, null);
                 listView = (ListView) v.findViewById(R.id.board_list);
-                listView.setAdapter(new ListViewAdapter(context, DataManager.getInstance().getBoardItems()));
+                listView.setAdapter(new BoardListAdapter(context, DataManager.getInstance().getBoardItems()));
                 listView.setOnItemClickListener(boardClick);
                 FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
                 fab.attachToListView(listView);
