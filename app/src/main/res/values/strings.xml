@@ -22,8 +22,8 @@
     <string name="join_join">Submit</string>
     <string name="cancel_text">Cancel</string>
 
-    <string name="write_title">Title</string>
-    <string name="write_content">Content</string>
+    <string name="write_title">제목 : </string>
+    <string name="write_content">내용</string>
     <string name="write_title_text">글쓰기</string>
 
     <string name="outSleep">외박 신청</string>
@@ -39,4 +39,7 @@
     <string name="student_name">이름</string>
     <string name="student_room_check">참석여부 : </string>
     <string name="check_submit">점호 완료</string>
+
+    <string name="rental_check">대여 확인</string>
+    <string name="rental">대여</string>
 </resources>

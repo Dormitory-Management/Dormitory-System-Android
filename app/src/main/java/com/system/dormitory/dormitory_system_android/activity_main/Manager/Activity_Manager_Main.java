@@ -136,6 +136,8 @@ public class Activity_Manager_Main extends AppCompatActivity {
             switch (position) {
                 case 0:
                     Toast.makeText(Activity_Manager_Main.this, "대여승인", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(Activity_Manager_Main.this, Rental.class);
+                    startActivity(intent);
                     break;
                 case 1:
                     Toast.makeText(Activity_Manager_Main.this, "외박승인", Toast.LENGTH_SHORT).show();

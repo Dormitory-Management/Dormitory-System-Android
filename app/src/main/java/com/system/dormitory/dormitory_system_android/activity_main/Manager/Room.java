@@ -38,7 +38,6 @@ public class Room extends Activity {
         setContentView(R.layout.room_activity);
         aq = new AQuery(this);
         ButterKnife.bind(this);
-        TypefaceProvider.registerDefaultIconSets();
 
         checkbox = new ArrayList<Boolean>();
 
