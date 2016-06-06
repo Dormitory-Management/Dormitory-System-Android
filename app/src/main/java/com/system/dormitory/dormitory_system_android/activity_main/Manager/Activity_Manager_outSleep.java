@@ -61,10 +61,10 @@ public class Activity_Manager_outSleep extends Activity {
                     int sum = Integer.parseInt(response.get("sum").toString());
                     for (int i = 0; i < sum; i++) {
                         items.add(response.get("sno"+i).toString());
-                        Helper_outSleepStudent.student.add(new Helper_outSleepStudent(Integer.parseInt(response.get("sno" + i).toString()), response.get("date" + i).toString()
+                        Helper_outSleepStudent.student.add(new Helper_outSleepStudent(Integer.parseInt(response.get("number" + i).toString())
+                                , Integer.parseInt(response.get("sno" + i).toString()), response.get("date" + i).toString()
                                 , response.get("content" + i).toString(), Integer.parseInt(response.get("isSuccess" + i).toString())));
-                        System.out.println("aaaaa" + Helper_outSleepStudent.student.get(i).content);
-                        adapter.notifyDataSetChanged();
+                      adapter.notifyDataSetChanged();
                     }
 
 
@@ -87,13 +87,8 @@ public class Activity_Manager_outSleep extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String strText = (String) parent.getItemAtPosition(position);
-                System.out.println("aaaa"+strText+"posi: "+position);
 
                 Intent intent = new Intent(Activity_Manager_outSleep.this, Activity_Manager_outSleep_specific.class);
-                intent.putExtra("sno", Helper_outSleepStudent.student.get(position).sno);
-                intent.putExtra("date", Helper_outSleepStudent.student.get(position).date);
-                intent.putExtra("content", Helper_outSleepStudent.student.get(position).content);
-
                 intent.putExtra("position", position);
                 startActivity(intent);
                 finish();

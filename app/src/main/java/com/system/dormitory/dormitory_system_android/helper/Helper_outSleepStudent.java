@@ -9,12 +9,14 @@ public class Helper_outSleepStudent {
 
     public static ArrayList<Helper_outSleepStudent> student = new ArrayList<Helper_outSleepStudent>();
 
+    public int number;
     public int sno;
     public String date;
     public String content;
     public int isSuccess;
 
-    public Helper_outSleepStudent(int sno, String date, String content, int isSuccess){
+    public Helper_outSleepStudent(int number, int sno, String date, String content, int isSuccess){
+        this.number = number;
         this.sno = sno;
         this.date = date;
         this.content = content;
