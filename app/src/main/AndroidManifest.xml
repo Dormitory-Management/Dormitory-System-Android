@@ -32,5 +32,7 @@
         <activity android:name=".activity_main.Manager.Room" />
 
         <activity android:name=".activity_main.Manager.Activity_Manager_outSleep" />
+        <activity android:name=".activity_main.Manager.Activity_Manager_outSleep_specific" />
+
     </application>
 </manifest>
