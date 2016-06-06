@@ -23,6 +23,7 @@ import com.androidquery.AQuery;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.PersistentCookieStore;
 import com.system.dormitory.dormitory_system_android.R;
+import com.system.dormitory.dormitory_system_android.activity_main.Student.Activity_Student_outSleep;
 import com.system.dormitory.dormitory_system_android.adapter.ViewPagerAdapter;
 import com.system.dormitory.dormitory_system_android.data.BoardItem;
 import com.system.dormitory.dormitory_system_android.data.DataManager;
@@ -131,12 +132,16 @@ public class Activity_Manager_Main extends AppCompatActivity {
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
+            Intent intent;
             switch (position) {
                 case 0:
                     Toast.makeText(Activity_Manager_Main.this, "대여승인", Toast.LENGTH_SHORT).show();
                     break;
                 case 1:
                     Toast.makeText(Activity_Manager_Main.this, "외박승인", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(Activity_Manager_Main.this, Activity_Manager_outSleep.class);
+                    startActivity(intent);
+                    finish();
                     break;
                 case 2:
                     Toast.makeText(Activity_Manager_Main.this, "점호확인", Toast.LENGTH_SHORT).show();

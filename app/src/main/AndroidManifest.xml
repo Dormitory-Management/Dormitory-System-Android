@@ -30,5 +30,7 @@
         <activity android:name=".activity_main.Student.Activity_Student_outSleep" />
         <activity android:name=".activity_main.Manager.RoomCheck" />
         <activity android:name=".activity_main.Manager.Room" />
+
+        <activity android:name=".activity_main.Manager.Activity_Manager_outSleep" />
     </application>
 </manifest>
