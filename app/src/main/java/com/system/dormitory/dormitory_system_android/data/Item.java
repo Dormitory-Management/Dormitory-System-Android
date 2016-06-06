@@ -9,7 +9,9 @@ import java.util.Date;
 public class Item implements Serializable {
     private String title;
     private String content;
+    private String name;
     private Date date;
+    private int roomNumber;
 
     public Item() {
         date = new Date();
@@ -19,6 +21,17 @@ public class Item implements Serializable {
         this();
         this.title = title;
         this.content = content;
+    }
+
+    public Item(String title, String content, String name) {
+        this(title, content);
+        this.name = name;
+    }
+
+    public Item(String title, String content, int roomNumber, String name) {
+        this(title, content);
+        this.roomNumber = roomNumber;
+        this.name = name;
     }
 
     public void setTitle(String title) {
@@ -43,5 +56,21 @@ public class Item implements Serializable {
 
     public Date getDate() {
         return date;
+    }
+
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public int getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 }
