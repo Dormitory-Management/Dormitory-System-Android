@@ -36,19 +36,36 @@ import cz.msebera.android.httpclient.Header;
 public class Activity_Manager_outSleep extends Activity {
 
     ListView outSleep_list;
-    static final String[] LIST_MENU = {"LIST1", "LIST2","LIST3"};
-
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_outsleep_confirm);
 
+
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch(keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                Intent intent = new Intent(Activity_Manager_outSleep.this, Activity_Manager_Main.class);
+                startActivity(intent);
+                finish();
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+
+
         outSleep_list = (ListView) findViewById(R.id.outsleep_confirm_listview);
 
-        final ArrayList<String> items = new ArrayList<String>();
+        final ArrayList<String> items =  new ArrayList<String>();
+        items.clear();
+        Helper_outSleepStudent.student.clear();
         final ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, items);
-
         outSleep_list.setAdapter(adapter);
 
         RequestParams params = new RequestParams();
@@ -60,11 +77,16 @@ public class Activity_Manager_outSleep extends Activity {
                 try {
                     int sum = Integer.parseInt(response.get("sum").toString());
                     for (int i = 0; i < sum; i++) {
-                        items.add(response.get("sno"+i).toString());
-                        Helper_outSleepStudent.student.add(new Helper_outSleepStudent(Integer.parseInt(response.get("number" + i).toString())
-                                , Integer.parseInt(response.get("sno" + i).toString()), response.get("date" + i).toString()
-                                , response.get("content" + i).toString(), Integer.parseInt(response.get("isSuccess" + i).toString())));
-                      adapter.notifyDataSetChanged();
+
+                        if (Integer.parseInt(response.get("isSuccess" + i).toString()) == 0) {
+                            System.out.println("aaaa" + response.get("sno"+i).toString());
+                            items.add("학번 : " + response.get("sno" + i).toString());
+                            Helper_outSleepStudent.student.add(new Helper_outSleepStudent(Integer.parseInt(response.get("number" + i).toString())
+                                    , Integer.parseInt(response.get("sno" + i).toString()), response.get("date" + i).toString()
+                                    , response.get("content" + i).toString(), Integer.parseInt(response.get("isSuccess" + i).toString())));
+                            adapter.notifyDataSetChanged();
+                        }
+
                     }
 
 
@@ -82,11 +104,9 @@ public class Activity_Manager_outSleep extends Activity {
             }
         });
 
-
         outSleep_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String strText = (String) parent.getItemAtPosition(position);
 
                 Intent intent = new Intent(Activity_Manager_outSleep.this, Activity_Manager_outSleep_specific.class);
                 intent.putExtra("position", position);
@@ -95,18 +115,6 @@ public class Activity_Manager_outSleep extends Activity {
             }
         });
 
-    }
-
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch(keyCode) {
-            case KeyEvent.KEYCODE_BACK:
-                Intent intent = new Intent(Activity_Manager_outSleep.this, Activity_Manager_Main.class);
-                startActivity(intent);
-                finish();
-                return false;
-            default:
-                return false;
-        }
     }
 
 }
