@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.beardedhen.androidbootstrap.AwesomeTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="@dimen/title_size"
+        app:bootstrapText="@string/rental_check" />
+
+    <com.beardedhen.androidbootstrap.BootstrapWell
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        app:bootstrapSize="xl">
+
+        <ListView
+            android:id="@+id/rental_item_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.beardedhen.androidbootstrap.BootstrapWell>
+
+    <!--<com.beardedhen.androidbootstrap.BootstrapButton-->
+    <!--android:id="@+id/room_check_submit"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center"-->
+    <!--app:bootstrapBrand="success"-->
+    <!--app:bootstrapSize="lg"-->
+    <!--app:bootstrapText="@string/check_submit"-->
+    <!--app:roundedCorners="true" />-->
+
+    <Button
+        android:id="@+id/rental_check_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/rental" />
+</LinearLayout>
