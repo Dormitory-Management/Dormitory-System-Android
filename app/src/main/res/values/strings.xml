@@ -42,4 +42,12 @@
 
     <string name="rental_check">대여 확인</string>
     <string name="rental">대여</string>
+
+    <string name="student_rental">물품 대여</string>
+    <string name="student_rental_sno">학번</string>
+    <string name="student_rental_object">대여 물품</string>
+    <string name="student_rental_time">반납 기간</string>
+
+
+
 </resources>
