@@ -34,6 +34,7 @@
     <string name="outSleep_confirm">외박신청확인</string>
 
     <string name="outSleep_specific_back">뒤로가기</string>
+    <string name="outSleep_specific_confirm">승인하기</string>
 
     <string name="student_name">이름</string>
     <string name="student_room_check">참석여부 : </string>
