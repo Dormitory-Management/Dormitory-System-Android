@@ -39,7 +39,7 @@ public class ViewPagerAdapter extends PagerAdapter {
             case 0:
                 v = inflater.inflate(R.layout.activity_notice, null);
                 listView = (ListView) v.findViewById(R.id.notice_list);
-                listView.setAdapter(new BoardListAdapter(context, DataManager.getInstance().getNoticeItems()));
+                listView.setAdapter(new NoticeListAdapter(context, DataManager.getInstance().getNoticeItems()));
                 listView.setOnItemClickListener(noticeClick);
                 break;
             case 1:
