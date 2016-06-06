@@ -112,11 +112,6 @@ public class Activity_Login extends Activity {
                                                          newCookie.setDomain("54.199.191.229");
                                                          newCookie.setPath("/");
                                                          myCookieStore.addCookie(newCookie);
-                                                         newCookie = new BasicClientCookie("isLogin", "true");
-                                                         newCookie.setVersion(1);
-                                                         newCookie.setDomain("54.199.191.229");
-                                                         newCookie.setPath("/");
-                                                         myCookieStore.addCookie(newCookie);
                                                          newCookie = new BasicClientCookie("sno", "" + sno);
                                                          newCookie.setVersion(1);
                                                          newCookie.setDomain("54.199.191.229");

@@ -48,6 +48,7 @@ public class Helper_userData {
 
 
     public static void login_GetData(int sno, final Context mContext) {
+        user = null;
         if( user == null ) {
             final RequestParams idParams = new RequestParams("sno", sno);
 

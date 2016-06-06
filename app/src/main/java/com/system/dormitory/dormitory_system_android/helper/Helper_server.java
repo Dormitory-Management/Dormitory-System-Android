@@ -42,7 +42,7 @@ public class Helper_server {
                 // cookie = cookies.get(i);
                 String cookieString = cookieList.get(i).getName() + "="
                         + cookieList.get(i).getValue();
-                if(cookieList.get(i).getName().equals("login_cookie")){
+                if(cookieList.get(i).getName().equals("login_session")){
                     id = cookieList.get(i).getValue();
                     return true;
                 }

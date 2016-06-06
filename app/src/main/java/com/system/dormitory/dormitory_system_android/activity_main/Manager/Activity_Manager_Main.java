@@ -2,6 +2,7 @@ package com.system.dormitory.dormitory_system_android.activity_main.Manager;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -19,11 +20,14 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.androidquery.AQuery;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.PersistentCookieStore;
 import com.system.dormitory.dormitory_system_android.R;
 import com.system.dormitory.dormitory_system_android.adapter.ViewPagerAdapter;
 import com.system.dormitory.dormitory_system_android.data.BoardItem;
 import com.system.dormitory.dormitory_system_android.data.DataManager;
 import com.system.dormitory.dormitory_system_android.data.NoticeItem;
+import com.system.dormitory.dormitory_system_android.helper.Helper_server;
 import com.system.dormitory.dormitory_system_android.login.Activity_Login;
 
 public class Activity_Manager_Main extends AppCompatActivity {
@@ -33,7 +37,7 @@ public class Activity_Manager_Main extends AppCompatActivity {
     private ViewPager viewPager;
     private AQuery aq;
     private DataManager dataManager;
-    private String[] navItems={"대여승인", "외박승인", "점호확인"};
+    private String[] navItems={"대여승인", "외박승인", "점호확인", "로그아웃"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +140,25 @@ public class Activity_Manager_Main extends AppCompatActivity {
                     break;
                 case 2:
                     Toast.makeText(Activity_Manager_Main.this, "점호확인", Toast.LENGTH_SHORT).show();
+                    break;
+                case 3:
+                    Toast.makeText(Activity_Manager_Main.this, "로그아웃", Toast.LENGTH_SHORT).show();
+                    new AlertDialog.Builder(Activity_Manager_Main.this)
+                            .setTitle("종료")
+                            .setMessage("종료 하시겠어요?")
+                            .setPositiveButton("예", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    final PersistentCookieStore myCookieStore = new PersistentCookieStore(Activity_Manager_Main.this); //이부분 Context 확인해야함. Activity context로.
+                                    AsyncHttpClient client = Helper_server.getInstance();
+
+                                    Helper_server.logout(myCookieStore, Activity_Manager_Main.this);
+                                    client.setCookieStore(myCookieStore);
+                                    Intent intents = new Intent(Activity_Manager_Main.this, Activity_Login.class);
+                                    startActivity(intents);
+                                    finish();
+                                }
+                            })
+                            .setNegativeButton("아니오", null).show();
                     break;
             }
             dlDrawer.closeDrawer(lvNavList);
