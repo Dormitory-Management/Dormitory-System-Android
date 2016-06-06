@@ -4,6 +4,9 @@
     <dimen name="room_number_size">50sp</dimen>
     <dimen name="name_size">35sp</dimen>
     <dimen name="room_check_text_size">20sp</dimen>
+    <dimen name="text_size">20sp</dimen>
+    <dimen name="list_view_margin">2.5dp</dimen>
+    <dimen name="list_margin">15dp</dimen>
 
     <!-- activity_layout -->
     <dimen name="activity_layout_header_margin">0dp</dimen>

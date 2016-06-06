@@ -49,6 +49,10 @@ public class BoardListAdapter extends BaseAdapter {
         aq = new AQuery(view);
 
         aq.id(R.id.item_title).text(board.get(i).getTitle());
+        aq.id(R.id.item_content).text(board.get(i).getContent());
+        aq.id(R.id.item_room_number).text(String.valueOf(board.get(i).getRoomNumber()) + "호");
+        aq.id(R.id.item_person).text(board.get(i).getName());
+        aq.id(R.id.item_time).text(board.get(i).getDate().toString());
 
         return view;
     }

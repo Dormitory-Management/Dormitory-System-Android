@@ -3,10 +3,13 @@ package com.system.dormitory.dormitory_system_android.activity_main.Manager;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.androidquery.AQuery;
+import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.beardedhen.androidbootstrap.TypefaceProvider;
 import com.system.dormitory.dormitory_system_android.R;
 import com.system.dormitory.dormitory_system_android.adapter.RoomListAdapter;
 import com.system.dormitory.dormitory_system_android.data.DormitoryRoom;
@@ -35,6 +38,7 @@ public class Room extends Activity {
         setContentView(R.layout.room_activity);
         aq = new AQuery(this);
         ButterKnife.bind(this);
+        TypefaceProvider.registerDefaultIconSets();
 
         checkbox = new ArrayList<Boolean>();
 
@@ -62,12 +66,16 @@ public class Room extends Activity {
     }
 
     @OnClick(R.id.room_check_submit) void onClick() {
-        Toast.makeText(getApplicationContext(), "Submit", Toast.LENGTH_SHORT).show();
+        String str = "";
+        for (int i = 0; i < 4; i++) {
+            if (checkbox.get(i))
+                str += String.valueOf(i) + " ";
+        }
+        Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
     }
 
     @OnItemClick(R.id.people)
     void onItemClick(int position) {
-        Toast.makeText(getApplicationContext(), String.valueOf(position), Toast.LENGTH_SHORT).show();
         checkbox.set(position, !checkbox.get(position));
         roomListAdapter.notifyDataSetChanged();
     }

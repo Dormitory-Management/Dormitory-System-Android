@@ -58,8 +58,8 @@ public class Activity_Student_Main extends AppCompatActivity {
         dataManager.DataClear();
 
         for (int i = 0; i < 20; i++) {
-            dataManager.getBoardItems().add(new BoardItem("게시글 #" + (i + 1), "게시글 내용 #" + (i + 1)));
-            dataManager.getNoticeItems().add(new NoticeItem("공지사항 #" + (i + 1), "공지사항 내용 #" + (i + 1)));
+            dataManager.getBoardItems().add(new BoardItem("게시글 #" + (i + 1), "게시글 내용 #" + (i + 1), i + 100, "홍길동"));
+            dataManager.getNoticeItems().add(new NoticeItem("공지사항 #" + (i + 1), "공지사항 내용 #" + (i + 1), "사감"));
         }
 
         Log.i("size", String.valueOf(dataManager.getBoardItems().size()));
@@ -136,8 +136,6 @@ public class Activity_Student_Main extends AppCompatActivity {
             switch (position) {
                 case 0:
                     Toast.makeText(Activity_Student_Main.this, "학생대여", Toast.LENGTH_SHORT).show();
-                    intent = new Intent(getApplicationContext(), RoomCheck.class);
-                    startActivity(intent);
                     break;
                 case 1:
                     Toast.makeText(Activity_Student_Main.this, "학생외박", Toast.LENGTH_SHORT).show();

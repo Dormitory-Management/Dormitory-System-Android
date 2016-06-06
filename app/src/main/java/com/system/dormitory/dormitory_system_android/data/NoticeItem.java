@@ -13,4 +13,8 @@ public class NoticeItem extends Item implements Serializable {
     public NoticeItem(String title, String content) {
         super(title, content);
     }
+
+    public NoticeItem(String title, String content, String name) {
+        super(title, content, name);
+    }
 }
