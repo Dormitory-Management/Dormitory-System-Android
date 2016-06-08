@@ -18,11 +18,5 @@ public class Activity_Student_Rental extends Activity {
 
         Activity_Login login = (Activity_Login) Activity_Login.login_Activity; //login_Activity_finish
         login.finish();
-
-
-
-
     }
-
-
 }

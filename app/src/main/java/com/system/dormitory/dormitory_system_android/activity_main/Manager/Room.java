@@ -3,13 +3,10 @@ package com.system.dormitory.dormitory_system_android.activity_main.Manager;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.androidquery.AQuery;
-import com.beardedhen.androidbootstrap.BootstrapButton;
-import com.beardedhen.androidbootstrap.TypefaceProvider;
 import com.system.dormitory.dormitory_system_android.R;
 import com.system.dormitory.dormitory_system_android.adapter.RoomListAdapter;
 import com.system.dormitory.dormitory_system_android.data.DormitoryRoom;
