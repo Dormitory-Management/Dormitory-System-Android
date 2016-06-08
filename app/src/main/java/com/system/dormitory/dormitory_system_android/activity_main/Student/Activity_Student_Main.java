@@ -136,6 +136,9 @@ public class Activity_Student_Main extends AppCompatActivity {
             switch (position) {
                 case 0:
                     Toast.makeText(Activity_Student_Main.this, "학생대여", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(Activity_Student_Main.this, Activity_Student_Rental.class);
+                    startActivity(intent);
+                    finish();
                     break;
                 case 1:
                     Toast.makeText(Activity_Student_Main.this, "학생외박", Toast.LENGTH_SHORT).show();

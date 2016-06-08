@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="rent">
+        <item >드라이기</item>
+        <item >가위</item>
+        <item >핸드폰충전기</item>
+        <item >A4용지</item>
+    </string-array>
+</resources>
