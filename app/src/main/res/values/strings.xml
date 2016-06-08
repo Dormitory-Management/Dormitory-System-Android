@@ -47,7 +47,7 @@
     <string name="student_rental_sno">학번</string>
     <string name="student_rental_object">대여 물품</string>
     <string name="student_rental_time">반납 기간</string>
-
+    <string name="student_rental_resister">물품 대여 신청</string>
 
 
 </resources>

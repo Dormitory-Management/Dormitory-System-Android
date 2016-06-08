@@ -167,6 +167,16 @@
                             </TextView>
 
                             <Button
+                                android:id="@+id/btn_student_rental_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_weight ="1"
+                                android:layout_gravity="center"
+                                android:textColor="@color/black"
+                                android:hint="날짜 선택"
+                                />
+
+                            <Button
                                 android:id="@+id/btn_student_rental_time"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
@@ -207,7 +217,7 @@
                         android:layout_weight = "1"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
-                        android:text="@string/outSleep_resister"
+                        android:text="@string/student_rental_resister"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold"/>
