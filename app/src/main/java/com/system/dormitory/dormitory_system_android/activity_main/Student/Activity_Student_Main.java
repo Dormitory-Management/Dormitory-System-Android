@@ -46,7 +46,7 @@ public class Activity_Student_Main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Activity_Login login = (Activity_Login) Activity_Login.login_Activity; //login_Activity_finish
-        login.finish();
+        if(login!=null) login.finish();
 
         aq = new AQuery(this);
 

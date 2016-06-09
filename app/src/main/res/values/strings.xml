@@ -51,4 +51,8 @@
 
     <string name="manager_rental">대여신청확인</string>
 
+    <string name="manager_rental_specific_back">뒤로가기</string>
+    <string name="manager_rental_specific_confirm">승인하기</string>
+
+
 </resources>

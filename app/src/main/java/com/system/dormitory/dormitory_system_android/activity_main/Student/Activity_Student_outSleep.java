@@ -21,8 +21,6 @@ import com.loopj.android.http.RequestParams;
 import com.system.dormitory.dormitory_system_android.R;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
 import com.system.dormitory.dormitory_system_android.helper.Helper_userData;
-import com.system.dormitory.dormitory_system_android.login.Activity_Join;
-import com.system.dormitory.dormitory_system_android.login.Activity_Login;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,7 +28,6 @@ import org.json.JSONObject;
 import java.util.Calendar;
 
 import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.impl.cookie.BasicClientCookie;
 
 /**
  * Created by Administrator on 2016-05-22.
@@ -47,7 +44,7 @@ public class Activity_Student_outSleep extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_request_outsleep);
+        setContentView(R.layout.activity_student_outsleep);
 
         sno = Helper_userData.getInstance().getSno();
         tv_sno = (TextView) findViewById(R.id.tv_outSleep_SNO_value);

@@ -83,6 +83,7 @@ public class Activity_Manager_Rental extends Activity {
                                     , response.get("date" + i).toString(), response.get("time" + i).toString()
                                     ,Integer.parseInt(response.get("isSuccess" + i).toString())));
                             adapter.notifyDataSetChanged();
+                            Log.d("position", "" + response.get("time" + i).toString());
                         }
 
                     }
@@ -108,6 +109,7 @@ public class Activity_Manager_Rental extends Activity {
 
                 Intent intent = new Intent(Activity_Manager_Rental.this, Activity_Manager_Rental_specific.class);
                 intent.putExtra("position", position);
+                Log.d("position", "" + position);
                 startActivity(intent);
                 finish();
             }

@@ -1,8 +1,6 @@
 package com.system.dormitory.dormitory_system_android.activity_main.Manager;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,18 +8,13 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.system.dormitory.dormitory_system_android.R;
-import com.system.dormitory.dormitory_system_android.activity_main.Student.Activity_Student_Main;
 import com.system.dormitory.dormitory_system_android.helper.Helper_outSleepStudent;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
-import com.system.dormitory.dormitory_system_android.helper.Helper_userData;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,7 +32,7 @@ public class Activity_Manager_outSleep extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_outsleep_confirm);
+        setContentView(R.layout.activity_manager_outsleep);
 
 
     }
