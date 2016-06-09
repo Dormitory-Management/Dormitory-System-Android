@@ -184,7 +184,7 @@ public class Activity_Student_Rental extends Activity {
     public void insertAlert() {
         AlertDialog.Builder alert = new AlertDialog.Builder(Activity_Student_Rental.this);
         alert.setTitle("성공");
-        alert.setMessage("물건대여이 완료되었습니다.");
+        alert.setMessage("물건대여가 완료되었습니다.");
         alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(Activity_Student_Rental.this, Activity_Student_Main.class);
