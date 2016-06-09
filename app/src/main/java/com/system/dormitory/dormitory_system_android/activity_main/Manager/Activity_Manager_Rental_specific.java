@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 import com.system.dormitory.dormitory_system_android.R;
-import com.system.dormitory.dormitory_system_android.helper.Helper_outSleepStudent;
 import com.system.dormitory.dormitory_system_android.helper.Helper_rentalStudent;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
 
