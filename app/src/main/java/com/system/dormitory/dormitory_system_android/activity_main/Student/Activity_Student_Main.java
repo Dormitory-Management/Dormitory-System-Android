@@ -23,7 +23,6 @@ import com.androidquery.AQuery;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.PersistentCookieStore;
 import com.system.dormitory.dormitory_system_android.R;
-import com.system.dormitory.dormitory_system_android.activity_main.Manager.RoomCheck;
 import com.system.dormitory.dormitory_system_android.adapter.ViewPagerAdapter;
 import com.system.dormitory.dormitory_system_android.data.BoardItem;
 import com.system.dormitory.dormitory_system_android.data.DataManager;

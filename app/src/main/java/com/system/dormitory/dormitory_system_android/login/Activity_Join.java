@@ -24,10 +24,6 @@ import com.system.dormitory.dormitory_system_android.helper.Helper_server;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
 import cz.msebera.android.httpclient.Header;
 
 /**

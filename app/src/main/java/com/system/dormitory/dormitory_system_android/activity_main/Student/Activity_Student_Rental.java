@@ -15,19 +15,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.androidquery.AQuery;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.system.dormitory.dormitory_system_android.R;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
 import com.system.dormitory.dormitory_system_android.helper.Helper_userData;
-import com.system.dormitory.dormitory_system_android.login.Activity_Login;
 
 import org.json.JSONException;
 import org.json.JSONObject;
