@@ -49,5 +49,6 @@
     <string name="student_rental_time">반납 기간</string>
     <string name="student_rental_resister">물품 대여 신청</string>
 
+    <string name="manager_rental">외박신청확인</string>
 
 </resources>
