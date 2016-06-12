@@ -5,8 +5,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -30,7 +32,7 @@ import com.system.dormitory.dormitory_system_android.data.NoticeItem;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
 import com.system.dormitory.dormitory_system_android.login.Activity_Login;
 
-public class Activity_Manager_Main extends AppCompatActivity {
+public class Activity_Manager_Main extends AppCompatActivity implements ActionBar.TabListener {
     private ListView lvNavList;
     private DrawerLayout dlDrawer;
     private ActionBarDrawerToggle dtToggle;
@@ -38,6 +40,7 @@ public class Activity_Manager_Main extends AppCompatActivity {
     private AQuery aq;
     private DataManager dataManager;
     private String[] navItems={"대여승인", "외박승인", "점호확인", "로그아웃"};
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +66,9 @@ public class Activity_Manager_Main extends AppCompatActivity {
 
         Log.i("size", String.valueOf(dataManager.getBoardItems().size()));
 
-        aq.id(R.id.notice_layout).clicked(changePage);
-        aq.id(R.id.point_layout).clicked(changePage);
-        aq.id(R.id.board_layout).clicked(changePage);
+//        aq.id(R.id.notice_layout).clicked(changePage);
+//        aq.id(R.id.point_layout).clicked(changePage);
+//        aq.id(R.id.board_layout).clicked(changePage);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(new ViewPagerAdapter(getApplicationContext()));
@@ -89,6 +92,28 @@ public class Activity_Manager_Main extends AppCompatActivity {
         };
         dlDrawer.setDrawerListener(dtToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        actionBar = getSupportActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.addTab(actionBar.newTab().setText(R.string.first).setTabListener(this));
+        actionBar.addTab(actionBar.newTab().setText(R.string.second).setTabListener(this));
+        actionBar.addTab(actionBar.newTab().setText(R.string.third).setTabListener(this));
+    }
+
+    @Override
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+//        Toast.makeText(this, tab.getText() + "선택됨", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+//        Toast.makeText(this, tab.getText() + "선택됨", Toast.LENGTH_SHORT).show();
+        viewPager.setCurrentItem(tab.getPosition());
+    }
+
+    @Override
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
     }
 
     @Override
@@ -111,22 +136,22 @@ public class Activity_Manager_Main extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    Button.OnClickListener changePage = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.notice_layout:
-                    viewPager.setCurrentItem(0);
-                    break;
-                case R.id.point_layout:
-                    viewPager.setCurrentItem(1);
-                    break;
-                case R.id.board_layout:
-                    viewPager.setCurrentItem(2);
-                    break;
-            }
-        }
-    };
+//    Button.OnClickListener changePage = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            switch (view.getId()) {
+//                case R.id.notice_layout:
+//                    viewPager.setCurrentItem(0);
+//                    break;
+//                case R.id.point_layout:
+//                    viewPager.setCurrentItem(1);
+//                    break;
+//                case R.id.board_layout:
+//                    viewPager.setCurrentItem(2);
+//                    break;
+//            }
+//        }
+//    };
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override

@@ -11,31 +11,31 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
 
-            <Button
-                android:id="@+id/notice_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/first" />
+            <!--<Button-->
+                <!--android:id="@+id/notice_layout"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="@string/first" />-->
 
-            <Button
-                android:id="@+id/point_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/second" />
+            <!--<Button-->
+                <!--android:id="@+id/point_layout"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="@string/second" />-->
 
-            <Button
-                android:id="@+id/board_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/third" />
-        </LinearLayout>
+            <!--<Button-->
+                <!--android:id="@+id/board_layout"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="@string/third" />-->
+        <!--</LinearLayout>-->
 
         <LinearLayout
             android:id="@+id/fl_activity_main_container"
