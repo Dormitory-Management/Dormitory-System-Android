@@ -97,19 +97,24 @@ public class Activity_Manager_Main extends AppCompatActivity implements ActionBa
 
         RequestParams params = new RequestParams();
         params.add("id", "123");
-        Helper_server.post("data/getBoard.php", params, new JsonHttpResponseHandler() {
+        Helper_server.post("data/getBoardAndNotice.php", params, new JsonHttpResponseHandler() {
 
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
-                    int sum = Integer.parseInt(response.get("sum").toString());
-                    for (int i = 0; i < sum; i++) {
-                        dataManager.getBoardItems().add(new BoardItem(response.get("title" + i).toString(),
-                                response.get("content" + i).toString(), Integer.parseInt(response.get("sno" + i).toString()),
-                                response.get("time" + i).toString()));
+                    int notice_sum = Integer.parseInt(response.get("notice_sum").toString());
+                    System.out.println("aaaa"+ notice_sum);
+                    for (int i = 0; i < notice_sum; i++) {
+                        dataManager.getNoticeItems().add(new NoticeItem(response.get("notice_title" + i).toString(),
+                                response.get("notice_content" + i).toString(), "사감",
+                                response.get("notice_time" + i).toString()));
                         viewPager.getAdapter().notifyDataSetChanged();
                     }
-                    for (int i = 0; i < 20; i++) {
-                        dataManager.getNoticeItems().add(new NoticeItem("공지사항 #" + (i + 1), "공지사항 내용 #" + (i + 1), "사감", "22:22"));
+                    int board_sum = Integer.parseInt(response.get("board_sum").toString());
+                    System.out.println("aaaa"+ board_sum);
+                    for (int i = 0; i < board_sum; i++) {
+                        dataManager.getBoardItems().add(new BoardItem(response.get("board_title" + i).toString(),
+                                response.get("board_content" + i).toString(), Integer.parseInt(response.get("board_sno" + i).toString()),
+                                response.get("board_time" + i).toString()));
                         viewPager.getAdapter().notifyDataSetChanged();
                     }
 
