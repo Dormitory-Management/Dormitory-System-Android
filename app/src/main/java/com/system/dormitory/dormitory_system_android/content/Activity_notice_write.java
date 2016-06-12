@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidquery.AQuery;
@@ -38,6 +39,8 @@ public class Activity_notice_write extends Activity {
         setContentView(R.layout.writing_layout);
         aq = new AQuery(this);
 
+        TextView tv_write = (TextView) findViewById(R.id.tv_write);
+        tv_write.setText("공지사항 등록");
         aq.id(R.id.btn_write_submit).clicked(listener);
         aq.id(R.id.btn_write_cancel).clicked(listener);
     }

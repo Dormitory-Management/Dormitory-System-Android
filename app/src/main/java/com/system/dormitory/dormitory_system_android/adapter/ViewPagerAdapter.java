@@ -11,10 +11,12 @@ import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
 import com.system.dormitory.dormitory_system_android.R;
+import com.system.dormitory.dormitory_system_android.content.Activity_notice_write;
 import com.system.dormitory.dormitory_system_android.content.BoardActivity;
 import com.system.dormitory.dormitory_system_android.content.NoticeActivity;
 import com.system.dormitory.dormitory_system_android.content.Activity_board_write;
 import com.system.dormitory.dormitory_system_android.data.DataManager;
+import com.system.dormitory.dormitory_system_android.helper.Helper_userData;
 
 /**
  * Created by 보운 on 2016-05-07.
@@ -37,10 +39,22 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         switch (position) {
             case 0:
-                v = inflater.inflate(R.layout.activity_notice, null);
-                listView = (ListView) v.findViewById(R.id.notice_list);
-                listView.setAdapter(new NoticeListAdapter(context, DataManager.getInstance().getNoticeItems()));
-                listView.setOnItemClickListener(noticeClick);
+                System.out.println("aaaaa" + Helper_userData.getInstance().getIsStudent());
+                if(Helper_userData.getInstance().getIsStudent()==1){
+                    v = inflater.inflate(R.layout.activity_manager_notice, null);
+                    listView = (ListView) v.findViewById(R.id.notice_list);
+                    listView.setAdapter(new NoticeListAdapter(context, DataManager.getInstance().getNoticeItems()));
+                    listView.setOnItemClickListener(noticeClick);
+                    FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.notice_fab);
+                    fab.attachToListView(listView);
+                    fab.setOnClickListener(notice_floatingButtonClicked);
+                }
+                else {
+                    v = inflater.inflate(R.layout.activity_notice, null);
+                    listView = (ListView) v.findViewById(R.id.notice_list);
+                    listView.setAdapter(new NoticeListAdapter(context, DataManager.getInstance().getNoticeItems()));
+                    listView.setOnItemClickListener(noticeClick);
+                }
                 break;
             case 1:
                 v = inflater.inflate(R.layout.activity_board, null);
@@ -49,7 +63,7 @@ public class ViewPagerAdapter extends PagerAdapter {
                 listView.setOnItemClickListener(boardClick);
                 FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
                 fab.attachToListView(listView);
-                fab.setOnClickListener(floatingButtonClicked);
+                fab.setOnClickListener(board_floatingButtonClicked);
                 break;
             case 2:
                 v = inflater.inflate(R.layout.activity_point, null);
@@ -96,7 +110,7 @@ public class ViewPagerAdapter extends PagerAdapter {
         }
     };
 
-    FloatingActionButton.OnClickListener floatingButtonClicked = new View.OnClickListener() {
+    FloatingActionButton.OnClickListener board_floatingButtonClicked = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Intent writing = new Intent(context, Activity_board_write.class);
@@ -104,4 +118,14 @@ public class ViewPagerAdapter extends PagerAdapter {
             context.startActivity(writing);
         }
     };
+
+    FloatingActionButton.OnClickListener notice_floatingButtonClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent writing = new Intent(context, Activity_notice_write.class);
+            writing.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(writing);
+        }
+    };
+
 }
