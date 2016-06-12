@@ -54,6 +54,7 @@ public class Activity_Login extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+//        registBroadcastReceiver();
         getInstanceIdToken();
         TypefaceProvider.registerDefaultIconSets();
         // activity_layout.xml을
@@ -188,30 +189,56 @@ public class Activity_Login extends Activity {
         }
     }
 
-    /**
-     * 앱이 실행되어 화면에 나타날때 LocalBoardcastManager에 액션을 정의하여 등록한다.
-     */
-    @Override
-    protected void onResume() {
-        super.onResume();
-        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
-                new IntentFilter(QuickstartPreferences.REGISTRATION_READY));
-        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
-                new IntentFilter(QuickstartPreferences.REGISTRATION_GENERATING));
-        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
-                new IntentFilter(QuickstartPreferences.REGISTRATION_COMPLETE));
-
-    }
-
-    /**
-     * 앱이 화면에서 사라지면 등록된 LocalBoardcast를 모두 삭제한다.
-     */
-    @Override
-    protected void onPause() {
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
-        super.onPause();
-    }
-
+//    /**
+//     * 앱이 실행되어 화면에 나타날때 LocalBoardcastManager에 액션을 정의하여 등록한다.
+//     */
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+//                new IntentFilter(QuickstartPreferences.REGISTRATION_READY));
+//        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+//                new IntentFilter(QuickstartPreferences.REGISTRATION_GENERATING));
+//        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+//                new IntentFilter(QuickstartPreferences.REGISTRATION_COMPLETE));
+//
+//    }
+//
+//    /**
+//     * 앱이 화면에서 사라지면 등록된 LocalBoardcast를 모두 삭제한다.
+//     */
+//    @Override
+//    protected void onPause() {
+//        LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
+//        super.onPause();
+//    }
+//
+//    public void registBroadcastReceiver(){
+//        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//                String action = intent.getAction();
+//                if(action.equals(QuickstartPreferences.REGISTRATION_READY)){
+//                    // 액션이 READY일 경우
+////                    mRegistrationProgressBar.setVisibility(ProgressBar.GONE);
+////                    mInformationTextView.setVisibility(View.GONE);
+//                } else if(action.equals(QuickstartPreferences.REGISTRATION_GENERATING)){
+//                    // 액션이 GENERATING일 경우
+////                    mRegistrationProgressBar.setVisibility(ProgressBar.VISIBLE);
+////                    mInformationTextView.setVisibility(View.VISIBLE);
+////                    mInformationTextView.setText(getString(R.string.registering_message_generating));
+//                } else if(action.equals(QuickstartPreferences.REGISTRATION_COMPLETE)){
+//                    // 액션이 COMPLETE일 경우
+////                    mRegistrationProgressBar.setVisibility(ProgressBar.GONE);
+////                    mRegistrationButton.setText(getString(R.string.registering_message_complete));
+////                    mRegistrationButton.setEnabled(false);
+////                    String token = intent.getStringExtra("token");
+////                    mInformationTextView.setText(token);
+//                }
+//
+//            }
+//        };
+//    }
 
     /**
      * Google Play Service를 사용할 수 있는 환경이지를 체크한다.
