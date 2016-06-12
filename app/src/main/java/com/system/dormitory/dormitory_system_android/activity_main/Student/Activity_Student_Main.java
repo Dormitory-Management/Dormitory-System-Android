@@ -39,7 +39,7 @@ public class Activity_Student_Main extends AppCompatActivity implements ActionBa
     private ViewPager viewPager;
     private AQuery aq;
     private DataManager dataManager;
-    private String[] navItems = {"대여", "외박", "벌점확인", "로그아웃"};
+    private String[] navItems = {"대여", "외박", "벌점확인", "식단표", "로그아웃"};
     private ActionBar actionBar;
 
     @Override
@@ -177,6 +177,12 @@ public class Activity_Student_Main extends AppCompatActivity implements ActionBa
                     finish();
                     break;
                 case 3:
+                    Toast.makeText(Activity_Student_Main.this, "벌점확인", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(Activity_Student_Main.this, Activity_Student_meal.class);
+                    startActivity(intent);
+                    finish();
+                    break;
+                case 4:
                     Toast.makeText(Activity_Student_Main.this, "로그아웃", Toast.LENGTH_SHORT).show();
                     new AlertDialog.Builder(Activity_Student_Main.this)
                             .setTitle("종료")

@@ -15,10 +15,8 @@ import com.androidquery.AQuery;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.system.dormitory.dormitory_system_android.R;
-import com.system.dormitory.dormitory_system_android.activity_main.Student.Activity_Student_Main;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
 import com.system.dormitory.dormitory_system_android.helper.Helper_userData;
-import com.system.dormitory.dormitory_system_android.thread.DataPostThread;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.message.BasicNameValuePair;
 
 /**
  * Created by 보운 on 2016-05-15.
