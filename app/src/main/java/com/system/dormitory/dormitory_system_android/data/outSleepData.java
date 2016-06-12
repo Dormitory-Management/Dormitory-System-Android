@@ -17,7 +17,6 @@ public class outSleepData {
         this.date = date;
         this.content = content;
         this.isSuccess = isSuccess;
-
     }
 
     public int getNumber(){

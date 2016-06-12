@@ -80,6 +80,10 @@ public class ViewPagerAdapter extends PagerAdapter {
         container.removeView((View) object);
     }
 
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
+
     @Override
     public int getCount() {
         return MAX_PAGE;

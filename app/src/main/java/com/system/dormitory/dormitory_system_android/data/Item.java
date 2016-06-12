@@ -15,7 +15,8 @@ public class Item implements Serializable {
     private String name;
 
     public Item() {
-
+        name = "user";
+        roomNumber = 0;
     }
 
     public Item(String title, String content) {
