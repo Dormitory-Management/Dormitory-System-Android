@@ -60,8 +60,8 @@ public class Activity_Student_Main extends AppCompatActivity implements ActionBa
         dataManager.DataClear();
 
         for (int i = 0; i < 20; i++) {
-            dataManager.getBoardItems().add(new BoardItem("게시글 #" + (i + 1), "게시글 내용 #" + (i + 1), i + 100, "홍길동"));
-            dataManager.getNoticeItems().add(new NoticeItem("공지사항 #" + (i + 1), "공지사항 내용 #" + (i + 1), "사감"));
+            dataManager.getBoardItems().add(new BoardItem("게시글 #" + (i + 1), "게시글 내용 #" + (i + 1), i + 100, "22:22"));
+            dataManager.getNoticeItems().add(new NoticeItem("공지사항 #" + (i + 1), "공지사항 내용 #" + (i + 1), "사감", "22:22"));
         }
 
         Log.i("size", String.valueOf(dataManager.getBoardItems().size()));
@@ -177,7 +177,7 @@ public class Activity_Student_Main extends AppCompatActivity implements ActionBa
                     finish();
                     break;
                 case 3:
-                    Toast.makeText(Activity_Student_Main.this, "벌점확인", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Student_Main.this, "식단확인", Toast.LENGTH_SHORT).show();
                     intent = new Intent(Activity_Student_Main.this, Activity_Student_meal.class);
                     startActivity(intent);
                     finish();

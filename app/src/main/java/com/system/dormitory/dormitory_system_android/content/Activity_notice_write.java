@@ -3,7 +3,6 @@ package com.system.dormitory.dormitory_system_android.content;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +21,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import cz.msebera.android.httpclient.Header;
@@ -30,7 +28,7 @@ import cz.msebera.android.httpclient.Header;
 /**
  * Created by 보운 on 2016-05-15.
  */
-public class WritingActivity extends Activity {
+public class Activity_notice_write extends Activity {
     private AQuery aq;
     private EditText et_content, et_title;
 
@@ -72,7 +70,7 @@ public class WritingActivity extends Activity {
 
                     Log.d("TestTest ", Helper_userData.getInstance().getSno() + strNow + title + content);
                     //server connect
-                    Helper_server.post("data/insertBoard.php", params, new JsonHttpResponseHandler() {
+                    Helper_server.post("data/insertNotice.php", params, new JsonHttpResponseHandler() {
                         @Override
 
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -104,7 +102,7 @@ public class WritingActivity extends Activity {
     };
 
     public void insertAlert() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(WritingActivity.this);
+        AlertDialog.Builder alert = new AlertDialog.Builder(Activity_notice_write.this);
         alert.setTitle("성공");
         alert.setMessage("등록이 완료되었습니다.");
         alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {

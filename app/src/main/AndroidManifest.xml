@@ -68,7 +68,8 @@
         <activity android:name=".login.Activity_Join" />
         <activity android:name=".content.BoardActivity" />
         <activity android:name=".content.NoticeActivity" />
-        <activity android:name=".content.WritingActivity" />
+        <activity android:name=".content.Activity_board_write" />
+        <activity android:name=".content.Activity_notice_write" />
         <activity android:name=".activity_main.Student.Activity_Student_penaltyPoint" />
         <activity android:name=".activity_main.Student.Activity_Student_outSleep" />
         <activity android:name=".activity_main.Student.Activity_Student_Rental" />

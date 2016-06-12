@@ -14,7 +14,7 @@ public class BoardItem extends Item implements Serializable {
         super(title, content);
     }
 
-    public BoardItem(String title, String content, int roomNumber, String name) {
-        super(title, content, roomNumber, name);
+    public BoardItem(String title, String content, int sno, String time) {
+        super(title, content, sno, time);
     }
 }

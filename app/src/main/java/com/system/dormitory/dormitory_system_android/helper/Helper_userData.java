@@ -33,6 +33,8 @@ public class Helper_userData {
     public static String roomNumber;
     public static int score;
     public static int isStudent;
+    private static String gcmClientKey;
+
 
     public Helper_userData(int sno, String name, String email, String roomNumber, int score, int isStudent) {
         this.sno = sno;
@@ -170,8 +172,13 @@ public class Helper_userData {
         if(response == null || response.equals(null)) return -1;
         else return Integer.parseInt(response.toString().trim());
     }
-    public static void setUserNull(){
-        user = null;
+    public static String getGcmClientKey() {
+        return gcmClientKey;
     }
+
+    public static void setGcmClientKey(String gcmClientKey) {
+        Helper_userData.gcmClientKey = gcmClientKey;
+    }
+
 
 }

@@ -27,6 +27,7 @@ public class BoardActivity extends Activity {
 
         aq.id(R.id.content_layout_title).text(item.getTitle());
         aq.id(R.id.content_layout_content).text(item.getContent());
-        aq.id(R.id.content_layout_date).text(dateFormat.format(item.getDate()));
+       // aq.id(R.id.content_layout_date).text(dateFormat.format(item.getTime()));
+         aq.id(R.id.content_layout_date).text((item.getTime()));
     }
 }

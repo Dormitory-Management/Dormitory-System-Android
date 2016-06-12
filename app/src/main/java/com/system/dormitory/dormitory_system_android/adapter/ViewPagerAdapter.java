@@ -13,7 +13,7 @@ import com.melnykov.fab.FloatingActionButton;
 import com.system.dormitory.dormitory_system_android.R;
 import com.system.dormitory.dormitory_system_android.content.BoardActivity;
 import com.system.dormitory.dormitory_system_android.content.NoticeActivity;
-import com.system.dormitory.dormitory_system_android.content.WritingActivity;
+import com.system.dormitory.dormitory_system_android.content.Activity_board_write;
 import com.system.dormitory.dormitory_system_android.data.DataManager;
 
 /**
@@ -99,7 +99,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     FloatingActionButton.OnClickListener floatingButtonClicked = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent writing = new Intent(context, WritingActivity.class);
+            Intent writing = new Intent(context, Activity_board_write.class);
             writing.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(writing);
         }

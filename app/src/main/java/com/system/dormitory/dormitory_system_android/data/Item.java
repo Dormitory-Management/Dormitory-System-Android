@@ -9,12 +9,13 @@ import java.util.Date;
 public class Item implements Serializable {
     private String title;
     private String content;
-    private String name;
-    private Date date;
+    private int sno;
+    private String time;
     private int roomNumber;
+    private String name;
 
     public Item() {
-        date = new Date();
+
     }
 
     public Item(String title, String content) {
@@ -23,15 +24,29 @@ public class Item implements Serializable {
         this.content = content;
     }
 
-    public Item(String title, String content, String name) {
+    public Item(String title, String content, int sno, String time) {
         this(title, content);
+        this.sno = sno;
+        this.time = time;
+    }
+
+    public Item(String title, String content, int sno, int roomNumber) {
+        this(title, content);
+        this.roomNumber = roomNumber;
+        this.sno = sno;
+    }
+
+    public Item(String title, String content, String name, String time) {
+        this(title, content);
+        this.time = time;
         this.name = name;
     }
 
-    public Item(String title, String content, int roomNumber, String name) {
+    public Item(String title, String content, int sno, int roomNumber, String time) {
         this(title, content);
         this.roomNumber = roomNumber;
-        this.name = name;
+        this.sno = sno;
+        this.time = time;
     }
 
     public void setTitle(String title) {
@@ -50,13 +65,22 @@ public class Item implements Serializable {
         return content;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTime(String time) {
+        this.time = time;
     }
 
-    public Date getDate() {
-        return date;
+    public String getTime() {
+        return time;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
 
     public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
@@ -66,11 +90,11 @@ public class Item implements Serializable {
         return roomNumber;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSno(int sno) {
+        this.sno = sno;
     }
 
-    public String getName() {
-        return name;
+    public int getSno() {
+        return sno;
     }
 }

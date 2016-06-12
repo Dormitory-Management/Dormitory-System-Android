@@ -10,6 +10,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
 import com.system.dormitory.dormitory_system_android.R;
 import com.system.dormitory.dormitory_system_android.data.DataManager;
+import com.system.dormitory.dormitory_system_android.helper.Helper_userData;
 
 import java.io.IOException;
 
@@ -49,7 +50,7 @@ public class RegistrationIntentService extends IntentService {
                 token = instanceID.getToken(default_senderId, scope, null);
 
                 Log.i(TAG, "GCM Registration Token: " + token);
-                DataManager.setGcmClientKey(token);
+                Helper_userData.setGcmClientKey(token);
             }
         } catch (IOException e) {
             e.printStackTrace();
