@@ -54,5 +54,7 @@
     <string name="manager_rental_specific_back">뒤로가기</string>
     <string name="manager_rental_specific_confirm">승인하기</string>
 
-
+    <string name="registering_message_ready">InstanceID 토큰 가져오기</string>
+    <string name="registering_message_generating">InstanceID 토큰 생성중...</string>
+    <string name="registering_message_complete">완료!</string>
 </resources>

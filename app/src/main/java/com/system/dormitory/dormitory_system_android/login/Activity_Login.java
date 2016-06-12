@@ -2,10 +2,13 @@ package com.system.dormitory.dormitory_system_android.login;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -14,11 +17,15 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.beardedhen.androidbootstrap.TypefaceProvider;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
 import com.loopj.android.http.RequestParams;
 import com.system.dormitory.dormitory_system_android.R;
+import com.system.dormitory.dormitory_system_android.gcm.QuickstartPreferences;
+import com.system.dormitory.dormitory_system_android.gcm.RegistrationIntentService;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
 import com.system.dormitory.dormitory_system_android.helper.Helper_userData;
 
@@ -34,6 +41,7 @@ import cz.msebera.android.httpclient.impl.cookie.BasicClientCookie;
 public class Activity_Login extends Activity {
     private String login_id = "";
     public static Activity login_Activity; //Aacitivity_login class선언.
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
 
     EditText et_sno;
     EditText et_password;
@@ -42,9 +50,11 @@ public class Activity_Login extends Activity {
         Helper_userData.login_GetData(sno, mContext);
     }
 
+    //TODO GCM Client Key를 서버에 저장시킬것 DataManager.getGcmClientKey() 메소드를 사용하면 현재 Client에 GCM키를 가져올 수 있음
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getInstanceIdToken();
         TypefaceProvider.registerDefaultIconSets();
         // activity_layout.xml을
         login_Activity = Activity_Login.this;
@@ -167,5 +177,56 @@ public class Activity_Login extends Activity {
         finish();
     }
 
+    /**
+     * Instance ID를 이용하여 디바이스 토큰을 가져오는 RegistrationIntentService를 실행한다.
+     */
+    public void getInstanceIdToken() {
+        if (checkPlayServices()) {
+            // Start IntentService to register this application with GCM.
+            Intent intent = new Intent(this, RegistrationIntentService.class);
+            startService(intent);
+        }
+    }
 
+    /**
+     * 앱이 실행되어 화면에 나타날때 LocalBoardcastManager에 액션을 정의하여 등록한다.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                new IntentFilter(QuickstartPreferences.REGISTRATION_READY));
+        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                new IntentFilter(QuickstartPreferences.REGISTRATION_GENERATING));
+        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                new IntentFilter(QuickstartPreferences.REGISTRATION_COMPLETE));
+
+    }
+
+    /**
+     * 앱이 화면에서 사라지면 등록된 LocalBoardcast를 모두 삭제한다.
+     */
+    @Override
+    protected void onPause() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
+        super.onPause();
+    }
+
+
+    /**
+     * Google Play Service를 사용할 수 있는 환경이지를 체크한다.
+     */
+    private boolean checkPlayServices() {
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                GooglePlayServicesUtil.getErrorDialog(resultCode, this, 9000).show();
+            } else {
+                Log.i("GCM", "This device is not supported.");
+                finish();
+            }
+            return false;
+        }
+        return true;
+    }
 }

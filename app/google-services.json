@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "880337386817",
+    "project_id": "dormitory-gcm"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880337386817:android:de9eae3f4b07ba42",
+        "android_client_info": {
+          "package_name": "com.system.dormitory.dormitory_system_android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWSQ5cc4l_D7klHOuUbjcUOGMliijf3JE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

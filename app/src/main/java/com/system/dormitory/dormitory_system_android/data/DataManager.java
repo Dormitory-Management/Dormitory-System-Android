@@ -10,6 +10,7 @@ public class DataManager {
     private ArrayList<BoardItem> boardItems;
     private ArrayList<NoticeItem> noticeItems;
     private ArrayList<DormitoryRoom> dormitoryRooms;
+    private static String gcmClientKey;
 
     public static DataManager getInstance() {
         return instance;
@@ -38,5 +39,13 @@ public class DataManager {
 
     public ArrayList<DormitoryRoom> getDormitoryRooms() {
         return dormitoryRooms;
+    }
+
+    public static String getGcmClientKey() {
+        return gcmClientKey;
+    }
+
+    public static void setGcmClientKey(String gcmClientKey) {
+        DataManager.gcmClientKey = gcmClientKey;
     }
 }

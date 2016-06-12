@@ -61,6 +61,7 @@ public class Room extends Activity {
         return checkbox;
     }
 
+    //TODO checkbox변수를 사용하면 누가 불참했는지 알 수 있음 false가 불참
     @OnClick(R.id.room_check_submit) void onClick() {
         String str = "";
         for (int i = 0; i < 4; i++) {
