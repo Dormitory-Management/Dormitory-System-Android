@@ -23,7 +23,9 @@ import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
+import com.loopj.android.http.RequestParams;
 import com.system.dormitory.dormitory_system_android.R;
 import com.system.dormitory.dormitory_system_android.adapter.ViewPagerAdapter;
 import com.system.dormitory.dormitory_system_android.data.BoardItem;
@@ -31,6 +33,11 @@ import com.system.dormitory.dormitory_system_android.data.DataManager;
 import com.system.dormitory.dormitory_system_android.data.NoticeItem;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
 import com.system.dormitory.dormitory_system_android.login.Activity_Login;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
 
 public class Activity_Student_Main extends AppCompatActivity implements ActionBar.TabListener {
     private ListView lvNavList;
@@ -51,24 +58,6 @@ public class Activity_Student_Main extends AppCompatActivity implements ActionBa
         if(login!=null) login.finish();
 
         aq = new AQuery(this);
-
-        init();
-    }
-
-    public void init() {
-        dataManager = DataManager.getInstance();
-        dataManager.DataClear();
-
-        for (int i = 0; i < 20; i++) {
-            dataManager.getBoardItems().add(new BoardItem("게시글 #" + (i + 1), "게시글 내용 #" + (i + 1), i + 100, "22:22"));
-            dataManager.getNoticeItems().add(new NoticeItem("공지사항 #" + (i + 1), "공지사항 내용 #" + (i + 1), "사감", "22:22"));
-        }
-
-        Log.i("size", String.valueOf(dataManager.getBoardItems().size()));
-
-//        aq.id(R.id.notice_layout).clicked(changePage);
-//        aq.id(R.id.point_layout).clicked(changePage);
-//        aq.id(R.id.board_layout).clicked(changePage);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(new ViewPagerAdapter(getApplicationContext()));
@@ -98,6 +87,54 @@ public class Activity_Student_Main extends AppCompatActivity implements ActionBa
         actionBar.addTab(actionBar.newTab().setText(R.string.first).setTabListener(this));
         actionBar.addTab(actionBar.newTab().setText(R.string.second).setTabListener(this));
         actionBar.addTab(actionBar.newTab().setText(R.string.third).setTabListener(this));
+
+    }
+
+    public void init() {
+        dataManager = DataManager.getInstance();
+        dataManager.DataClear();
+
+        RequestParams params = new RequestParams();
+        params.add("id", "123");
+        Helper_server.post("data/getBoardAndNotice.php", params, new JsonHttpResponseHandler() {
+
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    int notice_sum = Integer.parseInt(response.get("notice_sum").toString());
+                    System.out.println("aaaa" + notice_sum);
+                    for (int i = 0; i < notice_sum; i++) {
+                        dataManager.getNoticeItems().add(new NoticeItem(response.get("notice_title" + i).toString(),
+                                response.get("notice_content" + i).toString(), "사감",
+                                response.get("notice_time" + i).toString()));
+                        viewPager.getAdapter().notifyDataSetChanged();
+                    }
+                    int board_sum = Integer.parseInt(response.get("board_sum").toString());
+                    System.out.println("aaaa" + board_sum);
+                    for (int i = 0; i < board_sum; i++) {
+                        dataManager.getBoardItems().add(new BoardItem(response.get("board_title" + i).toString(),
+                                response.get("board_content" + i).toString(), Integer.parseInt(response.get("board_sno" + i).toString()),
+                                response.get("board_time" + i).toString()));
+                        viewPager.getAdapter().notifyDataSetChanged();
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+                Log.d("Failed: ", "" + statusCode);
+                Log.d("Error : ", "" + throwable);
+            }
+        });
+//        aq.id(R.id.notice_layout).clicked(changePage);
+//        aq.id(R.id.point_layout).clicked(changePage);
+//        aq.id(R.id.board_layout).clicked(changePage);
+
+
     }
 
     @Override
@@ -221,5 +258,10 @@ public class Activity_Student_Main extends AppCompatActivity implements ActionBa
             default:
                 return false;
         }
+    }
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+
+        init();
     }
 }
