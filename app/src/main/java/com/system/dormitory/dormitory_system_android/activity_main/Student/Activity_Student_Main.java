@@ -103,7 +103,7 @@ public class Activity_Student_Main extends AppCompatActivity implements ActionBa
                     int notice_sum = Integer.parseInt(response.get("notice_sum").toString());
                     System.out.println("aaaa" + notice_sum);
                     for (int i = 0; i < notice_sum; i++) {
-                        dataManager.getNoticeItems().add(new NoticeItem(response.get("notice_title" + i).toString(),
+                        dataManager.getNoticeItems().add(new NoticeItem(Integer.parseInt(response.get("notice_number" + i).toString()),response.get("notice_title" + i).toString(),
                                 response.get("notice_content" + i).toString(), "사감",
                                 response.get("notice_time" + i).toString()));
                         viewPager.getAdapter().notifyDataSetChanged();
@@ -111,7 +111,7 @@ public class Activity_Student_Main extends AppCompatActivity implements ActionBa
                     int board_sum = Integer.parseInt(response.get("board_sum").toString());
                     System.out.println("aaaa" + board_sum);
                     for (int i = 0; i < board_sum; i++) {
-                        dataManager.getBoardItems().add(new BoardItem(response.get("board_title" + i).toString(),
+                        dataManager.getBoardItems().add(new BoardItem(Integer.parseInt(response.get("board_number" + i).toString()),response.get("board_title" + i).toString(),
                                 response.get("board_content" + i).toString(), Integer.parseInt(response.get("board_sno" + i).toString()),
                                 response.get("board_time" + i).toString()));
                         viewPager.getAdapter().notifyDataSetChanged();

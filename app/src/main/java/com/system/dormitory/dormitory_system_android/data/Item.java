@@ -25,30 +25,20 @@ public class Item implements Serializable {
         this.title = title;
         this.content = content;
     }
-
-    public Item(String title, String content, int sno, String time) {
+    //board
+    public Item(int number, String title, String content, int sno, String time) {
         this(title, content);
         this.sno = sno;
         this.time = time;
+        this.number = number;
     }
 
-    public Item(String title, String content, int sno, int roomNumber) {
-        this(title, content);
-        this.roomNumber = roomNumber;
-        this.sno = sno;
-    }
-
-    public Item(String title, String content, String name, String time) {
+    //notice
+    public Item(int number, String title, String content, String name, String time) {
         this(title, content);
         this.time = time;
         this.name = name;
-    }
-
-    public Item(String title, String content, int sno, int roomNumber, String time) {
-        this(title, content);
-        this.roomNumber = roomNumber;
-        this.sno = sno;
-        this.time = time;
+        this.number = number;
     }
 
     public void setTitle(String title) {

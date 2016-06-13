@@ -14,8 +14,8 @@ public class QuestionItem extends Item implements Serializable {
         super(title, content);
     }
 
-    public QuestionItem(String title, String content, int sno, String time, String answer, String answerTime) {
-        super(title, content, sno, time);
+    public QuestionItem(int number, String title, String content, int sno, String time, String answer, String answerTime) {
+        super(number, title, content, sno, time);
         if(answer.equals("0")) {
             this.answer = "답변을 기다리는 중입니다.";
             this.answerTime = "답변을 기다리는 중입니다.";

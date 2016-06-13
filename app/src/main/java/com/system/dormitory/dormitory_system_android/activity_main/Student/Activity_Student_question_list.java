@@ -56,7 +56,7 @@ public class Activity_Student_question_list extends Activity {
                     System.out.println("aaaa" + question_sum);
                     for (int i = 0; i < question_sum; i++) {
                         System.out.println("aaaa" + response.get("question_title" + i).toString());
-                        dataManager.getQuestionItems().add(new QuestionItem(response.get("question_title" + i).toString(),
+                        dataManager.getQuestionItems().add(new QuestionItem(Integer.parseInt(response.get("question_number" + i).toString()),response.get("question_title" + i).toString(),
                                 response.get("question_content" + i).toString(), Integer.parseInt(response.get("question_sno" + i).toString()),
                                 response.get("question_time" + i).toString(), response.get("question_answer" + i).toString(),
                                 response.get("question_answerTime" + i).toString()));

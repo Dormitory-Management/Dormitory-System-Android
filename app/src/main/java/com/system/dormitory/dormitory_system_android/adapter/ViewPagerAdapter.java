@@ -71,6 +71,7 @@ public class ViewPagerAdapter extends PagerAdapter {
                 fab.setOnClickListener(board_floatingButtonClicked);
                 break;
             case 2:
+                System.out.println("TestTestView " + Helper_userData.getInstance().getIsStudent());
                 if(Helper_userData.getInstance().getIsStudent()==1) {
                     v = inflater.inflate(R.layout.activity_manager_question_list, null);
                     listView = (ListView) v.findViewById(R.id.manager_question_list);
