@@ -73,7 +73,7 @@ public class ViewPagerAdapter extends PagerAdapter {
                 Button btn_resister = (Button)v.findViewById(R.id.btn_question_resister);
                 btn_resister.setOnClickListener(question_resisterButtonClicked);
                 Button btn_list = (Button)v.findViewById(R.id.btn_question_list);
-                btn_resister.setOnClickListener(question_listButtonClicked);
+                btn_list.setOnClickListener(question_listButtonClicked);
 
                 break;
         }
@@ -151,9 +151,9 @@ public class ViewPagerAdapter extends PagerAdapter {
     Button.OnClickListener question_listButtonClicked = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent writing = new Intent(context, Activity_Student_question_list.class);
-            writing.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(writing);
+            Intent listIntent = new Intent(context, Activity_Student_question_list.class);
+            listIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(listIntent);
         }
     };
 

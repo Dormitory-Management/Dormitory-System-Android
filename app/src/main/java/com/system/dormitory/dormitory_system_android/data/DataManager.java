@@ -18,12 +18,14 @@ public class DataManager {
         boardItems = new ArrayList<BoardItem>();
         noticeItems = new ArrayList<NoticeItem>();
         dormitoryRooms = new ArrayList<DormitoryRoom>();
+        questionItems = new ArrayList<QuestionItem>();
     }
 
     public void DataClear() {
         boardItems.clear();
         noticeItems.clear();
         dormitoryRooms.clear();
+        questionItems.clear();
     }
 
     public ArrayList<BoardItem> getBoardItems() {
@@ -38,5 +40,8 @@ public class DataManager {
         return dormitoryRooms;
     }
 
+    public ArrayList<QuestionItem> getQuestionItems() {
+        return questionItems;
+    }
 
 }
