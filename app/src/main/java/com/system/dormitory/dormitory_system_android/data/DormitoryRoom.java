@@ -3,9 +3,6 @@ package com.system.dormitory.dormitory_system_android.data;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * Created by secret on 6/3/16.
- */
 public class DormitoryRoom implements Serializable {
     private int room;
     private int count;

@@ -2,14 +2,12 @@ package com.system.dormitory.dormitory_system_android.data;
 
 import java.util.ArrayList;
 
-/**
- * Created by 보운 on 2016-05-10.
- */
 public class DataManager {
     private static DataManager instance = new DataManager();
     private ArrayList<BoardItem> boardItems;
     private ArrayList<NoticeItem> noticeItems;
     private ArrayList<DormitoryRoom> dormitoryRooms;
+    private ArrayList<QuestionItem> questionItems;
 
     public static DataManager getInstance() {
         return instance;

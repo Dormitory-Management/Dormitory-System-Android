@@ -13,6 +13,7 @@ public class Item implements Serializable {
     private String time;
     private int roomNumber;
     private String name;
+    private int number;
 
     public Item() {
         name = "user";
@@ -89,6 +90,14 @@ public class Item implements Serializable {
 
     public int getRoomNumber() {
         return roomNumber;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public int getNumber() {
+        return number;
     }
 
     public void setSno(int sno) {

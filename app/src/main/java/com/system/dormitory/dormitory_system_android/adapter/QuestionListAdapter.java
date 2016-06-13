@@ -14,24 +14,24 @@ import com.system.dormitory.dormitory_system_android.data.Item;
 import java.util.ArrayList;
 
 
-public class BoardListAdapter extends BaseAdapter {
-    private ArrayList<? extends Item> board;
+public class QuestionListAdapter extends BaseAdapter {
+    private ArrayList<? extends Item> question;
     private AQuery aq;
     private Context context;
 
-    public BoardListAdapter(Context context, ArrayList<? extends Item> board) {
+    public QuestionListAdapter(Context context, ArrayList<? extends Item> question) {
         this.context = context;
-        this.board = board;
+        this.question = question;
     }
 
     @Override
     public int getCount() {
-        return board.size();
+        return question.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return board.get(i);
+        return question.get(i);
     }
 
     @Override
@@ -47,12 +47,12 @@ public class BoardListAdapter extends BaseAdapter {
         aq = new AQuery(view);
         SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm");
 
-        aq.id(R.id.item_title).text(board.get(i).getTitle());
-        aq.id(R.id.item_content).text(board.get(i).getContent());
-        aq.id(R.id.item_room_number).text(String.valueOf(board.get(i).getRoomNumber()) + "호");
-        aq.id(R.id.item_person).text(""+board.get(i).getSno());
+        aq.id(R.id.item_title).text(question.get(i).getTitle());
+        aq.id(R.id.item_content).text(question.get(i).getContent());
+        aq.id(R.id.item_room_number).text(String.valueOf(question.get(i).getRoomNumber()) + "호");
+        aq.id(R.id.item_person).text(""+question.get(i).getSno());
         //aq.id(R.id.item_time).text(dateFormat.format(board.get(i).getTime()));
-        aq.id(R.id.item_time).text((board.get(i).getTime()));
+        aq.id(R.id.item_time).text((question.get(i).getTime()));
 
         return view;
     }

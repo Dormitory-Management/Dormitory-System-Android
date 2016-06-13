@@ -9,9 +9,7 @@ import com.ibm.icu.text.SimpleDateFormat;
 import com.system.dormitory.dormitory_system_android.R;
 import com.system.dormitory.dormitory_system_android.data.Item;
 
-/**
- * Created by 보운 on 2016-05-15.
- */
+
 public class NoticeActivity extends Activity {
     private AQuery aq;
 
