@@ -7,11 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
 import com.system.dormitory.dormitory_system_android.R;
 import com.system.dormitory.dormitory_system_android.content.Activity_notice_write;
+import com.system.dormitory.dormitory_system_android.content.Activity_question_write;
 import com.system.dormitory.dormitory_system_android.content.BoardActivity;
 import com.system.dormitory.dormitory_system_android.content.NoticeActivity;
 import com.system.dormitory.dormitory_system_android.content.Activity_board_write;
@@ -67,6 +69,8 @@ public class ViewPagerAdapter extends PagerAdapter {
                 break;
             case 2:
                 v = inflater.inflate(R.layout.activity_question, null);
+                Button btn_resister = (Button)v.findViewById(R.id.btn_question_resister);
+                btn_resister.setOnClickListener(question_resisterButtonClicked);
                 break;
         }
 
@@ -132,4 +136,13 @@ public class ViewPagerAdapter extends PagerAdapter {
         }
     };
 
+    Button.OnClickListener question_resisterButtonClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent writing = new Intent(context, Activity_question_write.class);
+            writing.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(writing);
+
+        }
+    };
 }

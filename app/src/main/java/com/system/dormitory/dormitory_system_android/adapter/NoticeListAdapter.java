@@ -13,9 +13,7 @@ import com.system.dormitory.dormitory_system_android.data.Item;
 
 import java.util.ArrayList;
 
-/**
- * Created by BoWoon on 2016-06-06.
- */
+
 public class NoticeListAdapter extends BaseAdapter {
     private ArrayList<? extends Item> board;
     private AQuery aq;

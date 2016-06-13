@@ -1,5 +1,6 @@
 package com.system.dormitory.dormitory_system_android.content;
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidquery.AQuery;
@@ -25,7 +27,7 @@ import java.util.Date;
 
 import cz.msebera.android.httpclient.Header;
 
-public class Activity_board_write extends Activity {
+public class Activity_question_write extends Activity {
     private AQuery aq;
     private EditText et_content, et_title;
 
@@ -35,6 +37,8 @@ public class Activity_board_write extends Activity {
         setContentView(R.layout.writing_layout);
         aq = new AQuery(this);
 
+        TextView tv_write = (TextView) findViewById(R.id.tv_write);
+        tv_write.setText("질문 등록");
         aq.id(R.id.btn_write_submit).clicked(listener);
         aq.id(R.id.btn_write_cancel).clicked(listener);
     }
@@ -65,9 +69,8 @@ public class Activity_board_write extends Activity {
                     params.put("title", title);
                     params.put("content", content);
 
-                    Log.d("TestTest ", Helper_userData.getInstance().getSno() + strNow + title + content);
                     //server connect
-                    Helper_server.post("data/insertBoard.php", params, new JsonHttpResponseHandler() {
+                    Helper_server.post("data/insertQuestion.php", params, new JsonHttpResponseHandler() {
                         @Override
 
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -89,7 +92,7 @@ public class Activity_board_write extends Activity {
                     });
                     break;
                 case R.id.btn_write_cancel:
-                    Toast.makeText(getApplicationContext(), "글쓰기를 취소하셨습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "질문등록을 취소하셨습니다.", Toast.LENGTH_SHORT).show();
                     finish();
                     break;
                 default:
@@ -99,7 +102,7 @@ public class Activity_board_write extends Activity {
     };
 
     public void insertAlert() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(Activity_board_write.this);
+        AlertDialog.Builder alert = new AlertDialog.Builder(Activity_question_write.this);
         alert.setTitle("성공");
         alert.setMessage("등록이 완료되었습니다.");
         alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
