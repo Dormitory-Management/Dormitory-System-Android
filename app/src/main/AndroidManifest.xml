@@ -72,6 +72,8 @@
         <activity android:name=".content.Activity_board_write" />
         <activity android:name=".content.Activity_notice_write" />
         <activity android:name=".content.Activity_question_write" />
+        <activity android:name=".activity_main.Manager.Activity_Manager_question_list" />
+        <activity android:name=".content.Question_Answer_Activity" />
 
         <activity android:name=".activity_main.Student.Activity_Student_penaltyPoint" />
         <activity android:name=".activity_main.Student.Activity_Student_outSleep" />

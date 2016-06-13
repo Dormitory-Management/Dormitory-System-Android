@@ -31,6 +31,7 @@ import com.system.dormitory.dormitory_system_android.adapter.ViewPagerAdapter;
 import com.system.dormitory.dormitory_system_android.data.BoardItem;
 import com.system.dormitory.dormitory_system_android.data.DataManager;
 import com.system.dormitory.dormitory_system_android.data.NoticeItem;
+import com.system.dormitory.dormitory_system_android.data.QuestionItem;
 import com.system.dormitory.dormitory_system_android.helper.Helper_outSleepStudent;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
 import com.system.dormitory.dormitory_system_android.login.Activity_Login;
@@ -97,7 +98,7 @@ public class Activity_Manager_Main extends AppCompatActivity implements ActionBa
 
         RequestParams params = new RequestParams();
         params.add("id", "123");
-        Helper_server.post("data/getBoardAndNotice.php", params, new JsonHttpResponseHandler() {
+        Helper_server.post("data/getBoardAndNoticeAndQuestion.php", params, new JsonHttpResponseHandler() {
 
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
@@ -117,8 +118,16 @@ public class Activity_Manager_Main extends AppCompatActivity implements ActionBa
                                 response.get("board_time" + i).toString()));
                         viewPager.getAdapter().notifyDataSetChanged();
                     }
-
-
+                    int question_sum = Integer.parseInt(response.get("question_sum").toString());
+                    System.out.println("aaaa" + question_sum);
+                    for (int i = 0; i < question_sum; i++) {
+                        System.out.println("aaaa" + response.get("question_title" + i).toString());
+                        dataManager.getQuestionItems().add(new QuestionItem(response.get("question_title" + i).toString(),
+                                response.get("question_content" + i).toString(), Integer.parseInt(response.get("question_sno" + i).toString()),
+                                response.get("question_time" + i).toString(), response.get("question_answer" + i).toString(),
+                                response.get("question_answerTime" + i).toString()));
+                        viewPager.getAdapter().notifyDataSetChanged();
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

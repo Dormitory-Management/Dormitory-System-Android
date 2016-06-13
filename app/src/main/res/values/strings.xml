@@ -58,8 +58,17 @@
     <string name="registering_message_generating">InstanceID 토큰 생성중...</string>
     <string name="registering_message_complete">완료!</string>
 
-    <string name="question_resister">질문등록</string>
-    <string name="question_list">질문목록</string>
+    <string name="question_resister">나의질문등록</string>
+    <string name="question_list">나의질문목록</string>
+
+    <string name="question_answer_button">답변등록하기</string>
+    <string name="question_answer">질문내역</string>
+    <string name="question_answer_sno">학번</string>
+    <string name="question_answer_time">등록일</string>
+    <string name="question_answer_title">제목</string>
+    <string name="question_answer_content">내용</string>
+    <string name="question_answer_answer_title">답변제목</string>
+    <string name="question_answer_answer_content">답변내용</string>
 
 
 </resources>

@@ -1,4 +1,4 @@
-package com.system.dormitory.dormitory_system_android.activity_main.Student;
+package com.system.dormitory.dormitory_system_android.activity_main.Manager;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import com.loopj.android.http.RequestParams;
 import com.system.dormitory.dormitory_system_android.R;
 import com.system.dormitory.dormitory_system_android.adapter.QuestionListAdapter;
 import com.system.dormitory.dormitory_system_android.content.QuestionActivity;
+import com.system.dormitory.dormitory_system_android.content.Question_Answer_Activity;
 import com.system.dormitory.dormitory_system_android.data.DataManager;
 import com.system.dormitory.dormitory_system_android.data.QuestionItem;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
@@ -26,7 +27,7 @@ import cz.msebera.android.httpclient.Header;
 /**
  * Created by Administrator on 2016-06-13.
  */
-public class Activity_Student_question_list extends Activity {
+public class Activity_Manager_question_list extends Activity {
     private DataManager dataManager;
     private ListView listView;
 
@@ -84,7 +85,7 @@ public class Activity_Student_question_list extends Activity {
     ListView.OnItemClickListener questionClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            Intent content = new Intent(getApplicationContext(), QuestionActivity.class);
+            Intent content = new Intent(getApplicationContext(), Question_Answer_Activity.class);
             content.putExtra("Item", DataManager.getInstance().getQuestionItems().get(i));
             content.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getApplicationContext().startActivity(content);

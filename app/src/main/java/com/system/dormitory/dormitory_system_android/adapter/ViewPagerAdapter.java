@@ -12,12 +12,14 @@ import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
 import com.system.dormitory.dormitory_system_android.R;
+import com.system.dormitory.dormitory_system_android.activity_main.Manager.Activity_Manager_question_list;
 import com.system.dormitory.dormitory_system_android.activity_main.Student.Activity_Student_question_list;
 import com.system.dormitory.dormitory_system_android.content.Activity_notice_write;
 import com.system.dormitory.dormitory_system_android.content.Activity_question_write;
 import com.system.dormitory.dormitory_system_android.content.BoardActivity;
 import com.system.dormitory.dormitory_system_android.content.NoticeActivity;
 import com.system.dormitory.dormitory_system_android.content.Activity_board_write;
+import com.system.dormitory.dormitory_system_android.content.Question_Answer_Activity;
 import com.system.dormitory.dormitory_system_android.data.DataManager;
 import com.system.dormitory.dormitory_system_android.helper.Helper_userData;
 
@@ -69,12 +71,19 @@ public class ViewPagerAdapter extends PagerAdapter {
                 fab.setOnClickListener(board_floatingButtonClicked);
                 break;
             case 2:
-                v = inflater.inflate(R.layout.activity_question, null);
-                Button btn_resister = (Button)v.findViewById(R.id.btn_question_resister);
-                btn_resister.setOnClickListener(question_resisterButtonClicked);
-                Button btn_list = (Button)v.findViewById(R.id.btn_question_list);
-                btn_list.setOnClickListener(question_listButtonClicked);
-
+                if(Helper_userData.getInstance().getIsStudent()==1) {
+                    v = inflater.inflate(R.layout.activity_manager_question_list, null);
+                    listView = (ListView) v.findViewById(R.id.manager_question_list);
+                    listView.setAdapter(new QuestionListAdapter(context, DataManager.getInstance().getQuestionItems()));
+                    listView.setOnItemClickListener(questionClick);
+                }
+                else {
+                    v = inflater.inflate(R.layout.activity_question, null);
+                    Button btn_resister = (Button) v.findViewById(R.id.btn_question_resister);
+                    btn_resister.setOnClickListener(question_resisterButtonClicked);
+                    Button btn_list = (Button) v.findViewById(R.id.btn_question_list);
+                    btn_list.setOnClickListener(question_listButtonClicked);
+                }
                 break;
         }
 
@@ -121,6 +130,17 @@ public class ViewPagerAdapter extends PagerAdapter {
             context.startActivity(content);
         }
     };
+
+    ListView.OnItemClickListener questionClick = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            Intent content = new Intent(context, Question_Answer_Activity.class);
+            content.putExtra("Item", DataManager.getInstance().getQuestionItems().get(i));
+            content.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(content);
+        }
+    };
+
 
     FloatingActionButton.OnClickListener board_floatingButtonClicked = new View.OnClickListener() {
         @Override
