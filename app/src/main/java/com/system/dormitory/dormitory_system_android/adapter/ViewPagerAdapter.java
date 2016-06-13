@@ -66,7 +66,7 @@ public class ViewPagerAdapter extends PagerAdapter {
                 fab.setOnClickListener(board_floatingButtonClicked);
                 break;
             case 2:
-                v = inflater.inflate(R.layout.activity_point, null);
+                v = inflater.inflate(R.layout.activity_question, null);
                 break;
         }
 

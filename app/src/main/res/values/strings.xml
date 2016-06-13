@@ -57,4 +57,9 @@
     <string name="registering_message_ready">InstanceID 토큰 가져오기</string>
     <string name="registering_message_generating">InstanceID 토큰 생성중...</string>
     <string name="registering_message_complete">완료!</string>
+
+    <string name="question_resister">질문등록</string>
+    <string name="question_list">질문목록</string>
+
+
 </resources>
