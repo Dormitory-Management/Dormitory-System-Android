@@ -30,8 +30,12 @@ public class RoomCheck extends Activity {
 
         roomList = (ListView) findViewById(R.id.room_check_list);
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 10; i++)
             data.getDormitoryRooms().add(new DormitoryRoom(i + 100));
+        for (int i = 0; i < 10; i++)
+            data.getDormitoryRooms().add(new DormitoryRoom(i + 200));
+        for (int i = 0; i < 10; i++)
+            data.getDormitoryRooms().add(new DormitoryRoom(i + 300));
 
         roomList.setAdapter(new RoomCheckListAdapter(getApplicationContext(), data.getDormitoryRooms()));
     }

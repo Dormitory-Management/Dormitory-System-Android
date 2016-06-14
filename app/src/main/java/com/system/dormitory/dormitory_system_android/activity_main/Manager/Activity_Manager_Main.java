@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -32,7 +31,6 @@ import com.system.dormitory.dormitory_system_android.data.BoardItem;
 import com.system.dormitory.dormitory_system_android.data.DataManager;
 import com.system.dormitory.dormitory_system_android.data.NoticeItem;
 import com.system.dormitory.dormitory_system_android.data.QuestionItem;
-import com.system.dormitory.dormitory_system_android.helper.Helper_outSleepStudent;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
 import com.system.dormitory.dormitory_system_android.login.Activity_Login;
 
@@ -48,7 +46,7 @@ public class Activity_Manager_Main extends AppCompatActivity implements ActionBa
     private ViewPager viewPager;
     private AQuery aq;
     private DataManager dataManager;
-    private String[] navItems={"대여승인", "외박승인", "점호확인", "로그아웃"};
+    private String[] navItems = {"대여승인", "외박승인", "점호확인", "로그아웃"};
     private ActionBar actionBar;
 
     @Override
@@ -57,12 +55,29 @@ public class Activity_Manager_Main extends AppCompatActivity implements ActionBa
 
         setContentView(R.layout.activity_main);
         Activity_Login login = (Activity_Login) Activity_Login.login_Activity; //login_Activity_finish
-        if(login!=null) login.finish();
+        if (login != null) login.finish();
 
         aq = new AQuery(this);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(new ViewPagerAdapter(getApplicationContext()));
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                // TODO Auto-generated method stub
+                actionBar.setSelectedNavigationItem(position);
+            }
+
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
 
         lvNavList = (ListView) findViewById(R.id.lv_activity_main_nav_list);
 
@@ -103,17 +118,17 @@ public class Activity_Manager_Main extends AppCompatActivity implements ActionBa
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
                     int notice_sum = Integer.parseInt(response.get("notice_sum").toString());
-                    System.out.println("aaaa"+ notice_sum);
+                    System.out.println("aaaa" + notice_sum);
                     for (int i = 0; i < notice_sum; i++) {
-                        dataManager.getNoticeItems().add(new NoticeItem(Integer.parseInt(response.get("notice_number" + i).toString()),response.get("notice_title" + i).toString(),
+                        dataManager.getNoticeItems().add(new NoticeItem(Integer.parseInt(response.get("notice_number" + i).toString()), response.get("notice_title" + i).toString(),
                                 response.get("notice_content" + i).toString(), "사감",
                                 response.get("notice_time" + i).toString()));
                         viewPager.getAdapter().notifyDataSetChanged();
                     }
                     int board_sum = Integer.parseInt(response.get("board_sum").toString());
-                    System.out.println("aaaa"+ board_sum);
+                    System.out.println("aaaa" + board_sum);
                     for (int i = 0; i < board_sum; i++) {
-                        dataManager.getBoardItems().add(new BoardItem(Integer.parseInt(response.get("board_number" + i).toString()),response.get("board_title" + i).toString(),
+                        dataManager.getBoardItems().add(new BoardItem(Integer.parseInt(response.get("board_number" + i).toString()), response.get("board_title" + i).toString(),
                                 response.get("board_content" + i).toString(), Integer.parseInt(response.get("board_sno" + i).toString()),
                                 response.get("board_time" + i).toString()));
                         viewPager.getAdapter().notifyDataSetChanged();
@@ -122,7 +137,7 @@ public class Activity_Manager_Main extends AppCompatActivity implements ActionBa
                     System.out.println("aaaa" + question_sum);
                     for (int i = 0; i < question_sum; i++) {
                         System.out.println("aaaa" + response.get("question_title" + i).toString());
-                        dataManager.getQuestionItems().add(new QuestionItem(Integer.parseInt(response.get("question_number" + i).toString()),response.get("question_title" + i).toString(),
+                        dataManager.getQuestionItems().add(new QuestionItem(Integer.parseInt(response.get("question_number" + i).toString()), response.get("question_title" + i).toString(),
                                 response.get("question_content" + i).toString(), Integer.parseInt(response.get("question_sno" + i).toString()),
                                 response.get("question_time" + i).toString(), response.get("question_answer" + i).toString(),
                                 response.get("question_answerTime" + i).toString()));
@@ -239,8 +254,9 @@ public class Activity_Manager_Main extends AppCompatActivity implements ActionBa
             dlDrawer.closeDrawer(lvNavList);
         }
     }
+
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch(keyCode) {
+        switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
                 new AlertDialog.Builder(this)
                         .setTitle("종료")
@@ -256,6 +272,7 @@ public class Activity_Manager_Main extends AppCompatActivity implements ActionBa
                 return false;
         }
     }
+
     public void onResume() {
         super.onResume();  // Always call the superclass method first
 

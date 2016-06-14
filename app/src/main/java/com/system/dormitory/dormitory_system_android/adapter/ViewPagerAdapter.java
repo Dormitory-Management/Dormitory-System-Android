@@ -27,7 +27,7 @@ import com.system.dormitory.dormitory_system_android.helper.Helper_userData;
  * Created by 보운 on 2016-05-07.
  */
 public class ViewPagerAdapter extends PagerAdapter {
-    private int MAX_PAGE;
+    private final int MAX_PAGE;
     private LayoutInflater inflater;
     private Context context;
 
@@ -45,7 +45,7 @@ public class ViewPagerAdapter extends PagerAdapter {
         switch (position) {
             case 0:
                 System.out.println("aaaaa" + Helper_userData.getInstance().getIsStudent());
-                if(Helper_userData.getInstance().getIsStudent()==1){
+                if (Helper_userData.getInstance().getIsStudent() == 1) {
                     v = inflater.inflate(R.layout.activity_manager_notice, null);
                     listView = (ListView) v.findViewById(R.id.notice_list);
                     listView.setAdapter(new NoticeListAdapter(context, DataManager.getInstance().getNoticeItems()));
@@ -53,8 +53,7 @@ public class ViewPagerAdapter extends PagerAdapter {
                     FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.notice_fab);
                     fab.attachToListView(listView);
                     fab.setOnClickListener(notice_floatingButtonClicked);
-                }
-                else {
+                } else {
                     v = inflater.inflate(R.layout.activity_notice, null);
                     listView = (ListView) v.findViewById(R.id.notice_list);
                     listView.setAdapter(new NoticeListAdapter(context, DataManager.getInstance().getNoticeItems()));
@@ -72,13 +71,12 @@ public class ViewPagerAdapter extends PagerAdapter {
                 break;
             case 2:
                 System.out.println("TestTestView " + Helper_userData.getInstance().getIsStudent());
-                if(Helper_userData.getInstance().getIsStudent()==1) {
+                if (Helper_userData.getInstance().getIsStudent() == 1) {
                     v = inflater.inflate(R.layout.activity_manager_question_list, null);
                     listView = (ListView) v.findViewById(R.id.manager_question_list);
                     listView.setAdapter(new QuestionListAdapter(context, DataManager.getInstance().getQuestionItems()));
                     listView.setOnItemClickListener(questionClick);
-                }
-                else {
+                } else {
                     v = inflater.inflate(R.layout.activity_question, null);
                     Button btn_resister = (Button) v.findViewById(R.id.btn_question_resister);
                     btn_resister.setOnClickListener(question_resisterButtonClicked);
