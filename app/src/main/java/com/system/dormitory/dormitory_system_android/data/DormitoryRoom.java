@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class DormitoryRoom implements Serializable {
-    private int room;
-    private int count;
-    private ArrayList<String> student;
+    private int room; //방번호
+    private int count; //학생수
+    private ArrayList<String> student; //학생이름.
 
     public DormitoryRoom() {
         this.student = new ArrayList<String>();
