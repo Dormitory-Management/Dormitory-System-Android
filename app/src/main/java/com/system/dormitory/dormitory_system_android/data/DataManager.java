@@ -8,6 +8,7 @@ public class DataManager {
     private ArrayList<NoticeItem> noticeItems;
     private ArrayList<DormitoryRoom> dormitoryRooms;
     private ArrayList<QuestionItem> questionItems;
+    private ArrayList<Comment> comments;
 
     public static DataManager getInstance() {
         return instance;
@@ -19,6 +20,7 @@ public class DataManager {
         noticeItems = new ArrayList<NoticeItem>();
         dormitoryRooms = new ArrayList<DormitoryRoom>();
         questionItems = new ArrayList<QuestionItem>();
+        comments = new ArrayList<Comment>();
     }
 
     public void DataClear() {
@@ -26,6 +28,7 @@ public class DataManager {
         noticeItems.clear();
         dormitoryRooms.clear();
         questionItems.clear();
+        comments.clear();
     }
 
     public ArrayList<BoardItem> getBoardItems() {
@@ -44,4 +47,11 @@ public class DataManager {
         return questionItems;
     }
 
+    public ArrayList<Comment> getComments() {
+        return comments;
+    }
+
+    public void addComment(String comment) {
+        comments.add(new Comment(comment));
+    }
 }

@@ -70,5 +70,5 @@
     <string name="question_answer_answer_title">답변제목</string>
     <string name="question_answer_answer_content">답변내용</string>
 
-
+    <string name="comment_regist_btn">댓글 등록</string>
 </resources>
