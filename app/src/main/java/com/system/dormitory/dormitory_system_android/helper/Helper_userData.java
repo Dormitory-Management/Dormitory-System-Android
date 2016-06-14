@@ -188,6 +188,9 @@ public class Helper_userData {
         params.put("gcmKey", Key);
         params.put("sno", sno);
 
+        System.out.println("aaaagcmClient" + sno);
+        System.out.println("aaaagcmClient"+gcmClientKey);
+
         Helper_server.post("data/updateGcmKey.php", params, new TextHttpResponseHandler() {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
@@ -200,9 +203,6 @@ public class Helper_userData {
                 Log.i("GCMKEY CREATE", "SUCCESS");
             }
         });
-
-
-
     }
 
 

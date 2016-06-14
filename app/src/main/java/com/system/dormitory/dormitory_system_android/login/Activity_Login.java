@@ -47,6 +47,7 @@ public class Activity_Login extends Activity {
     EditText et_password;
 
     public void open_UserView_Activity(int sno, Context mContext) {
+        getInstanceIdToken(sno);
         Helper_userData.login_GetData(sno, mContext);
     }
 
@@ -70,7 +71,6 @@ public class Activity_Login extends Activity {
         if (Helper_server.login(myCookieStore)) {
             Log.i("abde", "what the!! ");
             int sno = Integer.parseInt(Helper_server.getCookieValue(myCookieStore, "sno"));
-            getInstanceIdToken(sno);
             open_UserView_Activity(sno, getApplicationContext());
         }
 
