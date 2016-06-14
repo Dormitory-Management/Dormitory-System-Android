@@ -3,20 +3,30 @@ package com.system.dormitory.dormitory_system_android.activity_main.Manager;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.androidquery.AQuery;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.system.dormitory.dormitory_system_android.R;
 import com.system.dormitory.dormitory_system_android.adapter.RoomListAdapter;
 import com.system.dormitory.dormitory_system_android.data.DormitoryRoom;
+import com.system.dormitory.dormitory_system_android.helper.Helper_server;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemClick;
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by secret on 6/3/16.
@@ -24,8 +34,9 @@ import butterknife.OnItemClick;
 public class Room extends Activity {
     private Intent roomIntent;
     private AQuery aq;
-    private RoomListAdapter roomListAdapter;
+    private RoomListAdapter adapter;
     private static ArrayList<Boolean> checkbox;
+    private DormitoryRoom room;
     @Bind(R.id.people)
     ListView people;
 
@@ -39,22 +50,40 @@ public class Room extends Activity {
         checkbox = new ArrayList<Boolean>();
 
         roomIntent = getIntent();
-        DormitoryRoom room = (DormitoryRoom) roomIntent.getSerializableExtra("room");
+        room = (DormitoryRoom) roomIntent.getSerializableExtra("room");
         people.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
         aq.id(R.id.room_number).text(String.valueOf(room.getRoom()) + "호");
 
-        room.addStudent("홍길동");
-        room.addStudent("김철수");
-        room.addStudent("김영희");
-        room.addStudent("김이박");
+        adapter = new RoomListAdapter(getApplicationContext(), room.getStudent());
+        people.setAdapter(adapter);
 
         for (int i = 0; i < 4; i++) {
             checkbox.add(false);
         }
+        RequestParams params = new RequestParams();
+        params.add("roomNumber", String.valueOf(room.getRoom()));
+        Helper_server.post("data/getRoomInName.php", params, new JsonHttpResponseHandler() {
 
-        roomListAdapter = new RoomListAdapter(getApplicationContext(), room.getStudent());
-        people.setAdapter(roomListAdapter);
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    int sum = Integer.parseInt(response.get("sum").toString());
+                    for (int i = 0; i < sum; i++) {
+                        room.addStudent(response.get("name" + i).toString());
+                        adapter.notifyDataSetChanged();
+                    }
+                } catch (JSONException e1) {
+                    e1.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+                Log.d("Failed: ", "" + statusCode);
+                Log.d("Error : ", "" + throwable);
+            }
+        });
     }
 
     public static ArrayList<Boolean> getCheckbox() {
@@ -76,6 +105,6 @@ public class Room extends Activity {
     @OnItemClick(R.id.people)
     void onItemClick(int position) {
         checkbox.set(position, !checkbox.get(position));
-        roomListAdapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
     }
 }
