@@ -36,18 +36,6 @@ public class Activity_Manager_Rental extends Activity {
 
     }
 
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch(keyCode) {
-            case KeyEvent.KEYCODE_BACK:
-                Intent intent = new Intent(Activity_Manager_Rental.this, Activity_Manager_Main.class);
-                startActivity(intent);
-                finish();
-                return false;
-            default:
-                return false;
-        }
-    }
-
     public void onResume() {
         super.onResume();  // Always call the superclass method first
 
@@ -76,14 +64,12 @@ public class Activity_Manager_Rental extends Activity {
                             Helper_rentalStudent.student.add(new Helper_rentalStudent(Integer.parseInt(response.get("number" + i).toString())
                                     , Integer.parseInt(response.get("sno" + i).toString()), response.get("name" + i).toString()
                                     , response.get("date" + i).toString(), response.get("time" + i).toString()
-                                    ,Integer.parseInt(response.get("isSuccess" + i).toString())));
+                                    , Integer.parseInt(response.get("isSuccess" + i).toString())));
                             adapter.notifyDataSetChanged();
                             Log.d("position", "" + response.get("time" + i).toString());
                         }
 
                     }
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -106,9 +92,17 @@ public class Activity_Manager_Rental extends Activity {
                 intent.putExtra("position", position);
                 Log.d("position", "" + position);
                 startActivity(intent);
-                finish();
             }
         });
+    }
 
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch(keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                finish();
+                return false;
+            default:
+                return false;
+        }
     }
 }

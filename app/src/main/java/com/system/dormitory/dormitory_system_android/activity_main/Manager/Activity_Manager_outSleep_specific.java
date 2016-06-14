@@ -25,6 +25,7 @@ public class Activity_Manager_outSleep_specific extends Activity {
     private TextView tv_date;
     private TextView tv_content;
     private Button btn_confirm;
+    private Button btn_cancel;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +44,7 @@ public class Activity_Manager_outSleep_specific extends Activity {
         tv_content.setText("" +  Helper_outSleepStudent.student.get(position).content);
 
         btn_confirm =  (Button) findViewById(R.id.btn_outSleep_specific_confirm);
+        btn_cancel =  (Button) findViewById(R.id.btn_outSleep_specific_cancel);
 
 
         btn_confirm.setOnClickListener(new Button.OnClickListener() {
@@ -57,13 +59,29 @@ public class Activity_Manager_outSleep_specific extends Activity {
 
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                        Intent intent = new Intent(Activity_Manager_outSleep_specific.this, Activity_Manager_outSleep.class);
-                        startActivity(intent);
+
                         finish();
                     }
                 });
-
             }});
+
+        btn_cancel.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                RequestParams params = new RequestParams();
+                params.add("number", "" + Helper_outSleepStudent.student.get(position).number);
+                Helper_server.post("data/delete_outSleep.php", params, new TextHttpResponseHandler() {
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                        finish();
+                    }
+                });
+            }});
+
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {

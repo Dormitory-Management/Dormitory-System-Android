@@ -224,19 +224,16 @@ public class Activity_Student_Main extends AppCompatActivity implements ActionBa
                     Toast.makeText(Activity_Student_Main.this, "학생외박", Toast.LENGTH_SHORT).show();
                     intent = new Intent(Activity_Student_Main.this, Activity_Student_outSleep.class);
                     startActivity(intent);
-                    finish();
                     break;
                 case 2:
                     Toast.makeText(Activity_Student_Main.this, "벌점확인", Toast.LENGTH_SHORT).show();
                     intent = new Intent(Activity_Student_Main.this, Activity_Student_penaltyPoint.class);
                     startActivity(intent);
-                    finish();
                     break;
                 case 3:
                     Toast.makeText(Activity_Student_Main.this, "식단확인", Toast.LENGTH_SHORT).show();
                     intent = new Intent(Activity_Student_Main.this, Activity_Student_meal.class);
                     startActivity(intent);
-                    finish();
                     break;
                 case 4:
                     Toast.makeText(Activity_Student_Main.this, "로그아웃", Toast.LENGTH_SHORT).show();

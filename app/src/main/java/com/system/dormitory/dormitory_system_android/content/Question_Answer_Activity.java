@@ -49,7 +49,7 @@ public class Question_Answer_Activity extends Activity {
         aq.id(R.id.tv_manager_answer_sno_value).text(String.valueOf(item.getSno()));
         aq.id(R.id.tv_manager_answer_title).text(item.getTitle());
         aq.id(R.id.tv_manager_answer_content).text(item.getContent());
-        aq.id(R.id.tv_manager_answer_time_value).text(simpleDateFormat.format(item.getTime()));
+        aq.id(R.id.tv_manager_answer_time_value).text(item.getTime());
 
         aq.id(R.id.btn_question_answer_submit).clicked(listener);
     }

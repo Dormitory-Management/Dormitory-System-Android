@@ -103,7 +103,6 @@ public class Activity_Manager_outSleep extends Activity {
                 Intent intent = new Intent(Activity_Manager_outSleep.this, Activity_Manager_outSleep_specific.class);
                 intent.putExtra("position", position);
                 startActivity(intent);
-                finish();
             }
         });
 

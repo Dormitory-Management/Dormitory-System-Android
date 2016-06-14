@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 import com.system.dormitory.dormitory_system_android.R;
+import com.system.dormitory.dormitory_system_android.helper.Helper_outSleepStudent;
 import com.system.dormitory.dormitory_system_android.helper.Helper_rentalStudent;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
 
@@ -26,7 +27,7 @@ public class Activity_Manager_Rental_specific extends Activity {
     private TextView tv_name;
     private TextView tv_time;
     private Button btn_confirm;
-
+    private Button btn_cancel;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +47,7 @@ public class Activity_Manager_Rental_specific extends Activity {
 
 
         btn_confirm =  (Button) findViewById(R.id.btn_manager_rental_specific_confirm);
+        btn_cancel =  (Button) findViewById(R.id.btn_manager_rental_specific_cancel);
 
         btn_confirm.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -59,13 +61,28 @@ public class Activity_Manager_Rental_specific extends Activity {
 
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                        Intent intent = new Intent(Activity_Manager_Rental_specific.this, Activity_Manager_Rental.class);
-                        startActivity(intent);
                         finish();
                     }
                 });
-
             }});
+
+        btn_cancel.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                RequestParams params = new RequestParams();
+                params.add("number", "" + Helper_rentalStudent.student.get(position).number);
+                Helper_server.post("data/delete_rental.php", params, new TextHttpResponseHandler() {
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                        finish();
+                    }
+                });
+            }});
+
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {

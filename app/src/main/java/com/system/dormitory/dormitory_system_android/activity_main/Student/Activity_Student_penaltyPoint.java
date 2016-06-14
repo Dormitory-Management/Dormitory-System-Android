@@ -59,8 +59,6 @@ public class Activity_Student_penaltyPoint extends Activity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch(keyCode) {
             case KeyEvent.KEYCODE_BACK:
-                Intent intent = new Intent(Activity_Student_penaltyPoint.this, Activity_Student_Main.class);
-                startActivity(intent);
                 finish();
                 return false;
             default:
