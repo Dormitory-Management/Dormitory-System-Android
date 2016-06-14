@@ -1,23 +1,32 @@
 package com.system.dormitory.dormitory_system_android.activity_main.Manager;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
+import com.ibm.icu.text.SimpleDateFormat;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.TextHttpResponseHandler;
 import com.system.dormitory.dormitory_system_android.R;
+import com.system.dormitory.dormitory_system_android.activity_main.Student.Activity_Student_Main;
 import com.system.dormitory.dormitory_system_android.adapter.RoomCheckListAdapter;
 import com.system.dormitory.dormitory_system_android.data.DataManager;
 import com.system.dormitory.dormitory_system_android.data.DormitoryRoom;
 import com.system.dormitory.dormitory_system_android.data.TodayOutSleepData;
 import com.system.dormitory.dormitory_system_android.helper.Helper_outSleepStudent;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
+import com.system.dormitory.dormitory_system_android.helper.Helper_userData;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,6 +46,7 @@ import cz.msebera.android.httpclient.Header;
 public class RoomCheck extends Activity {
     private ListView roomList;
     private DataManager data;
+    private Button btn_submit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +54,8 @@ public class RoomCheck extends Activity {
         setContentView(R.layout.room_check_activity);
         ButterKnife.bind(this);
         getTodayOutSleep();
+        btn_submit = (Button) findViewById(R.id.room_check_button);
+        btn_submit.setOnClickListener(roomCheck_listener);
  }
 
     @OnItemClick(R.id.room_check_list)
@@ -118,7 +130,7 @@ public class RoomCheck extends Activity {
                 try {
                     int sum = Integer.parseInt(response.get("sum").toString());
                     for (int i = 0; i < sum; i++) {
-                        if(Integer.parseInt(response.get("isSuccess" + i).toString())==1) {
+                        if (Integer.parseInt(response.get("isSuccess" + i).toString()) == 1) {
                             TodayOutSleepData.student.add(new TodayOutSleepData(Integer.parseInt(response.get("sno" + i).toString()),
                                     Integer.parseInt(response.get("isSuccess" + i).toString())));
                         }
@@ -135,5 +147,68 @@ public class RoomCheck extends Activity {
                 Log.d("Error : ", "" + throwable);
             }
         });
+    }
+
+    Button.OnClickListener roomCheck_listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Log.d("TestTest ", "comecome");
+
+            RequestParams params = new RequestParams();
+            //put params
+            params.put("size", TodayOutSleepData.noCheck_student.size());
+            if (TodayOutSleepData.noCheck_student.size() == 0) {
+                noAlert();
+            } else {
+                for (int i = 0; i < TodayOutSleepData.noCheck_student.size(); i++) {
+                    params.put("sno" + (i + 1), TodayOutSleepData.noCheck_student.get(i).sno);
+                    Log.d("TestTest" + (i + 1), " " + TodayOutSleepData.noCheck_student.get(i).sno);
+                }
+                //server connect
+                Helper_server.post("data/updateScore_RoomCheck.php", params, new TextHttpResponseHandler() {
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                        insertAlert();
+                    }
+                });
+            }
+        }
+    };
+
+    public void insertAlert(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(RoomCheck.this);
+        alert.setTitle("성공");
+        alert.setMessage("벌점적용이 완료되었습니다..");
+        alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+               finish();
+            }
+        });
+        alert.show();
+    }
+    public void noAlert(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(RoomCheck.this);
+        alert.setTitle("성공");
+        alert.setMessage("벌점적용될 사람이 없습니다..");
+        alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                  finish();
+            }
+        });
+        alert.show();
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                finish();
+                return false;
+            default:
+                return false;
+        }
     }
 }

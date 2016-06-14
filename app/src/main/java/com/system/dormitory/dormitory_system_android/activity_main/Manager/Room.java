@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -125,5 +126,14 @@ public class Room extends Activity {
     void onItemClick(int position) {
         checkbox.set(position, !checkbox.get(position));
         adapter.notifyDataSetChanged();
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                finish();
+                return false;
+            default:
+                return false;
+        }
     }
 }

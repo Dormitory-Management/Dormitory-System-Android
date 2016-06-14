@@ -3,9 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <Button
+        android:id="@+id/room_check_button"
+        android:layout_width = "100dp"
+        android:layout_height = "70dp"
+        android:text = "승인하기"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal">
+    </Button>
 
     <ListView
         android:id="@+id/room_check_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+
 </LinearLayout>

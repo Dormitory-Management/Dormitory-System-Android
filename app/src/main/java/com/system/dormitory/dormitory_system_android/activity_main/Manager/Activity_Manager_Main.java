@@ -230,7 +230,6 @@ public class Activity_Manager_Main extends AppCompatActivity implements ActionBa
                     Toast.makeText(Activity_Manager_Main.this, "외박승인", Toast.LENGTH_SHORT).show();
                     intent = new Intent(Activity_Manager_Main.this, Activity_Manager_outSleep.class);
                     startActivity(intent);
-                    finish();
                     break;
                 case 2:
                     Toast.makeText(Activity_Manager_Main.this, "점호확인", Toast.LENGTH_SHORT).show();

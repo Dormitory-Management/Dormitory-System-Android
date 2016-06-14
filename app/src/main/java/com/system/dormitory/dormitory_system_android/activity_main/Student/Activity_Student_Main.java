@@ -65,6 +65,24 @@ public class Activity_Student_Main extends AppCompatActivity implements ActionBa
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(new ViewPagerAdapter(getApplicationContext()));
 
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                // TODO Auto-generated method stub
+                actionBar.setSelectedNavigationItem(position);
+            }
+
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
         lvNavList = (ListView) findViewById(R.id.lv_activity_main_nav_list);
 
         lvNavList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, navItems));
@@ -116,7 +134,7 @@ public class Activity_Student_Main extends AppCompatActivity implements ActionBa
                     for (int i = 0; i < board_sum; i++) {
                         dataManager.getBoardItems().add(new BoardItem(Integer.parseInt(response.get("board_number" + i).toString()),response.get("board_title" + i).toString(),
                                 response.get("board_content" + i).toString(), Integer.parseInt(response.get("board_sno" + i).toString()),
-                                response.get("board_time" + i).toString().substring(5,16)));
+                                response.get("board_time" + i).toString().substring(5, 16)));
                     }
                     viewPager.getAdapter().notifyDataSetChanged();
                 } catch (JSONException e) {
