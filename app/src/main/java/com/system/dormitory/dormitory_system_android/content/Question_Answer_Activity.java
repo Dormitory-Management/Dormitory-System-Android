@@ -73,9 +73,9 @@ public class Question_Answer_Activity extends Activity {
             RequestParams params = new RequestParams();
             //put params
             params.put("number", item.getNumber());
-            Log.d("TestTest ", "" + item.getNumber());
             params.put("time", strNow);
             params.put("answer", answer);
+            params.put("sno", item.getSno());
 
             Log.d("TestTest ", Helper_userData.getInstance().getSno() + strNow + answer);
             //server connect
@@ -97,7 +97,7 @@ public class Question_Answer_Activity extends Activity {
     public void insertAlert(){
         AlertDialog.Builder alert = new AlertDialog.Builder(Question_Answer_Activity.this);
         alert.setTitle("성공");
-        alert.setMessage("등록이 완료되었습니다.");
+        alert.setMessage("답변 등록이 완료되었습니다.");
         alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 finish();
