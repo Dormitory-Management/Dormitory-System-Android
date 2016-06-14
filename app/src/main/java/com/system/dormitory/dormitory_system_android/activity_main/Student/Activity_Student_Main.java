@@ -17,11 +17,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.androidquery.AQuery;
+import com.ibm.icu.text.SimpleDateFormat;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
@@ -37,6 +37,8 @@ import com.system.dormitory.dormitory_system_android.login.Activity_Login;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+
 import cz.msebera.android.httpclient.Header;
 
 public class Activity_Student_Main extends AppCompatActivity implements ActionBar.TabListener {
@@ -48,6 +50,7 @@ public class Activity_Student_Main extends AppCompatActivity implements ActionBa
     private DataManager dataManager;
     private String[] navItems = {"대여", "외박", "벌점확인", "식단표", "로그아웃"};
     private ActionBar actionBar;
+    private SimpleDateFormat simpleDateFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +96,7 @@ public class Activity_Student_Main extends AppCompatActivity implements ActionBa
     public void init() {
         dataManager = DataManager.getInstance();
         dataManager.DataClear();
+        simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
 
         RequestParams params = new RequestParams();
         params.add("id", "123");
@@ -105,20 +109,18 @@ public class Activity_Student_Main extends AppCompatActivity implements ActionBa
                     for (int i = 0; i < notice_sum; i++) {
                         dataManager.getNoticeItems().add(new NoticeItem(Integer.parseInt(response.get("notice_number" + i).toString()),response.get("notice_title" + i).toString(),
                                 response.get("notice_content" + i).toString(), "사감",
-                                response.get("notice_time" + i).toString()));
-                        viewPager.getAdapter().notifyDataSetChanged();
+                                simpleDateFormat.parse(response.get("notice_time" + i).toString())));
                     }
                     int board_sum = Integer.parseInt(response.get("board_sum").toString());
                     System.out.println("aaaa" + board_sum);
                     for (int i = 0; i < board_sum; i++) {
                         dataManager.getBoardItems().add(new BoardItem(Integer.parseInt(response.get("board_number" + i).toString()),response.get("board_title" + i).toString(),
                                 response.get("board_content" + i).toString(), Integer.parseInt(response.get("board_sno" + i).toString()),
-                                response.get("board_time" + i).toString()));
-                        viewPager.getAdapter().notifyDataSetChanged();
+                                simpleDateFormat.parse(response.get("board_time" + i).toString())));
                     }
 
-
-                } catch (JSONException e) {
+                    viewPager.getAdapter().notifyDataSetChanged();
+                } catch (JSONException | ParseException e) {
                     e.printStackTrace();
                 }
             }

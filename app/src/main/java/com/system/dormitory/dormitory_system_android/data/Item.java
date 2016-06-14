@@ -10,7 +10,7 @@ public class Item implements Serializable {
     private String title;
     private String content;
     private int sno;
-    private String time;
+    private Date time;
     private int roomNumber;
     private String name;
     private int number;
@@ -26,7 +26,7 @@ public class Item implements Serializable {
         this.content = content;
     }
     //board
-    public Item(int number, String title, String content, int sno, String time) {
+    public Item(int number, String title, String content, int sno, Date time) {
         this(title, content);
         this.sno = sno;
         this.time = time;
@@ -34,7 +34,7 @@ public class Item implements Serializable {
     }
 
     //notice
-    public Item(int number, String title, String content, String name, String time) {
+    public Item(int number, String title, String content, String name, Date time) {
         this(title, content);
         this.time = time;
         this.name = name;
@@ -57,11 +57,11 @@ public class Item implements Serializable {
         return content;
     }
 
-    public void setTime(String time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 
-    public String getTime() {
+    public Date getTime() {
         return time;
     }
 

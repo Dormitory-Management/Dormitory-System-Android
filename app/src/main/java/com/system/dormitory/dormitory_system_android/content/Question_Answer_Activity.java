@@ -34,6 +34,7 @@ public class Question_Answer_Activity extends Activity {
     private AQuery aq;
     private EditText et_content;
     private Item item;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,15 +44,14 @@ public class Question_Answer_Activity extends Activity {
         Intent intent = getIntent();
         item = (Item) intent.getSerializableExtra("Item");
         Log.d("TestTest ", "" + item.getNumber());
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+
         aq.id(R.id.tv_manager_answer_sno_value).text(String.valueOf(item.getSno()));
         aq.id(R.id.tv_manager_answer_title).text(item.getTitle());
         aq.id(R.id.tv_manager_answer_content).text(item.getContent());
-        aq.id(R.id.tv_manager_answer_time_value).text((item.getTime()));
+        aq.id(R.id.tv_manager_answer_time_value).text(simpleDateFormat.format(item.getTime()));
 
         aq.id(R.id.btn_question_answer_submit).clicked(listener);
-
-
     }
 
     Button.OnClickListener listener = new View.OnClickListener() {
@@ -67,7 +67,7 @@ public class Question_Answer_Activity extends Activity {
             // 현재 시간을 저장 한다.
             Date date = new Date(now);
             // 시간 포맷으로 만든다.
-            java.text.SimpleDateFormat sdfNow = new java.text.SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
             String strNow = sdfNow.format(date);
             RequestParams params = new RequestParams();

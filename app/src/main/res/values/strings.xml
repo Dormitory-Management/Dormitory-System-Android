@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Dormitory-System-Android</string>
+    <string name="app_name">국민대학교 기숙사</string>
 
     <string name="open_drawer">Open drawer</string>
     <string name="close_drawer">Close drawer</string>
@@ -73,4 +73,6 @@
     <string name="comment_regist_btn">댓글 등록</string>
     <string name="post_time">등록 시간</string>
     <string name="Bulletin_content">게시글 내용</string>
+
+    <string name="answer_hint">답변을 입력하세요</string>
 </resources>

@@ -37,6 +37,11 @@ import com.system.dormitory.dormitory_system_android.login.Activity_Login;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.util.Locale;
+
+import com.ibm.icu.text.SimpleDateFormat;
+
 import cz.msebera.android.httpclient.Header;
 
 public class Activity_Manager_Main extends AppCompatActivity implements ActionBar.TabListener {
@@ -48,6 +53,7 @@ public class Activity_Manager_Main extends AppCompatActivity implements ActionBa
     private DataManager dataManager;
     private String[] navItems = {"대여승인", "외박승인", "점호확인", "로그아웃"};
     private ActionBar actionBar;
+    private SimpleDateFormat simpleDateFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +116,7 @@ public class Activity_Manager_Main extends AppCompatActivity implements ActionBa
     public void init() {
         dataManager = DataManager.getInstance();
         dataManager.DataClear();
+        simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.KOREAN);
 
         RequestParams params = new RequestParams();
         params.add("id", "123");
@@ -118,32 +125,28 @@ public class Activity_Manager_Main extends AppCompatActivity implements ActionBa
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
                     int notice_sum = Integer.parseInt(response.get("notice_sum").toString());
-                    System.out.println("aaaa" + notice_sum);
                     for (int i = 0; i < notice_sum; i++) {
+                        Log.i("notice_time", response.get("notice_time" + i).toString().trim());
                         dataManager.getNoticeItems().add(new NoticeItem(Integer.parseInt(response.get("notice_number" + i).toString()), response.get("notice_title" + i).toString(),
                                 response.get("notice_content" + i).toString(), "사감",
-                                response.get("notice_time" + i).toString()));
-                        viewPager.getAdapter().notifyDataSetChanged();
+                                simpleDateFormat.parse(response.get("notice_time" + i).toString())));
                     }
                     int board_sum = Integer.parseInt(response.get("board_sum").toString());
-                    System.out.println("aaaa" + board_sum);
                     for (int i = 0; i < board_sum; i++) {
                         dataManager.getBoardItems().add(new BoardItem(Integer.parseInt(response.get("board_number" + i).toString()), response.get("board_title" + i).toString(),
                                 response.get("board_content" + i).toString(), Integer.parseInt(response.get("board_sno" + i).toString()),
-                                response.get("board_time" + i).toString()));
-                        viewPager.getAdapter().notifyDataSetChanged();
+                                simpleDateFormat.parse(response.get("board_time" + i).toString())));
                     }
                     int question_sum = Integer.parseInt(response.get("question_sum").toString());
-                    System.out.println("aaaa" + question_sum);
                     for (int i = 0; i < question_sum; i++) {
-                        System.out.println("aaaa" + response.get("question_title" + i).toString());
                         dataManager.getQuestionItems().add(new QuestionItem(Integer.parseInt(response.get("question_number" + i).toString()), response.get("question_title" + i).toString(),
                                 response.get("question_content" + i).toString(), Integer.parseInt(response.get("question_sno" + i).toString()),
-                                response.get("question_time" + i).toString(), response.get("question_answer" + i).toString(),
+                                simpleDateFormat.parse(response.get("question_time" + i).toString()), response.get("question_answer" + i).toString(),
                                 response.get("question_answerTime" + i).toString()));
-                        viewPager.getAdapter().notifyDataSetChanged();
                     }
-                } catch (JSONException e) {
+
+                    viewPager.getAdapter().notifyDataSetChanged();
+                } catch (JSONException | ParseException e) {
                     e.printStackTrace();
                 }
             }

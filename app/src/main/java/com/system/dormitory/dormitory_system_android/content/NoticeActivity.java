@@ -22,11 +22,10 @@ public class NoticeActivity extends Activity {
         Intent intent = getIntent();
         Item item = (Item) intent.getSerializableExtra("Item");
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
 
         aq.id(R.id.content_layout_title).text(item.getTitle());
         aq.id(R.id.content_layout_content).text(item.getContent());
-//        aq.id(R.id.content_layout_date).text(dateFormat.format(item.getTime()));
-        aq.id(R.id.content_layout_date).text((item.getTime()));
+        aq.id(R.id.content_layout_date).text(dateFormat.format(item.getTime()));
     }
 }
