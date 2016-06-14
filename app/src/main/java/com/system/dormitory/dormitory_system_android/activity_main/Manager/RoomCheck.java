@@ -98,7 +98,7 @@ public class RoomCheck extends Activity {
                 Log.d("Error : ", "" + throwable);
             }
         });
-
+        TodayOutSleepData.print();
     }
 
     public void getTodayOutSleep() {

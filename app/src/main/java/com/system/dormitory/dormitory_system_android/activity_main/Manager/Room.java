@@ -36,6 +36,7 @@ public class Room extends Activity {
     private Intent roomIntent;
     private AQuery aq;
     private RoomListAdapter adapter;
+    private int checkBoxSize = 0;
     private static ArrayList<Boolean> checkbox;
     private DormitoryRoom room;
     @Bind(R.id.people)
@@ -59,9 +60,6 @@ public class Room extends Activity {
         adapter = new RoomListAdapter(getApplicationContext(), room.getStudent());
         people.setAdapter(adapter);
 
-        for (int i = 0; i < 4; i++) {
-            checkbox.add(false);
-        }
         RequestParams params = new RequestParams();
         params.add("roomNumber", String.valueOf(room.getRoom()));
         Helper_server.post("data/getRoomInName.php", params, new JsonHttpResponseHandler() {
@@ -77,7 +75,11 @@ public class Room extends Activity {
                             }
                         }
                         if(flag == false){
+                            checkBoxSize++;
                             room.addStudent(response.get("name" + i).toString());
+                            room.addSno(Integer.parseInt(response.get("sno" + i).toString()));
+                            System.out.println("gggg" + Integer.parseInt(response.get("sno" + i).toString()));
+                            checkbox.add(TodayOutSleepData.isCheck(Integer.parseInt(response.get("sno" + i).toString())));
                             adapter.notifyDataSetChanged();
                         }
                     }
@@ -99,13 +101,21 @@ public class Room extends Activity {
         return checkbox;
     }
 
-    //TODO checkbox변수를 사용하면 누가 불참했는지 알 수 있음 false가 불참
+    //참석이 false자나 김보운 ㅡㅡ
     @OnClick(R.id.room_check_submit)
     void onClick() {
+
         String str = "";
-        for (int i = 0; i < 4; i++) {
-            if (checkbox.get(i))
-                str += String.valueOf(i) + " ";
+        for (int i = 0; i < checkBoxSize; i++) {
+            if(checkbox.get(i) == true){
+                System.out.println("dddd"+room.getSno().get(i));
+                TodayOutSleepData.AddChecking(room.getSno().get(i));
+            }
+            else{
+                System.out.println("cccc"+room.getSno().get(i));
+                TodayOutSleepData.removeChecking(room.getSno().get(i));
+            }
+            str += checkbox.get(i) + " ";
         }
         Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
         finish();
