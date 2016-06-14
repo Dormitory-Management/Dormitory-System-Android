@@ -55,7 +55,6 @@ public class Activity_Login extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 //        registBroadcastReceiver();
-        getInstanceIdToken();
         TypefaceProvider.registerDefaultIconSets();
         // activity_layout.xml을
         login_Activity = Activity_Login.this;
@@ -71,6 +70,7 @@ public class Activity_Login extends Activity {
         if (Helper_server.login(myCookieStore)) {
             Log.i("abde", "what the!! ");
             int sno = Integer.parseInt(Helper_server.getCookieValue(myCookieStore, "sno"));
+            getInstanceIdToken(sno);
             open_UserView_Activity(sno, getApplicationContext());
         }
 
@@ -99,7 +99,6 @@ public class Activity_Login extends Activity {
                                              RequestParams params = new RequestParams();
                                              final int sno = Integer.parseInt(et_sno.getText().toString());
                                              String password = et_password.getText().toString();
-
                                              //put params
                                              params.put("sno", sno);
                                              params.put("password", password);
@@ -181,10 +180,11 @@ public class Activity_Login extends Activity {
     /**
      * Instance ID를 이용하여 디바이스 토큰을 가져오는 RegistrationIntentService를 실행한다.
      */
-    public void getInstanceIdToken() {
+    public void getInstanceIdToken(int sno) {
         if (checkPlayServices()) {
             // Start IntentService to register this application with GCM.
             Intent intent = new Intent(this, RegistrationIntentService.class);
+            intent.putExtra("sno", sno);
             startService(intent);
         }
     }

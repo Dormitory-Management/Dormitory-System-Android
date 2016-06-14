@@ -8,8 +8,11 @@ package com.system.dormitory.dormitory_system_android.helper;
         import android.content.Intent;
         import android.util.Log;
 
+        import com.loopj.android.http.AsyncHttpClient;
         import com.loopj.android.http.JsonHttpResponseHandler;
+        import com.loopj.android.http.PersistentCookieStore;
         import com.loopj.android.http.RequestParams;
+        import com.loopj.android.http.TextHttpResponseHandler;
         import com.system.dormitory.dormitory_system_android.activity_main.Manager.Activity_Manager_Main;
         import com.system.dormitory.dormitory_system_android.activity_main.Student.Activity_Student_Main;
 
@@ -176,8 +179,30 @@ public class Helper_userData {
         return gcmClientKey;
     }
 
-    public static void setGcmClientKey(String gcmClientKey) {
-        Helper_userData.gcmClientKey = gcmClientKey;
+    public static void setGcmClientKey(String Key, int sno) {
+        gcmClientKey = Key;
+        System.out.println("aaaagcmClient"+gcmClientKey);
+
+        RequestParams params = new RequestParams();
+        //put params
+        params.put("gcmKey", Key);
+        params.put("sno", sno);
+
+        Helper_server.post("data/updateGcmKey.php", params, new TextHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                Log.i("GCMKEY CREATE", "FAIL");
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+
+                Log.i("GCMKEY CREATE", "SUCCESS");
+            }
+        });
+
+
+
     }
 
 
