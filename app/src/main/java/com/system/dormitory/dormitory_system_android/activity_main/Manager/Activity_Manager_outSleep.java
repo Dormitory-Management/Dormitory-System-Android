@@ -65,7 +65,6 @@ public class Activity_Manager_outSleep extends Activity {
         params.add("id","123");
         Helper_server.post("data/getOutSleep.php", params, new JsonHttpResponseHandler() {
 
-
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
                     int sum = Integer.parseInt(response.get("sum").toString());

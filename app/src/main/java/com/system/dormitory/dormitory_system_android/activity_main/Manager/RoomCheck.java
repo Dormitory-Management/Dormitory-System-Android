@@ -15,6 +15,7 @@ import com.system.dormitory.dormitory_system_android.R;
 import com.system.dormitory.dormitory_system_android.adapter.RoomCheckListAdapter;
 import com.system.dormitory.dormitory_system_android.data.DataManager;
 import com.system.dormitory.dormitory_system_android.data.DormitoryRoom;
+import com.system.dormitory.dormitory_system_android.data.TodayOutSleepData;
 import com.system.dormitory.dormitory_system_android.helper.Helper_outSleepStudent;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
 
@@ -23,6 +24,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 
 import butterknife.ButterKnife;
@@ -41,7 +43,7 @@ public class RoomCheck extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.room_check_activity);
         ButterKnife.bind(this);
-
+        getTodayOutSleep();
  }
 
     @OnItemClick(R.id.room_check_list)
@@ -69,18 +71,17 @@ public class RoomCheck extends Activity {
         params.add("id", "123");
         Helper_server.post("data/getRoomList.php", params, new JsonHttpResponseHandler() {
 
-
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
                     int sum = Integer.parseInt(response.get("sum").toString());
                     for (int i = 0; i < sum; i++) {
-                        if(Integer.parseInt(response.get("roomNumber" + i).toString())!=0)
-                        items.add(Integer.parseInt(response.get("roomNumber" + i).toString()));
+                        if (Integer.parseInt(response.get("roomNumber" + i).toString()) != 0)
+                            items.add(Integer.parseInt(response.get("roomNumber" + i).toString()));
                     }
                     HashSet<Integer> hashSet = new HashSet<Integer>(items);
                     ArrayList<Integer> roomList = new ArrayList<Integer>(hashSet);
                     Collections.sort(roomList);
-                    for(int i=0; i< roomList.size(); i++){
+                    for (int i = 0; i < roomList.size(); i++) {
                         data.getDormitoryRooms().add(new DormitoryRoom(roomList.get(i)));
                         adapter.notifyDataSetChanged();
                     }
@@ -98,5 +99,41 @@ public class RoomCheck extends Activity {
             }
         });
 
+    }
+
+    public void getTodayOutSleep() {
+
+        TodayOutSleepData.student.clear();
+
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        java.text.SimpleDateFormat sdfNow = new java.text.SimpleDateFormat("yyyy/MM/dd");
+        String strNow = sdfNow.format(date);
+        System.out.println("strNow:" + strNow);
+        RequestParams params = new RequestParams();
+        params.add("date", strNow);
+        Helper_server.post("data/getTodayOutSleep.php", params, new JsonHttpResponseHandler() {
+
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    int sum = Integer.parseInt(response.get("sum").toString());
+                    for (int i = 0; i < sum; i++) {
+                        if(Integer.parseInt(response.get("isSuccess" + i).toString())==1) {
+                            TodayOutSleepData.student.add(new TodayOutSleepData(Integer.parseInt(response.get("sno" + i).toString()),
+                                    Integer.parseInt(response.get("isSuccess" + i).toString())));
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+                Log.d("Failed: ", "" + statusCode);
+                Log.d("Error : ", "" + throwable);
+            }
+        });
     }
 }

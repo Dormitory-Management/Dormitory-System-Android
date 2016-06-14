@@ -13,6 +13,7 @@ import com.loopj.android.http.RequestParams;
 import com.system.dormitory.dormitory_system_android.R;
 import com.system.dormitory.dormitory_system_android.adapter.RoomListAdapter;
 import com.system.dormitory.dormitory_system_android.data.DormitoryRoom;
+import com.system.dormitory.dormitory_system_android.data.TodayOutSleepData;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
 
 import org.json.JSONException;
@@ -69,8 +70,16 @@ public class Room extends Activity {
                 try {
                     int sum = Integer.parseInt(response.get("sum").toString());
                     for (int i = 0; i < sum; i++) {
-                        room.addStudent(response.get("name" + i).toString());
-                        adapter.notifyDataSetChanged();
+                        boolean flag=false;
+                        for(int j=0; j<TodayOutSleepData.student.size(); j++){
+                            if(TodayOutSleepData.student.get(j).sno == Integer.parseInt(response.get("sno" + i).toString())){
+                                flag=true;
+                            }
+                        }
+                        if(flag == false){
+                            room.addStudent(response.get("name" + i).toString());
+                            adapter.notifyDataSetChanged();
+                        }
                     }
                 } catch (JSONException e1) {
                     e1.printStackTrace();

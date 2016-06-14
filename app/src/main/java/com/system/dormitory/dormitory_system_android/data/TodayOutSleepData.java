@@ -12,7 +12,6 @@ public class TodayOutSleepData {
     public static ArrayList<TodayOutSleepData> student = new ArrayList<TodayOutSleepData>();
 
     public int sno;
-    public String date;
     public int isSuccess;
 
     public TodayOutSleepData(int sno, int isSuccess){

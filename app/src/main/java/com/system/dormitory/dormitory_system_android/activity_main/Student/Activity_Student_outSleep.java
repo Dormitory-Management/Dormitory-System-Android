@@ -109,7 +109,14 @@ public class Activity_Student_outSleep extends Activity {
                                 Toast.makeText(getApplicationContext(),
                                         year + "년 " + (monthOfYear + 1) + "월 " + dayOfMonth + "일 을 선택했습니다",
                                         Toast.LENGTH_SHORT).show();
-                                date = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
+                                String month="";
+                                String day="";
+                                if(monthOfYear+1 <10) month="0"+(monthOfYear+1);
+                                else month=""+(monthOfYear+1);
+                                if(dayOfMonth <10) day="0"+(dayOfMonth);
+                                else day=""+(dayOfMonth);
+
+                                date = year + "/" + month + "/" + day;
                                 btn_date.setText(date);
 
                             }
