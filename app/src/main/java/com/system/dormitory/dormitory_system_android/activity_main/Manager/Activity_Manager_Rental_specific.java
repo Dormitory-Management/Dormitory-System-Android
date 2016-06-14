@@ -53,6 +53,8 @@ public class Activity_Manager_Rental_specific extends Activity {
             public void onClick(View v) {
                 RequestParams params = new RequestParams();
                 params.add("number", "" + Helper_rentalStudent.student.get(position).number);
+                params.add("sno", "" + Helper_rentalStudent.student.get(position).sno);
+
                 Helper_server.post("data/rental_ok.php", params, new TextHttpResponseHandler() {
                     @Override
                     public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
@@ -70,6 +72,7 @@ public class Activity_Manager_Rental_specific extends Activity {
             public void onClick(View v) {
                 RequestParams params = new RequestParams();
                 params.add("number", "" + Helper_rentalStudent.student.get(position).number);
+                params.add("sno", "" + Helper_rentalStudent.student.get(position).sno);
                 Helper_server.post("data/delete_rental.php", params, new TextHttpResponseHandler() {
                     @Override
                     public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
