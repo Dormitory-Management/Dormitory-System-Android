@@ -35,7 +35,6 @@ public class BoardActivity extends Activity {
         Intent intent = getIntent();
         Item item = (Item) intent.getSerializableExtra("Item");
 
-
         aq.id(R.id.content_layout_title).text(item.getTitle());
         aq.id(R.id.content_layout_content).text(item.getContent());
         aq.id(R.id.content_layout_date).text(item.getTime());

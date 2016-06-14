@@ -45,12 +45,11 @@ public class NoticeListAdapter extends BaseAdapter {
             view = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.notice_item, null);
 
         aq = new AQuery(view);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
 
         aq.id(R.id.item_title).text(board.get(i).getTitle());
         aq.id(R.id.item_content).text(board.get(i).getContent());
         aq.id(R.id.item_person).text(board.get(i).getName());
-        aq.id(R.id.item_time).text(board.get(i).getTime());
+        aq.id(R.id.item_time).text(board.get(i).getTime().substring(0,5));
 
         return view;
     }

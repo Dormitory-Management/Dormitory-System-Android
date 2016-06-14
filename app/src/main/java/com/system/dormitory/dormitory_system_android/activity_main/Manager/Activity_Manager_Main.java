@@ -131,20 +131,20 @@ public class Activity_Manager_Main extends AppCompatActivity implements ActionBa
                         Log.i("notice_time", response.get("notice_time" + i).toString().trim());
                         dataManager.getNoticeItems().add(new NoticeItem(Integer.parseInt(response.get("notice_number" + i).toString()), response.get("notice_title" + i).toString(),
                                 response.get("notice_content" + i).toString(), "사감",
-                                response.get("notice_time" + i).toString()));
+                                response.get("notice_time" + i).toString().substring(5, 16)));
                     }
                     int board_sum = Integer.parseInt(response.get("board_sum").toString());
                     for (int i = 0; i < board_sum; i++) {
                         dataManager.getBoardItems().add(new BoardItem(Integer.parseInt(response.get("board_number" + i).toString()), response.get("board_title" + i).toString(),
                                 response.get("board_content" + i).toString(), Integer.parseInt(response.get("board_sno" + i).toString()),
-                                response.get("board_time" + i).toString()));
+                                response.get("board_time" + i).toString().substring(5, 16)));
                     }
                     int question_sum = Integer.parseInt(response.get("question_sum").toString());
                     for (int i = 0; i < question_sum; i++) {
                         dataManager.getQuestionItems().add(new QuestionItem(Integer.parseInt(response.get("question_number" + i).toString()), response.get("question_title" + i).toString(),
                                 response.get("question_content" + i).toString(), Integer.parseInt(response.get("question_sno" + i).toString()),
                                 response.get("question_time" + i).toString(), response.get("question_answer" + i).toString(),
-                                response.get("question_answerTime" + i).toString()));
+                                response.get("question_answerTime" + i).toString().substring(5,16)));
                     }
                     viewPager.getAdapter().notifyDataSetChanged();
                 } catch (JSONException e) {

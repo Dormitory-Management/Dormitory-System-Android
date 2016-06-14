@@ -50,7 +50,7 @@ public class QuestionListAdapter extends BaseAdapter {
         aq.id(R.id.item_content).text(question.get(i).getContent());
         aq.id(R.id.item_room_number).text(String.valueOf(question.get(i).getRoomNumber()) + "호");
         aq.id(R.id.item_person).text(""+question.get(i).getSno());
-        aq.id(R.id.item_time).text(question.get(i).getTime());
+        aq.id(R.id.item_time).text(question.get(i).getTime().substring(0,5));
 
         return view;
     }
