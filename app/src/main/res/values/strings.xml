@@ -71,4 +71,6 @@
     <string name="question_answer_answer_content">답변내용</string>
 
     <string name="comment_regist_btn">댓글 등록</string>
+    <string name="post_time">등록 시간</string>
+    <string name="Bulletin_content">게시글 내용</string>
 </resources>

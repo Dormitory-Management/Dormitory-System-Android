@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.ibm.icu.text.SimpleDateFormat;
@@ -48,7 +49,12 @@ public class BoardActivity extends Activity {
     @OnClick(R.id.comment_regist_btn)
     void onClick() {
         String comment = aq.id(R.id.comment_edit).getText().toString();
-        DataManager.getInstance().addComment(comment);
-        commentListAdapter.notifyDataSetChanged();
+
+        if (comment.equals(""))
+            Toast.makeText(getApplicationContext(), "댓글 내용을 입력하세요!", Toast.LENGTH_SHORT).show();
+        else {
+            DataManager.getInstance().addComment(comment);
+            commentListAdapter.notifyDataSetChanged();
+        }
     }
 }
