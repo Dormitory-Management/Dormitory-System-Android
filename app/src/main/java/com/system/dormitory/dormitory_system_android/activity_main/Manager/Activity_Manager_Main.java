@@ -31,6 +31,7 @@ import com.system.dormitory.dormitory_system_android.data.BoardItem;
 import com.system.dormitory.dormitory_system_android.data.DataManager;
 import com.system.dormitory.dormitory_system_android.data.NoticeItem;
 import com.system.dormitory.dormitory_system_android.data.QuestionItem;
+import com.system.dormitory.dormitory_system_android.data.TodayOutSleepData;
 import com.system.dormitory.dormitory_system_android.helper.Helper_server;
 import com.system.dormitory.dormitory_system_android.login.Activity_Login;
 
@@ -38,6 +39,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.Locale;
 
 import com.ibm.icu.text.SimpleDateFormat;
@@ -129,24 +131,23 @@ public class Activity_Manager_Main extends AppCompatActivity implements ActionBa
                         Log.i("notice_time", response.get("notice_time" + i).toString().trim());
                         dataManager.getNoticeItems().add(new NoticeItem(Integer.parseInt(response.get("notice_number" + i).toString()), response.get("notice_title" + i).toString(),
                                 response.get("notice_content" + i).toString(), "사감",
-                                simpleDateFormat.parse(response.get("notice_time" + i).toString())));
+                                response.get("notice_time" + i).toString()));
                     }
                     int board_sum = Integer.parseInt(response.get("board_sum").toString());
                     for (int i = 0; i < board_sum; i++) {
                         dataManager.getBoardItems().add(new BoardItem(Integer.parseInt(response.get("board_number" + i).toString()), response.get("board_title" + i).toString(),
                                 response.get("board_content" + i).toString(), Integer.parseInt(response.get("board_sno" + i).toString()),
-                                simpleDateFormat.parse(response.get("board_time" + i).toString())));
+                                response.get("board_time" + i).toString()));
                     }
                     int question_sum = Integer.parseInt(response.get("question_sum").toString());
                     for (int i = 0; i < question_sum; i++) {
                         dataManager.getQuestionItems().add(new QuestionItem(Integer.parseInt(response.get("question_number" + i).toString()), response.get("question_title" + i).toString(),
                                 response.get("question_content" + i).toString(), Integer.parseInt(response.get("question_sno" + i).toString()),
-                                simpleDateFormat.parse(response.get("question_time" + i).toString()), response.get("question_answer" + i).toString(),
+                                response.get("question_time" + i).toString(), response.get("question_answer" + i).toString(),
                                 response.get("question_answerTime" + i).toString()));
                     }
-
                     viewPager.getAdapter().notifyDataSetChanged();
-                } catch (JSONException | ParseException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
@@ -160,6 +161,44 @@ public class Activity_Manager_Main extends AppCompatActivity implements ActionBa
         });
     }
 
+
+    public void getTodayOutSleep() {
+
+        TodayOutSleepData.student.clear();
+
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        java.text.SimpleDateFormat sdfNow = new java.text.SimpleDateFormat("yyyy/MM/dd");
+        String strNow = sdfNow.format(date);
+        System.out.println("strNow:" + strNow);
+        RequestParams params = new RequestParams();
+        params.add("date", strNow);
+        Helper_server.post("data/getTodayOutSleep.php", params, new JsonHttpResponseHandler() {
+
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    int sum = Integer.parseInt(response.get("sum").toString());
+                    for (int i = 0; i < sum; i++) {
+                        Log.i("TodayOut_time", response.get("sum" + i).toString().trim());
+                        if(Integer.parseInt(response.get("isSuccess" + i).toString())==1) {
+                            TodayOutSleepData.student.add(new TodayOutSleepData(Integer.parseInt(response.get("sno" + i).toString()),
+                                    Integer.parseInt(response.get("isSuccess" + i).toString())));
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+                Log.d("Failed: ", "" + statusCode);
+                Log.d("Error : ", "" + throwable);
+            }
+        });
+
+    }
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
 //        Toast.makeText(this, tab.getText() + "선택됨", Toast.LENGTH_SHORT).show();
@@ -280,5 +319,6 @@ public class Activity_Manager_Main extends AppCompatActivity implements ActionBa
         super.onResume();  // Always call the superclass method first
 
         init();
+        getTodayOutSleep();
     }
 }

@@ -50,7 +50,7 @@ public class NoticeListAdapter extends BaseAdapter {
         aq.id(R.id.item_title).text(board.get(i).getTitle());
         aq.id(R.id.item_content).text(board.get(i).getContent());
         aq.id(R.id.item_person).text(board.get(i).getName());
-        aq.id(R.id.item_time).text(dateFormat.format(board.get(i).getTime()));
+        aq.id(R.id.item_time).text(board.get(i).getTime());
 
         return view;
     }

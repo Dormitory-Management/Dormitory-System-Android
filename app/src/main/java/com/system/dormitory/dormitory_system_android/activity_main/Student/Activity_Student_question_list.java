@@ -32,7 +32,6 @@ import cz.msebera.android.httpclient.Header;
 public class Activity_Student_question_list extends Activity {
     private DataManager dataManager;
     private ListView listView;
-    private SimpleDateFormat simpleDateFormat;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +41,6 @@ public class Activity_Student_question_list extends Activity {
     public void init() {
         dataManager = DataManager.getInstance();
         dataManager.DataClear();
-        simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-
         listView = (ListView) findViewById(R.id.student_question_list);
         final QuestionListAdapter adapter = new QuestionListAdapter(getApplicationContext(), DataManager.getInstance().getQuestionItems());
         listView.setAdapter(adapter);
@@ -61,12 +58,12 @@ public class Activity_Student_question_list extends Activity {
                         System.out.println("aaaa" + response.get("question_title" + i).toString());
                         dataManager.getQuestionItems().add(new QuestionItem(Integer.parseInt(response.get("question_number" + i).toString()),response.get("question_title" + i).toString(),
                                 response.get("question_content" + i).toString(), Integer.parseInt(response.get("question_sno" + i).toString()),
-                                simpleDateFormat.parse(response.get("question_time" + i).toString()), response.get("question_answer" + i).toString(),
+                                response.get("question_time" + i).toString(), response.get("question_answer" + i).toString(),
                                 response.get("question_answerTime" + i).toString()));
                         adapter.notifyDataSetChanged();
                     }
 
-                } catch (JSONException | ParseException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }

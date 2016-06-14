@@ -35,11 +35,10 @@ public class BoardActivity extends Activity {
         Intent intent = getIntent();
         Item item = (Item) intent.getSerializableExtra("Item");
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
 
         aq.id(R.id.content_layout_title).text(item.getTitle());
         aq.id(R.id.content_layout_content).text(item.getContent());
-        aq.id(R.id.content_layout_date).text(dateFormat.format(item.getTime()));
+        aq.id(R.id.content_layout_date).text(item.getTime());
 
         commentListAdapter = new CommentListAdapter(getApplicationContext(), DataManager.getInstance().getComments());
         comments.setAdapter(commentListAdapter);

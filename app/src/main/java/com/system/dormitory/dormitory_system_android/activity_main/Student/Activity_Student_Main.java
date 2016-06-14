@@ -96,7 +96,7 @@ public class Activity_Student_Main extends AppCompatActivity implements ActionBa
     public void init() {
         dataManager = DataManager.getInstance();
         dataManager.DataClear();
-        simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+        //simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
 
         RequestParams params = new RequestParams();
         params.add("id", "123");
@@ -109,18 +109,17 @@ public class Activity_Student_Main extends AppCompatActivity implements ActionBa
                     for (int i = 0; i < notice_sum; i++) {
                         dataManager.getNoticeItems().add(new NoticeItem(Integer.parseInt(response.get("notice_number" + i).toString()),response.get("notice_title" + i).toString(),
                                 response.get("notice_content" + i).toString(), "사감",
-                                simpleDateFormat.parse(response.get("notice_time" + i).toString())));
+                                response.get("notice_time" + i).toString()));
                     }
                     int board_sum = Integer.parseInt(response.get("board_sum").toString());
                     System.out.println("aaaa" + board_sum);
                     for (int i = 0; i < board_sum; i++) {
                         dataManager.getBoardItems().add(new BoardItem(Integer.parseInt(response.get("board_number" + i).toString()),response.get("board_title" + i).toString(),
                                 response.get("board_content" + i).toString(), Integer.parseInt(response.get("board_sno" + i).toString()),
-                                simpleDateFormat.parse(response.get("board_time" + i).toString())));
+                                response.get("board_time" + i).toString()));
                     }
-
                     viewPager.getAdapter().notifyDataSetChanged();
-                } catch (JSONException | ParseException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }

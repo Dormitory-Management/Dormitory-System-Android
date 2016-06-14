@@ -62,12 +62,12 @@ public class Activity_Manager_question_list extends Activity {
                         System.out.println("aaaa" + response.get("question_title" + i).toString());
                         dataManager.getQuestionItems().add(new QuestionItem(Integer.parseInt(response.get("question_number" + i).toString()),response.get("question_title" + i).toString(),
                                 response.get("question_content" + i).toString(), Integer.parseInt(response.get("question_sno" + i).toString()),
-                                simpleDateFormat.parse(response.get("question_time" + i).toString()), response.get("question_answer" + i).toString(),
+                                response.get("question_time" + i).toString(), response.get("question_answer" + i).toString(),
                                 response.get("question_answerTime" + i).toString()));
                         adapter.notifyDataSetChanged();
                     }
 
-                } catch (JSONException | ParseException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
