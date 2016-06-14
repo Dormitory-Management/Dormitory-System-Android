@@ -1,5 +1,6 @@
 package com.system.dormitory.dormitory_system_android.data;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -7,10 +8,15 @@ import java.util.Date;
  */
 public class Comment {
     private String comment;
-    private Date date;
+    private int sno;
+    private String time;
 
-    public Comment(String comment) {
+    public Comment(int sno, String comment, String time) {
         this.comment = comment;
+        this.time = time;
+        this.sno = sno;
+        // 현재 시간을 저장 한다.
+
     }
 
     public String getComment() {
@@ -21,11 +27,16 @@ public class Comment {
         this.comment = comment;
     }
 
-    public Date getDate() {
-        return date;
+    public String getTime() {
+        return time;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTime(String time) {
+        this.time = time;
     }
+
+    public int getSno(){
+        return sno;
+    }
+    public void setSno(int sno){this.sno = sno;}
 }

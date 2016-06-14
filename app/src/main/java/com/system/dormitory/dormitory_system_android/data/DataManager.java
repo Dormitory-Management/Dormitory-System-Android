@@ -51,7 +51,7 @@ public class DataManager {
         return comments;
     }
 
-    public void addComment(String comment) {
-        comments.add(new Comment(comment));
+    public void addComment(int sno, String comment, String time) {
+        comments.add(new Comment(sno, comment, time));
     }
 }

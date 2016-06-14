@@ -47,7 +47,7 @@ public class CommentListAdapter extends BaseAdapter {
 
         aq = new AQuery(view);
 
-        aq.id(R.id.comment_content).text(comments.get(i).getComment());
+        aq.id(R.id.comment_content).text(comments.get(i).getSno() + " : " +comments.get(i).getComment());
 
         return view;
     }
