@@ -4,6 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/tv_student_question_list"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text = "나의 질문 내역"
+        android:textSize = "40dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity ="center"/>
+
+
     <ListView
         android:id="@+id/student_question_list"
         android:layout_width="match_parent"

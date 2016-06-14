@@ -78,7 +78,6 @@
         <activity android:name=".activity_main.Student.Activity_Student_penaltyPoint" />
         <activity android:name=".activity_main.Student.Activity_Student_outSleep" />
         <activity android:name=".activity_main.Student.Activity_Student_Rental" />
-        <activity android:name=".activity_main.Student.Activity_Student_meal" />
         <activity android:name=".activity_main.Student.Activity_Student_question_list" />
         <activity android:name=".activity_main.Manager.RoomCheck" />
         <activity android:name=".activity_main.Manager.Room" />
