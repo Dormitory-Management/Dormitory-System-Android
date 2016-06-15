@@ -73,7 +73,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@string/manager_rental"
+                        android:text="외박승인"
                         android:textColor="@color/black"
                         android:textSize="50dp"
                         android:textStyle="bold" />

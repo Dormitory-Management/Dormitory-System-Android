@@ -40,8 +40,6 @@ public class Activity_Manager_outSleep extends Activity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch(keyCode) {
             case KeyEvent.KEYCODE_BACK:
-                Intent intent = new Intent(Activity_Manager_outSleep.this, Activity_Manager_Main.class);
-                startActivity(intent);
                 finish();
                 return false;
             default:
